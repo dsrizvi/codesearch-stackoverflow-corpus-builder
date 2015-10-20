@@ -35,31 +35,22 @@ for question in question_data["items"]:
 
 				answer_body	  = answer['body'].encode('utf-8')
 				soup 		  = BeautifulSoup(answer_body)
-				code_snippets = soup.find('code').getText()
+				code_snippets = soup.findAll('code')
 				# print answer_body
 				# print soup.getText()
 				qid = answer['question_id']
 				print len(soup.findAll('code'))
 				print "++++++++++++++++++"
 				for i in range(len(soup.findAll('code'))):
-					cid = 'so' + str(i) + '_' + str(qid)
+					cid = 'so' + str(i) + '_' + str(qid) + '.txt'
 					answer_body = re.sub(r'<code>(.|\n)*?<\/code>', cid, answer_body, 1)
+					code_file = open(cid, "w")
+					code_file.write(str(code_snippets[i]))
+					code_file.close()
 
-				# cid = '------------------'
-				# answer_body = re.sub(r'<code>(.|\n)*?<\/code>', cid, answer_body)
-				# answer_body = re.sub(r'<code>([^\n]*?\n+?)+?</code>', cid, answer_body)
-
-
-
-				# answer_body = re.sub(r'<code>.*</code>', '', answer_body)
 				answer_body = html2text.html2text(answer_body)
-				print answer['body'].encode('utf-8')
-				print '-----------------------------------'
 				print answer_body
 
-				# print answer_body
-
-				# print code_snippets
 				print '==================================='
 
 
