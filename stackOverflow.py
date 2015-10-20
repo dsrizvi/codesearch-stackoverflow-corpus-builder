@@ -44,12 +44,13 @@ for question in question_data["items"]:
 					# cid = 'so' + str(i) + '_' + str(qid)
 
 				cid = '------------------'
-				answer_body = re.sub(r'<code>(.+?)</code>', cid, answer_body)
+				answer_body = re.sub(r'<code>(.|\n)*?<\/code>', cid, answer_body)
+				# answer_body = re.sub(r'<code>([^\n]*?\n+?)+?</code>', cid, answer_body)
 
 
 
 				# answer_body = re.sub(r'<code>.*</code>', '', answer_body)
-				answer_body = html2text.html2text(answer_body).replace('\n', '<br>')
+				answer_body = html2text.html2text(answer_body)
 				print answer['body'].encode('utf-8')
 				print '-----------------------------------'
 				print answer_body
