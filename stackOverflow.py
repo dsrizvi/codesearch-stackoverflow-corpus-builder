@@ -39,12 +39,14 @@ for question in question_data["items"]:
 				# print answer_body
 				# print soup.getText()
 				qid = answer['question_id']
+				print len(soup.findAll('code'))
+				print "++++++++++++++++++"
+				for i in range(len(soup.findAll('code'))):
+					cid = 'so' + str(i) + '_' + str(qid)
+					answer_body = re.sub(r'<code>(.|\n)*?<\/code>', cid, answer_body, 1)
 
-				# for i in range(len(soup.find('code'))):
-					# cid = 'so' + str(i) + '_' + str(qid)
-
-				cid = '------------------'
-				answer_body = re.sub(r'<code>(.|\n)*?<\/code>', cid, answer_body)
+				# cid = '------------------'
+				# answer_body = re.sub(r'<code>(.|\n)*?<\/code>', cid, answer_body)
 				# answer_body = re.sub(r'<code>([^\n]*?\n+?)+?</code>', cid, answer_body)
 
 
