@@ -40,11 +40,11 @@ def index():
 
 	urlparse.uses_netloc.append("postgres")
 	url = urlparse.urlparse(os.environ["DATABASE_URL"])
-    db_name=url.path[1:],
-    db_password=url.username,
-    password=url.password,
-    db_host=url.hostname,
-    db_port=url.port
+	db_name=url.path[1:],
+	db_password=url.username,
+	password=url.password,
+	db_host=url.hostname,
+	db_port=url.port
 	# db_name 			= 'so_code'
 	# db_user				= 'crawler'
 	# db_host				= 'localhost'
