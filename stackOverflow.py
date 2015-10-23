@@ -67,9 +67,13 @@ def s3upload(docs, bucket):
 	print "Uploading documents to S3."
 
 	for doc in docs:
-		key = bucket.new_key(doc[0])
-		key.set_contents_from_string(doc[1])
 
+		try:
+			key = bucket.new_key(doc[0])
+			key.set_contents_from_string(doc[1])
+		except Exception as e:
+			print "UPLOAD ERROR:"
+			print e
 	print "Documents uploaded."
 
 def get_questions(url, page):
@@ -80,7 +84,7 @@ def get_questions(url, page):
 	print "Fetching questions..."
 
 	if 'error_id' in response:
-		print "ERROR"
+		print "GET QUESTION ERROR"
 		if response['error_id'] == 502:
 			print response
 			wait_time = re.findall(r'\d+', response['error_message'])[0]
@@ -106,7 +110,7 @@ def build_qa(url, questions, requests_remaining):
 			response = requests.get(answers_url).json()
 
 			if 'error_id' in response:
-				print "ERROR"
+				print "GET ANSWER ERROR"
 				print response
 				if response['error_id'] == 502:
 					wait_time = re.findall(r'\d+', response['error_message'])[0]
@@ -118,7 +122,7 @@ def build_qa(url, questions, requests_remaining):
 				for answer in response['items']:
 					if 'error_id' in answer:
 						answer = None
-						print "ERROR:"
+						print "ANSWER ERROR:"
 						# print answers
 						print 'Question id:' + question['id'].encode('utf-8')
 						break
@@ -129,9 +133,9 @@ def build_qa(url, questions, requests_remaining):
 
 
 								question_id    = answer['question_id']
-								question_title = question['title'].decode().encode('utf-8')
-								question_body  = question['body'].decode().encode('utf-8')
-								question_link  = question['link'].decode().encode('utf-8')
+								question_title = question['title'].encode('utf-8')
+								question_body  = question['body'].encode('utf-8')
+								question_link  = question['link'].encode('utf-8')
 
 								soup 		  = BeautifulSoup(answer_body)
 								code_extract  = soup.findAll('code')
@@ -158,10 +162,10 @@ def build_qa(url, questions, requests_remaining):
 								qas.append(qa)
 								break
 						except Exception as e:
-							print "ERROR:"
+							print "ANSWER ERROR:"
 							print e
 			# break
-			time.sleep(1)
+			time.sleep(30)
 
 	print "Building QA complete"
 	return qas, requests_remaining
@@ -184,7 +188,7 @@ def save_code(qas, conn):
 									[cid, qid, link, code])
 					conn.commit()
 				except Exception as e:
-					print "ERROR:"
+					print "DB INSERT ERROR:"
 					print e
 
 	print "Insertion complete"
@@ -197,17 +201,18 @@ def build_html(qas):
 	<!DOCTYPE html> <html> <body> <h1> {question_title} </h1> <h2> {question_body}  </h2> <h3> {answer_body} </h3> </body> </html>
 	'''
 	for qa in qas:
-		# try:
-		doc_name 	   = 'so_%s.html' % str(qa['qid'])
-		question_title = qa['question_title'].decode().encode('utf-8')
-		question_body  = qa['question_body'].decode().encode('utf-8')
-		answer_body    = qa['answer_body'].decode().encode('utf-8')
+		try:
+			print qa
+			doc_name 	   = 'so_%s.html' % str(qa['qid'])
+			question_title = qa['question_title']
+			question_body  = qa['question_body']
+			answer_body    = qa['answer_body']
 
-		html = template.format(question_title=question_title, question_body=question_body, answer_body=answer_body)
-		docs.append((doc_name, html))
-		# except Exception as e:
-		# 	print "ERROR:"
-		# 	print e
+			html = template.format(question_title=question_title, question_body=question_body, answer_body=answer_body)
+			docs.append((doc_name, html))
+		except Exception as e:
+			print "HTML BUILD ERROR:"
+			print e
 
 	print "HTML documents complete."
 
