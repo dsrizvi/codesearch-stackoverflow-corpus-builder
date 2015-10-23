@@ -113,6 +113,8 @@ def build_qa(url, questions, requests_remaining):
 								# code 		       = re.search(r'<code>(.|\n)*?<\/code>', answer_body)
 								answer_body 	   = re.sub(r'<code>(.|\n)*?<\/code>', cid, answer_body, 1)
 
+								print answer_body
+								print code
 								code_snippets[cid] = code.group(0)
 
 							answer_body = html2text.html2text(answer_body.decode('utf-8'))
