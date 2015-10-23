@@ -1,11 +1,15 @@
+from BeautifulSoup import BeautifulSoup
 import requests
 import json
 import time
-from BeautifulSoup import BeautifulSoup
 import html2text
 import re
 import sqlite3
 import json
+import psycopg2
+import HTMLParser
+import boto
+from boto.s3.connection import S3Connection
 # client_id 		= '5836'
 # client_secret 	= 'AN8VH9S*GiY9j2MpgfE8jw(('
 # api_key			= ')HzqRSuw*14xiB8Yc8cgZw(('
@@ -16,28 +20,57 @@ import json
 
 def main():
 
-	client_id 			= '5836'
-	client_secret 		= 'AN8VH9S*GiY9j2MpgfE8jw(('
-	api_key				= ')HzqRSuw*14xiB8Yc8cgZw(('
-	questions_url		= "https://api.stackexchange.com/2.2/questions?key={key}&page={page}&order=desc&pagesize=100&sort=votes&min=20&tagged=python&site=stackoverflow&filter=withbody"
-	answer_url 			= "https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER"
-	answer_url 			= answer_url.replace("PLACEHOLDER", api_key)
+	so_client_id 		= '5836'
+	so_client_secret 	= 'AN8VH9S*GiY9j2MpgfE8jw(('
+	so_api_key			= ')HzqRSuw*14xiB8Yc8cgZw(('
+	questions_url		= 'https://api.stackexchange.com/2.2/questions?key={key}&page={page}&order=desc&pagesize=100&sort=votes&min=20&tagged=python&site=stackoverflow&filter=withbody'
+	answer_url 			= 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
+	answer_url 			= answer_url.replace('PLACEHOLDER', so_api_key)
+
+	AWSAccessKeyId		= 'AKIAIY5TKK65FZKGMINQ'
+	AWSSecretKey		= 'bi09nM0zDV7thpNUNcEpl/r89g4kidKvvny5071q'
+	s3conn 				= S3Connection(AWSAccessKeyId, AWSSecretKey)
+	bucket				= s3conn.get_bucket('code-search-corpus')
+
+	db_name 			= 'so_code'
+	db_user				= 'crawler'
+	db_host				= 'localhost'
+	db_port				= 5432
+	db_password			= 'socrawler'
+	conn 				= psycopg2.connect(dbname=db_name, user=db_user, password=db_password, port=db_port)
 
 	page 		   		= 1
-	requests_remaining  = 10
-	questions_url  		= questions_url.format(key=api_key, page=1)
+	requests_remaining  = 1
+	questions_url  		= questions_url.format(key=so_api_key, page=1)
 
 
 	while requests_remaining > 0:
 
-		questions, requests_remaining	= get_questions(url=questions_url, page=page)
-		page 		  	   				+= 1
+		questions, requests_remaining = get_questions(url=questions_url, page=page)
+		page 		  	   			  += 1
 
 		# print questions
 		if questions:
-			answers, requests_remaining  = build_qa(questions=questions,url=answer_url, requests_remaining=requests_remaining)
+			qas, requests_remaining  = build_qa(questions=questions,url=answer_url, requests_remaining=requests_remaining)
 
+			if len(questions) > 0:
+				save_code(qas=qas, conn=conn)
+				docs = build_html(qas)
+				print docs
+				s3upload(docs, bucket)
+
+		print "\nRequests remaining:" + str(requests_remaining)
 		time.sleep(30)
+
+
+def s3upload(docs, bucket):
+	print "Uploading documents to S3."
+
+	for doc in docs:
+		key = bucket.new_key(doc[0])
+		key.set_contents_from_string(doc[1])
+
+	print "Documents uploaded."
 
 def get_questions(url, page):
 
@@ -69,11 +102,9 @@ def build_qa(url, questions, requests_remaining):
 	for question in questions:
 		if question['is_answered']:
 			answers_url			= url.format(question_id=str(question['question_id']))
-			# answer_url 	   		= url.replace("QUESTIONID", str(question['question_id']))
 			requests_remaining -= 1
-			# print answers_url
 			response = requests.get(answers_url).json()
-			print response
+
 			if 'error_id' in response:
 				print "ERROR"
 				print response
@@ -88,63 +119,97 @@ def build_qa(url, questions, requests_remaining):
 					if 'error_id' in answer:
 						answer = None
 						print "ERROR:"
-						print answers
+						# print answers
 						print 'Question id:' + question['id'].encode('utf-8')
 						break
 					else:
-						if answer['is_accepted']:
-							answer_body  = answer['body'].encode('utf-8')
+						try:
+							if answer['is_accepted']:
+								answer_body  = answer['body'].encode('utf-8')
 
 
-							question_id    = answer['question_id']
-							question_title = question['title'].encode('utf-8')
-							question_body  = question['body'].encode('utf-8')
-							question_link  = question['link'].encode('utf-8')
+								question_id    = answer['question_id']
+								question_title = question['title'].encode('utf-8')
+								question_body  = question['body'].encode('utf-8')
+								question_link  = question['link'].encode('utf-8')
 
-							soup 		  = BeautifulSoup(answer_body)
-							code_extract  = soup.findAll('code')
-							code_snippets = {}
+								soup 		  = BeautifulSoup(answer_body)
+								code_extract  = soup.findAll('code')
+								code_snippets = {}
 
+								h= HTMLParser.HTMLParser()
+								for i in range(len(code_extract)):
+									cid 		       = 'so_' + str(i) + '_' + str(question_id) + '.code'
+									code 		       = re.search(r'(?<=<code>)(.|\n)*?(?=\<\/code>)', answer_body).group(0)
+									answer_body 	   = re.sub(r'<code>(.|\n)*?<\/code>', cid, answer_body, 1)
+									code 		       = h.unescape(code)
+									code_snippets[cid] = code.replace("'", '"')
 
-							print answer_body
-							for i in range(len(code_extract)):
-								cid 		       = 'so_' + str(i) + '_' + str(question_id) + '.code'
-								code 		       = re.search(r'(?<=<code>)(.|\n)*?(?=\<\/code>)', answer_body)
-								# code 		       = re.search(r'<code>(.|\n)*?<\/code>', answer_body)
-								answer_body 	   = re.sub(r'<code>(.|\n)*?<\/code>', cid, answer_body, 1)
+								answer_body = html2text.html2text(answer_body.decode('utf-8'))
+								answer_body = answer_body.replace('\n', '<br>')
 
-								print answer_body
-								print code
-								code_snippets[cid] = code.group(0)
-
-							answer_body = html2text.html2text(answer_body.decode('utf-8'))
-							answer_body = answer_body.replace('\n', '<br>')
-							qa 			= { 'qid'  		   : question_id,
-									   		'question_body' : question_body,
-									   		'question_body' : question_title,
-								   	   		'question_link' : answers_url,
-								      		 'answer_body'   : answer_body,
-								      		 'code_snippets' : code_snippets
-										}
-							qas.append(answer)
-							# print answer
-							break
+								qa 			= { 'qid'  		     : question_id,
+										   		'question_body'  : question_body,
+										   		'question_title' : question_title,
+									   	   		'question_link'  : question_link,
+									      		'answer_body'    : answer_body,
+									      		'code_snippets'  : code_snippets
+											}
+								qas.append(qa)
+								break
+						except Exception as e:
+							print "ERROR:"
+							print e
+			# break
 			time.sleep(1)
 
 	print "Building QA complete"
-	return qa, requests_remaining
+	return qas, requests_remaining
+
+def save_code(qas, conn):
+	print "Inserting code snippets into database."
+
+	cursor = conn.cursor()
+	for qa in qas:
+		qid  = qa['qid']
+		link = qa['question_link']
+
+		for cid, code in qa['code_snippets'].iteritems():
+			cursor.execute("SELECT EXISTS(SELECT 1 FROM code_snippets where cid=%s)", [cid])
+			exists = cursor.fetchall()[0][0]
+
+			if not exists:
+				try:
+					cursor.execute("INSERT INTO code_snippets(cid, qid, link, code) VALUES (%s, %s, E%s, E%s)", \
+									[cid, qid, link, code])
+					conn.commit()
+				except Exception as e:
+					print "ERROR:"
+					print e
+
+	print "Insertion complete"
 
 def build_html(qas):
+	print "Building HTML documents."
 
+	docs = list()
+	template = '''
+	<!DOCTYPE html> <html> <body> <h1> {question_title} </h1> <h2> {question_body}  </h2> <h3> {answer_body} </h3> </body> </html>
+	'''
 	for qa in qas:
+		print qa
+		doc_name 	   = 'so_%s.html' % str(qa['qid'])
+		question_title = qa['question_title'].decode('utf-8')
+		question_body  = qa['question_body'].decode('utf-8')
+		answer_body    = qa['answer_body'].decode('utf-8')
 
-		qa = { 	   'qid'  		   : question_id,
-				   'question_body' : question_body,
-				   'question_body' : question_title,
-			   	   'question_link' : answers_url,
-			       'answer_body'   : answer_body,
-			       'code_snippets' : code_snippets
-		}
+		html = template.format(question_title=question_title, question_body=question_body, answer_body=answer_body)
+		docs.append((doc_name, html))
+
+
+	print "HTML documents complete."
+
+	return docs
 
 
 if __name__ == '__main__':
