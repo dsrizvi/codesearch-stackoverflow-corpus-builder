@@ -46,8 +46,8 @@ def index():
 	db_port			= url.port
 
 	print db_name
+	print db_user
 	print db_password
-	print password
 	print db_host
 	print db_port
 
