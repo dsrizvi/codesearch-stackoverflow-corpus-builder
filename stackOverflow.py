@@ -10,7 +10,6 @@ import HTMLParser
 import boto
 from boto.s3.connection import S3Connection
 from flask import Flask, render_template
-import os
 
 app = Flask(__name__)
 
