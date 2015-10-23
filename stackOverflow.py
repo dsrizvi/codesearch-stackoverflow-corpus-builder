@@ -38,14 +38,18 @@ def index():
 	bucket				= s3conn.get_bucket('code-search-corpus')
 	print "a"
 	urlparse.uses_netloc.append("postgres")
-	url = urlparse.urlparse(os.environ["DATABASE_URL"])
-	db_name=url.path[1:]
-	db_password=url.username
-	password=url.password
-	db_host=url.hostname
-	db_port=url.port
+	url 			= urlparse.urlparse(os.environ["DATABASE_URL"])
+	db_name			= url.path[1:]
+	db_password		= url.username
+	password		= url.password
+	db_host			= url.hostname
+	db_port			= url.port
 
-
+	print db_name
+	print db_password
+	print password
+	print db_host
+	print db_port
 
 	# db_name 			= 'so_code'
 	# db_user				= 'crawler'
