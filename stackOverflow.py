@@ -4,7 +4,6 @@ import json
 import time
 import html2text
 import re
-import sqlite3
 import json
 import psycopg2
 import HTMLParser
@@ -170,7 +169,7 @@ def build_qa(url, questions, requests_remaining):
 							print "ANSWER ERROR:"
 							print e
 			# break
-			time.sleep(30)
+			time.sleep(1)
 
 	print "Building QA complete"
 	return qas, requests_remaining
