@@ -52,6 +52,7 @@ def index():
 	# db_host				= 'localhost'
 	# db_port				= 5432
 	# db_password			= 'socrawler'
+	print '0'
 	conn 				= psycopg2.connect(dbname=db_name, user=db_user, password=db_password, port=db_port, host=url)
 	print conn
 	print "1"
