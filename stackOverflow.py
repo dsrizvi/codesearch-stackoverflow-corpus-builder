@@ -25,6 +25,8 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
 
+	print "hereeeeee"
+
 	so_client_id 		= '5836'
 	so_client_secret 	= 'AN8VH9S*GiY9j2MpgfE8jw(('
 	so_api_key			= ')HzqRSuw*14xiB8Yc8cgZw(('
@@ -37,7 +39,7 @@ def index():
 	s3conn 				= S3Connection(AWSAccessKeyId, AWSSecretKey)
 	bucket				= s3conn.get_bucket('code-search-corpus')
 
-
+	print "db url: " + os.environ["DATABASE_URL"]
 	urlparse.uses_netloc.append("postgres")
 	url = urlparse.urlparse(os.environ["DATABASE_URL"])
 	db_name=url.path[1:]
@@ -45,13 +47,15 @@ def index():
 	password=url.password
 	db_host=url.hostname
 	db_port=url.port
+
+
+
 	# db_name 			= 'so_code'
 	# db_user				= 'crawler'
 	# db_host				= 'localhost'
-	# db_host				= os.environ['DATABASE_URL']
 	# db_port				= 5432
 	# db_password			= 'socrawler'
-	conn 				= psycopg2.connect(dbname=db_name, user=db_user, password=db_password, port=db_port)
+	conn 				= psycopg2.connect(dbname=db_name, user=db_user, password=db_password, port=db_port, host=url)
 
 	page 		   		= 1
 	requests_remaining  = 1
@@ -76,6 +80,7 @@ def index():
 		print "\nRequests remaining:" + str(requests_remaining)
 		time.sleep(30)
 
+	return "Process initiated."
 
 def s3upload(docs, bucket):
 	print "Uploading documents to S3."
