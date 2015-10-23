@@ -129,9 +129,9 @@ def build_qa(url, questions, requests_remaining):
 
 
 								question_id    = answer['question_id']
-								question_title = question['title'].encode('utf-8')
-								question_body  = question['body'].encode('utf-8')
-								question_link  = question['link'].encode('utf-8')
+								question_title = question['title'].decode().encode('utf-8')
+								question_body  = question['body'].decode().encode('utf-8')
+								question_link  = question['link'].decode().encode('utf-8')
 
 								soup 		  = BeautifulSoup(answer_body)
 								code_extract  = soup.findAll('code')
@@ -197,15 +197,17 @@ def build_html(qas):
 	<!DOCTYPE html> <html> <body> <h1> {question_title} </h1> <h2> {question_body}  </h2> <h3> {answer_body} </h3> </body> </html>
 	'''
 	for qa in qas:
-		print qa
+		# try:
 		doc_name 	   = 'so_%s.html' % str(qa['qid'])
-		question_title = qa['question_title'].decode('utf-8')
-		question_body  = qa['question_body'].decode('utf-8')
-		answer_body    = qa['answer_body'].decode('utf-8')
+		question_title = qa['question_title'].decode().encode('utf-8')
+		question_body  = qa['question_body'].decode().encode('utf-8')
+		answer_body    = qa['answer_body'].decode().encode('utf-8')
 
 		html = template.format(question_title=question_title, question_body=question_body, answer_body=answer_body)
 		docs.append((doc_name, html))
-
+		# except Exception as e:
+		# 	print "ERROR:"
+		# 	print e
 
 	print "HTML documents complete."
 
