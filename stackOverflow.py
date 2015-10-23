@@ -36,9 +36,9 @@ def index():
 	AWSSecretKey		= 'bi09nM0zDV7thpNUNcEpl/r89g4kidKvvny5071q'
 	s3conn 				= S3Connection(AWSAccessKeyId, AWSSecretKey)
 	bucket				= s3conn.get_bucket('code-search-corpus')
-
+	print "a"
 	urlparse.uses_netloc.append("postgres")
-	url = urlparse.urlparse(os.environ["DATABASE_URL"])
+	db_url = urlparse.urlparse(os.environ["DATABASE_URL"])
 	db_name=url.path[1:]
 	db_password=url.username
 	password=url.password
@@ -53,7 +53,7 @@ def index():
 	# db_port				= 5432
 	# db_password			= 'socrawler'
 	print '0'
-	conn 				= psycopg2.connect(dbname=db_name, user=db_user, password=db_password, port=db_port, host=url)
+	conn 				= psycopg2.connect(dbname=db_name, user=db_user, password=db_password, port=db_port, host=db_host)
 	print conn
 	print "1"
 	page 		   		= 1
