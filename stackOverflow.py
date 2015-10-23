@@ -25,8 +25,6 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
 
-	print "hereeeeee"
-
 	so_client_id 		= '5836'
 	so_client_secret 	= 'AN8VH9S*GiY9j2MpgfE8jw(('
 	so_api_key			= ')HzqRSuw*14xiB8Yc8cgZw(('
@@ -39,7 +37,6 @@ def index():
 	s3conn 				= S3Connection(AWSAccessKeyId, AWSSecretKey)
 	bucket				= s3conn.get_bucket('code-search-corpus')
 
-	print "db url: " + os.environ["DATABASE_URL"]
 	urlparse.uses_netloc.append("postgres")
 	url = urlparse.urlparse(os.environ["DATABASE_URL"])
 	db_name=url.path[1:]
@@ -56,22 +53,24 @@ def index():
 	# db_port				= 5432
 	# db_password			= 'socrawler'
 	conn 				= psycopg2.connect(dbname=db_name, user=db_user, password=db_password, port=db_port, host=url)
-
+	print conn
+	print "1"
 	page 		   		= 1
 	requests_remaining  = 1
 	questions_url  		= questions_url.format(key=so_api_key, page=1)
-
+	print "2"
 
 	while requests_remaining > 0:
-
+		print "3"
 		questions, requests_remaining = get_questions(url=questions_url, page=page)
 		page 		  	   			  += 1
 
 		# print questions
 		if questions:
 			qas, requests_remaining  = build_qa(questions=questions,url=answer_url, requests_remaining=requests_remaining)
-
+			print "4"
 			if len(questions) > 0:
+				print "5"
 				save_code(qas=qas, conn=conn)
 				docs = build_html(qas)
 				print docs
