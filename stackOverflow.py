@@ -10,6 +10,8 @@ import HTMLParser
 import boto
 from boto.s3.connection import S3Connection
 from flask import Flask, render_template
+import os
+import urlparse
 
 app = Flask(__name__)
 
@@ -35,11 +37,20 @@ def index():
 	s3conn 				= S3Connection(AWSAccessKeyId, AWSSecretKey)
 	bucket				= s3conn.get_bucket('code-search-corpus')
 
-	db_name 			= 'so_code'
-	db_user				= 'crawler'
-	db_host				= 'localhost'
-	db_port				= 5432
-	db_password			= 'socrawler'
+
+	urlparse.uses_netloc.append("postgres")
+	url = urlparse.urlparse(os.environ["DATABASE_URL"])
+    db_name=url.path[1:],
+    db_password=url.username,
+    password=url.password,
+    db_host=url.hostname,
+    db_port=url.port
+	# db_name 			= 'so_code'
+	# db_user				= 'crawler'
+	# db_host				= 'localhost'
+	# db_host				= os.environ['DATABASE_URL']
+	# db_port				= 5432
+	# db_password			= 'socrawler'
 	conn 				= psycopg2.connect(dbname=db_name, user=db_user, password=db_password, port=db_port)
 
 	page 		   		= 1
