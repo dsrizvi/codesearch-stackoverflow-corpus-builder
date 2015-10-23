@@ -10,6 +10,10 @@ import psycopg2
 import HTMLParser
 import boto
 from boto.s3.connection import S3Connection
+from flask import Flask, render_template
+import os
+
+app = Flask(__name__)
 
 # client_id 		= '5836'
 # client_secret 	= 'AN8VH9S*GiY9j2MpgfE8jw(('
@@ -18,8 +22,8 @@ from boto.s3.connection import S3Connection
 # answer_url 		= "https://api.stackexchange.com/2.2/questions/QUESTIONID/answers?order=desc&page=sort=activity&site=stackoverflow&filter=withbody"
 # https://api.stackexchange.com/2.0/questions?key=)HzqRSuw*14xiB8Yc8cgZw((&pagesize=50&site=stackoverflow&tagged=xpages&order=desc&sort=creation&page=1
 
-
-def main():
+@app.route('/', methods=['GET', 'POST'])
+def index():
 
 	so_client_id 		= '5836'
 	so_client_secret 	= 'AN8VH9S*GiY9j2MpgfE8jw(('
@@ -221,4 +225,4 @@ def build_html(qas):
 
 
 if __name__ == '__main__':
-	main()
+	app.run()
