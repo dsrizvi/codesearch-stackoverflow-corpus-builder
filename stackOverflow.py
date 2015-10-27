@@ -23,7 +23,6 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
-
 app = Flask(__name__)
 # app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 # app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
@@ -41,6 +40,8 @@ celery.conf.update(app.config)
 # questions_url	= "https://api.stackexchange.com/2.2/questions?key=KEY&page=PAGEorder=desc&pagesize=100&sort=votes&min=20&tagged=python&site=stackoverflow&filter=withbody&page=PAGENUM"
 # answer_url 		= "https://api.stackexchange.com/2.2/questions/QUESTIONID/answers?order=desc&page=sort=activity&site=stackoverflow&filter=withbody"
 # https://api.stackexchange.com/2.0/questions?key=)HzqRSuw*14xiB8Yc8cgZw((&pagesize=50&site=stackoverflow&tagged=xpages&order=desc&sort=creation&page=1
+COUNT = 0
+
 
 @app.route('/start', methods=['GET', 'POST'])
 def index():
