@@ -24,23 +24,17 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 app = Flask(__name__)
-# app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
-# app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
+app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
+app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
-app.conf.update(BROKER_URL=os.environ['REDIS_URL'],
-                CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
+# app.conf.update(BROKER_URL=os.environ['REDIS_URL'],
+#                 CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
 
 
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 
-# client_id 		= '5836'
-# client_secret 	= 'AN8VH9S*GiY9j2MpgfE8jw(('
-# api_key			= ')HzqRSuw*14xiB8Yc8cgZw(('
-# questions_url	= "https://api.stackexchange.com/2.2/questions?key=KEY&page=PAGEorder=desc&pagesize=100&sort=votes&min=20&tagged=python&site=stackoverflow&filter=withbody&page=PAGENUM"
-# answer_url 		= "https://api.stackexchange.com/2.2/questions/QUESTIONID/answers?order=desc&page=sort=activity&site=stackoverflow&filter=withbody"
-# https://api.stackexchange.com/2.0/questions?key=)HzqRSuw*14xiB8Yc8cgZw((&pagesize=50&site=stackoverflow&tagged=xpages&order=desc&sort=creation&page=1
-COUNT = 0
+COUNT = 1
 
 
 @app.route('/start', methods=['GET', 'POST'])
@@ -88,6 +82,8 @@ def get_questions(url, page):
 
 
 def build_qa(url, questions, requests_remaining, conn, bucket):
+
+	global COUNT
 
 	for question in questions:
 		if question['is_answered']:
@@ -153,11 +149,16 @@ def build_qa(url, questions, requests_remaining, conn, bucket):
 								save_code(qa=qa, conn=conn)
 								doc_name, html = build_html(qa=qa)
 								s3upload(name=doc_name, html=html, bucket=bucket)
+
+								COUNT += 1
+
 								break
 						except Exception as e:
 							logger.info("ANSWER ERROR:")
 							logger.info(e)
+
 			logger.info( '================================================================')
+			logger.info( 'Document #' + str(COUNT))
 			logger.info( 'Building question ' + str(question_id))
 			time.sleep(5)
 
@@ -212,32 +213,30 @@ def build_html(qa):
 
 @celery.task
 def run():
-	so_client_id 		= '5836'
-	so_client_secret 	= 'AN8VH9S*GiY9j2MpgfE8jw(('
-	so_api_key			= ')HzqRSuw*14xiB8Yc8cgZw(('
+	so_api_key			=  os.environ['SO_API_KEY']
 	questions_url		= 'https://api.stackexchange.com/2.2/questions?key={key}&page={page}&order=desc&pagesize=100&sort=votes&min=20&tagged=python&site=stackoverflow&filter=withbody'
 	answer_url 			= 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
 	answer_url 			= answer_url.replace('PLACEHOLDER', so_api_key)
 
-	AWSAccessKeyId		= 'AKIAIY5TKK65FZKGMINQ'
-	AWSSecretKey		= 'bi09nM0zDV7thpNUNcEpl/r89g4kidKvvny5071q'
+	AWSAccessKeyId		= os.environ['AWSAccessKeyId']
+	AWSSecretKey		= os.environ['AWSSecretKey']
 	s3conn 				= S3Connection(AWSAccessKeyId, AWSSecretKey)
 	bucket				= s3conn.get_bucket('code-search-corpus')
 
-	urlparse.uses_netloc.append("postgres")
-	url 			= urlparse.urlparse(os.environ["DATABASE_URL"])
-	db_name			= url.path[1:]
-	db_user			= url.username
-	db_password		= url.password
-	db_host			= url.hostname
-	db_port			= url.port
+	# urlparse.uses_netloc.append("postgres")
+	# url 			= urlparse.urlparse(os.environ["DATABASE_URL"])
+	# db_name			= url.path[1:]
+	# db_user			= url.username
+	# db_password		= url.password
+	# db_host			= url.hostname
+	# db_port			= url.port
 
 
-	# db_name 			= 'so_code'
-	# db_user				= 'crawler'
-	# db_host				= 'localhost'
-	# db_port				=  5432
-	# db_password			= 'socrawler'
+	db_name 			= 'so_code'
+	db_user				= 'crawler'
+	db_host				= 'localhost'
+	db_port				=  5432
+	db_password			= 'socrawler'
 
 
 	conn 				= psycopg2.connect(database=db_name, user=db_user, password=db_password,
