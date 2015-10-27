@@ -25,8 +25,12 @@ logger.addHandler(handler)
 
 
 app = Flask(__name__)
-app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
-app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
+# app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
+# app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
+
+app.conf.update(BROKER_URL=os.environ['REDIS_URL'],
+                CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
+
 
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
@@ -218,25 +222,23 @@ def run():
 	AWSSecretKey		= 'bi09nM0zDV7thpNUNcEpl/r89g4kidKvvny5071q'
 	s3conn 				= S3Connection(AWSAccessKeyId, AWSSecretKey)
 	bucket				= s3conn.get_bucket('code-search-corpus')
-	# urlparse.uses_netloc.append("postgres")
-	# url 			= urlparse.urlparse(os.environ["DATABASE_URL"])
-	# db_name			= url.path[1:]
-	# db_user			= url.username
-	# db_password		= url.password
-	# db_host			= url.hostname
-	# db_port			= url.port
 
-	# logger.info( db_name
-	# logger.info( db_user
-	# logger.info( db_password
-	# logger.info( db_host
-	# logger.info( db_port
+	urlparse.uses_netloc.append("postgres")
+	url 			= urlparse.urlparse(os.environ["DATABASE_URL"])
+	db_name			= url.path[1:]
+	db_user			= url.username
+	db_password		= url.password
+	db_host			= url.hostname
+	db_port			= url.port
 
-	db_name 			= 'so_code'
-	db_user				= 'crawler'
-	db_host				= 'localhost'
-	db_port				=  5432
-	db_password			= 'socrawler'
+
+	# db_name 			= 'so_code'
+	# db_user				= 'crawler'
+	# db_host				= 'localhost'
+	# db_port				=  5432
+	# db_password			= 'socrawler'
+
+
 	conn 				= psycopg2.connect(database=db_name, user=db_user, password=db_password,
 										   port=db_port, host=db_host)
 	page 		   		= 1

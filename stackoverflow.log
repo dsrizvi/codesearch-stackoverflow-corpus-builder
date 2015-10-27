@@ -1,0 +1,1080 @@
+2015-10-27 17:52:06,637 - stackOverflow - INFO - Fetching questions...
+2015-10-27 17:52:06,638 - stackOverflow - INFO - Questions fetched.
+2015-10-27 17:52:07,028 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:52:07,037 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:52:07,037 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:52:07,038 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:52:07,038 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:52:07,177 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:52:07,177 - stackOverflow - INFO - ================================================================
+2015-10-27 17:52:07,177 - stackOverflow - INFO - Building question 231767
+2015-10-27 17:52:12,567 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:52:12,571 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:52:12,571 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:52:12,571 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:52:12,571 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:52:12,730 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:52:12,731 - stackOverflow - INFO - ================================================================
+2015-10-27 17:52:12,731 - stackOverflow - INFO - Building question 30081275
+2015-10-27 17:52:18,017 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:52:18,020 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:52:18,020 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:52:18,021 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:52:18,021 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:52:18,125 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:52:18,126 - stackOverflow - INFO - ================================================================
+2015-10-27 17:52:18,126 - stackOverflow - INFO - Building question 30216000
+2015-10-27 17:52:23,360 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:52:23,361 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:52:23,361 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:52:23,361 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:52:23,361 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:52:23,477 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:52:23,477 - stackOverflow - INFO - ================================================================
+2015-10-27 17:52:23,478 - stackOverflow - INFO - Building question 18946662
+2015-10-27 17:52:28,742 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:52:28,744 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:52:28,745 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:52:28,745 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:52:28,745 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:52:28,938 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:52:28,938 - stackOverflow - INFO - ================================================================
+2015-10-27 17:52:28,939 - stackOverflow - INFO - Building question 31421379
+2015-10-27 17:52:34,179 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:52:34,181 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:52:34,181 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:52:34,182 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:52:34,182 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:52:34,386 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:52:34,387 - stackOverflow - INFO - ================================================================
+2015-10-27 17:52:34,387 - stackOverflow - INFO - Building question 29481088
+2015-10-27 17:52:39,698 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:52:39,699 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:52:39,699 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:52:39,699 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:52:39,700 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:52:39,839 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:52:39,840 - stackOverflow - INFO - ================================================================
+2015-10-27 17:52:39,840 - stackOverflow - INFO - Building question 20772893
+2015-10-27 17:52:45,080 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:52:45,082 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:52:45,083 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:52:45,083 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:52:45,084 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:52:45,243 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:52:45,244 - stackOverflow - INFO - ================================================================
+2015-10-27 17:52:45,244 - stackOverflow - INFO - Building question 22313407
+2015-10-27 17:52:51,049 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:52:51,064 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:52:51,064 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:52:51,064 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:52:51,064 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:52:51,525 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:52:51,525 - stackOverflow - INFO - ================================================================
+2015-10-27 17:52:51,526 - stackOverflow - INFO - Building question 30100725
+2015-10-27 17:52:56,773 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:52:56,780 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:52:56,780 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:52:56,780 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:52:56,781 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:52:56,880 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:52:56,881 - stackOverflow - INFO - ================================================================
+2015-10-27 17:52:56,881 - stackOverflow - INFO - Building question 28885132
+2015-10-27 17:53:02,139 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:53:02,145 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:53:02,145 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:53:02,145 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 17:53:02,146 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u201c' in position 212: ordinal not in range(128)
+2015-10-27 17:53:02,146 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:53:02,146 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 17:53:02,147 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 17:53:02,147 - stackOverflow - INFO - ================================================================
+2015-10-27 17:53:02,147 - stackOverflow - INFO - Building question 21553327
+2015-10-27 17:53:07,388 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:53:07,389 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:53:07,389 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:53:07,389 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:53:07,390 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:53:08,420 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:53:08,420 - stackOverflow - INFO - ================================================================
+2015-10-27 17:53:08,421 - stackOverflow - INFO - Building question 21530577
+2015-10-27 17:53:13,787 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:53:13,788 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:53:13,789 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:53:13,789 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:53:13,789 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:53:13,894 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:53:13,895 - stackOverflow - INFO - ================================================================
+2015-10-27 17:53:13,895 - stackOverflow - INFO - Building question 27885397
+2015-10-27 17:53:19,163 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:53:19,168 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:53:19,168 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:53:19,168 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:53:19,169 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:53:19,253 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:53:19,254 - stackOverflow - INFO - ================================================================
+2015-10-27 17:53:19,254 - stackOverflow - INFO - Building question 28572833
+2015-10-27 17:53:24,488 - stackOverflow - INFO - ================================================================
+2015-10-27 17:53:24,489 - stackOverflow - INFO - Building question 28572833
+2015-10-27 17:53:29,740 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:53:29,745 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:53:29,745 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:53:29,746 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:53:29,746 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:53:30,055 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:53:30,055 - stackOverflow - INFO - ================================================================
+2015-10-27 17:53:30,056 - stackOverflow - INFO - Building question 26924836
+2015-10-27 17:53:35,297 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:53:35,298 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:53:35,298 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:53:35,298 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:53:35,299 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:53:35,387 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:53:35,387 - stackOverflow - INFO - ================================================================
+2015-10-27 17:53:35,387 - stackOverflow - INFO - Building question 32085675
+2015-10-27 17:53:40,624 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:53:40,627 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:53:40,628 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:53:40,628 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:53:40,628 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:53:40,816 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:53:40,817 - stackOverflow - INFO - ================================================================
+2015-10-27 17:53:40,817 - stackOverflow - INFO - Building question 27341064
+2015-10-27 17:53:46,158 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:53:46,171 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:53:46,171 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:53:46,172 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:53:46,172 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:53:46,316 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:53:46,316 - stackOverflow - INFO - ================================================================
+2015-10-27 17:53:46,316 - stackOverflow - INFO - Building question 23861468
+2015-10-27 17:53:51,565 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:53:51,566 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:53:51,567 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:53:51,567 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:53:51,567 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:53:51,724 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:53:51,725 - stackOverflow - INFO - ================================================================
+2015-10-27 17:53:51,725 - stackOverflow - INFO - Building question 19532125
+2015-10-27 17:53:56,982 - stackOverflow - INFO - ================================================================
+2015-10-27 17:53:56,982 - stackOverflow - INFO - Building question 19532125
+2015-10-27 17:54:02,213 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:54:02,216 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:54:02,217 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:54:02,217 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:54:02,217 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:54:03,134 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:54:03,136 - stackOverflow - INFO - ================================================================
+2015-10-27 17:54:03,136 - stackOverflow - INFO - Building question 21881362
+2015-10-27 17:54:08,417 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:54:08,419 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:54:08,420 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:54:08,420 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:54:08,421 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:54:08,631 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:54:08,632 - stackOverflow - INFO - ================================================================
+2015-10-27 17:54:08,632 - stackOverflow - INFO - Building question 20101834
+2015-10-27 17:54:14,762 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:54:14,768 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:54:14,768 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:54:14,768 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:54:14,768 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:54:16,234 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:54:16,234 - stackOverflow - INFO - ================================================================
+2015-10-27 17:54:16,235 - stackOverflow - INFO - Building question 31026754
+2015-10-27 17:54:21,533 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:54:21,535 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:54:21,536 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:54:21,536 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:54:21,536 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:54:21,747 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:54:21,747 - stackOverflow - INFO - ================================================================
+2015-10-27 17:54:21,747 - stackOverflow - INFO - Building question 27385633
+2015-10-27 17:54:27,146 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:54:27,151 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:54:27,151 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:54:27,151 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 17:54:27,151 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u2019' in position 621: ordinal not in range(128)
+2015-10-27 17:54:27,152 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:54:27,152 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 17:54:27,152 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 17:54:27,152 - stackOverflow - INFO - ================================================================
+2015-10-27 17:54:27,153 - stackOverflow - INFO - Building question 19875789
+2015-10-27 17:54:32,385 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:54:32,385 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:54:32,386 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:54:32,386 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:54:32,386 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:54:33,080 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:54:33,080 - stackOverflow - INFO - ================================================================
+2015-10-27 17:54:33,080 - stackOverflow - INFO - Building question 29099404
+2015-10-27 17:54:38,337 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:54:38,342 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:54:38,343 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:54:38,343 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:54:38,343 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:54:38,488 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:54:38,488 - stackOverflow - INFO - ================================================================
+2015-10-27 17:54:38,488 - stackOverflow - INFO - Building question 23294658
+2015-10-27 17:54:44,119 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:54:44,122 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:54:44,122 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:54:44,123 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:54:44,123 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:54:44,365 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:54:44,366 - stackOverflow - INFO - ================================================================
+2015-10-27 17:54:44,366 - stackOverflow - INFO - Building question 31447694
+2015-10-27 17:54:49,603 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:54:49,606 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:54:49,606 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:54:49,606 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 17:54:49,607 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u03b2' in position 1277: ordinal not in range(128)
+2015-10-27 17:54:49,607 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:54:49,607 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 17:54:49,608 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 17:54:49,608 - stackOverflow - INFO - ================================================================
+2015-10-27 17:54:49,608 - stackOverflow - INFO - Building question 26136894
+2015-10-27 17:54:54,849 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:54:54,850 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:54:54,851 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:54:54,851 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:54:54,851 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:54:56,171 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:54:56,172 - stackOverflow - INFO - ================================================================
+2015-10-27 17:54:56,172 - stackOverflow - INFO - Building question 20306981
+2015-10-27 17:55:01,414 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:55:01,416 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:55:01,417 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:55:01,417 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:55:01,417 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:55:01,520 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:55:01,521 - stackOverflow - INFO - ================================================================
+2015-10-27 17:55:01,521 - stackOverflow - INFO - Building question 30147165
+2015-10-27 17:55:06,808 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:55:06,810 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:55:06,810 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:55:06,811 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:55:06,811 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:55:06,970 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:55:06,970 - stackOverflow - INFO - ================================================================
+2015-10-27 17:55:06,971 - stackOverflow - INFO - Building question 30563716
+2015-10-27 17:55:12,273 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:55:12,274 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:55:12,275 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:55:12,275 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:55:12,275 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:55:12,433 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:55:12,434 - stackOverflow - INFO - ================================================================
+2015-10-27 17:55:12,434 - stackOverflow - INFO - Building question 19410042
+2015-10-27 17:55:17,666 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:55:17,667 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:55:17,668 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:55:17,668 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:55:17,668 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:55:17,840 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:55:17,840 - stackOverflow - INFO - ================================================================
+2015-10-27 17:55:17,841 - stackOverflow - INFO - Building question 20646822
+2015-10-27 17:55:23,073 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:55:23,076 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:55:23,076 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:55:23,076 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:55:23,077 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:55:23,163 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:55:23,163 - stackOverflow - INFO - ================================================================
+2015-10-27 17:55:23,163 - stackOverflow - INFO - Building question 20180543
+2015-10-27 17:55:28,394 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:55:28,396 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:55:28,397 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:55:28,397 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:55:28,397 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:55:28,485 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:55:28,485 - stackOverflow - INFO - ================================================================
+2015-10-27 17:55:28,486 - stackOverflow - INFO - Building question 20454199
+2015-10-27 17:55:34,021 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:55:34,024 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:55:34,024 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:55:34,025 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:55:34,025 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:55:34,117 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:55:34,118 - stackOverflow - INFO - ================================================================
+2015-10-27 17:55:34,118 - stackOverflow - INFO - Building question 20905350
+2015-10-27 17:55:39,345 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:55:39,346 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:55:39,346 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:55:39,346 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 17:55:39,347 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u2014' in position 299: ordinal not in range(128)
+2015-10-27 17:55:39,347 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:55:39,347 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 17:55:39,347 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 17:55:39,348 - stackOverflow - INFO - ================================================================
+2015-10-27 17:55:39,348 - stackOverflow - INFO - Building question 19048732
+2015-10-27 17:55:44,582 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:55:44,583 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:55:44,583 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:55:44,583 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:55:44,584 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:55:45,733 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:55:45,733 - stackOverflow - INFO - ================================================================
+2015-10-27 17:55:45,734 - stackOverflow - INFO - Building question 25537905
+2015-10-27 17:55:54,406 - stackOverflow - INFO - Fetching questions...
+2015-10-27 17:55:54,407 - stackOverflow - INFO - Questions fetched.
+2015-10-27 17:55:54,730 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:55:54,737 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:55:54,737 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:55:54,738 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:55:54,738 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:55:54,876 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:55:54,876 - stackOverflow - INFO - ================================================================
+2015-10-27 17:55:54,876 - stackOverflow - INFO - Building question 231767
+2015-10-27 17:56:00,130 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:56:00,134 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:56:00,134 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:56:00,135 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:56:00,135 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:56:00,286 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:56:00,287 - stackOverflow - INFO - ================================================================
+2015-10-27 17:56:00,287 - stackOverflow - INFO - Building question 30081275
+2015-10-27 17:56:05,527 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:56:05,530 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:56:05,531 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:56:05,531 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:56:05,531 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:56:05,618 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:56:05,618 - stackOverflow - INFO - ================================================================
+2015-10-27 17:56:05,618 - stackOverflow - INFO - Building question 30216000
+2015-10-27 17:56:10,863 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:56:10,865 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:56:10,865 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:56:10,866 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:56:10,866 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:56:10,972 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:56:10,973 - stackOverflow - INFO - ================================================================
+2015-10-27 17:56:10,973 - stackOverflow - INFO - Building question 18946662
+2015-10-27 17:56:16,217 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:56:16,219 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:56:16,219 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:56:16,219 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:56:16,220 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:56:16,376 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:56:16,377 - stackOverflow - INFO - ================================================================
+2015-10-27 17:56:16,377 - stackOverflow - INFO - Building question 31421379
+2015-10-27 17:56:21,625 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:56:21,628 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:56:21,628 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:56:21,629 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:56:21,629 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:56:21,730 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:56:21,731 - stackOverflow - INFO - ================================================================
+2015-10-27 17:56:21,731 - stackOverflow - INFO - Building question 29481088
+2015-10-27 17:56:27,103 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:56:27,104 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:56:27,104 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:56:27,104 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:56:27,104 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:56:27,256 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:56:27,256 - stackOverflow - INFO - ================================================================
+2015-10-27 17:56:27,256 - stackOverflow - INFO - Building question 20772893
+2015-10-27 17:56:32,502 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:56:32,505 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:56:32,505 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:56:32,505 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:56:32,506 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:56:32,658 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:56:32,658 - stackOverflow - INFO - ================================================================
+2015-10-27 17:56:32,658 - stackOverflow - INFO - Building question 22313407
+2015-10-27 17:56:37,939 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:56:37,953 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:56:37,953 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:56:37,953 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:56:37,954 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:56:38,210 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:56:38,210 - stackOverflow - INFO - ================================================================
+2015-10-27 17:56:38,211 - stackOverflow - INFO - Building question 30100725
+2015-10-27 17:56:43,463 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:56:43,470 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:56:43,471 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:56:43,471 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:56:43,471 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:56:43,556 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:56:43,557 - stackOverflow - INFO - ================================================================
+2015-10-27 17:56:43,558 - stackOverflow - INFO - Building question 28885132
+2015-10-27 17:56:48,873 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:56:48,883 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:56:48,883 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:56:48,883 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 17:56:48,884 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u201c' in position 212: ordinal not in range(128)
+2015-10-27 17:56:48,884 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:56:48,884 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 17:56:48,884 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 17:56:48,885 - stackOverflow - INFO - ================================================================
+2015-10-27 17:56:48,885 - stackOverflow - INFO - Building question 21553327
+2015-10-27 17:56:54,119 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:56:54,120 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:56:54,120 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:56:54,120 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:56:54,120 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:56:56,546 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:56:56,546 - stackOverflow - INFO - ================================================================
+2015-10-27 17:56:56,547 - stackOverflow - INFO - Building question 21530577
+2015-10-27 17:57:01,786 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:57:01,787 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:57:01,787 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:57:01,787 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:57:01,788 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:57:01,877 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:57:01,877 - stackOverflow - INFO - ================================================================
+2015-10-27 17:57:01,877 - stackOverflow - INFO - Building question 27885397
+2015-10-27 17:57:07,127 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:57:07,133 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:57:07,133 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:57:07,133 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:57:07,134 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:57:07,222 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:57:07,222 - stackOverflow - INFO - ================================================================
+2015-10-27 17:57:07,223 - stackOverflow - INFO - Building question 28572833
+2015-10-27 17:57:12,566 - stackOverflow - INFO - ================================================================
+2015-10-27 17:57:12,567 - stackOverflow - INFO - Building question 28572833
+2015-10-27 17:57:17,818 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:57:17,822 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:57:17,823 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:57:17,823 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:57:17,823 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:57:18,652 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:57:18,652 - stackOverflow - INFO - ================================================================
+2015-10-27 17:57:18,653 - stackOverflow - INFO - Building question 26924836
+2015-10-27 17:57:23,896 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:57:23,897 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:57:23,898 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:57:23,898 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:57:23,898 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:57:23,990 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:57:23,991 - stackOverflow - INFO - ================================================================
+2015-10-27 17:57:23,991 - stackOverflow - INFO - Building question 32085675
+2015-10-27 17:57:29,562 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:57:29,563 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:57:29,563 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:57:29,564 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:57:29,564 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:57:29,666 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:57:29,667 - stackOverflow - INFO - ================================================================
+2015-10-27 17:57:29,667 - stackOverflow - INFO - Building question 27341064
+2015-10-27 17:57:35,032 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:57:35,048 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:57:35,048 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:57:35,049 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:57:35,049 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:57:35,212 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:57:35,212 - stackOverflow - INFO - ================================================================
+2015-10-27 17:57:35,212 - stackOverflow - INFO - Building question 23861468
+2015-10-27 17:57:40,452 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:57:40,454 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:57:40,454 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:57:40,454 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:57:40,454 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:57:40,605 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:57:40,605 - stackOverflow - INFO - ================================================================
+2015-10-27 17:57:40,605 - stackOverflow - INFO - Building question 19532125
+2015-10-27 17:57:45,834 - stackOverflow - INFO - ================================================================
+2015-10-27 17:57:45,834 - stackOverflow - INFO - Building question 19532125
+2015-10-27 17:57:51,076 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:57:51,079 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:57:51,079 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:57:51,080 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:57:51,080 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:57:52,258 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:57:52,259 - stackOverflow - INFO - ================================================================
+2015-10-27 17:57:52,259 - stackOverflow - INFO - Building question 21881362
+2015-10-27 17:57:57,507 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:57:57,509 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:57:57,509 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:57:57,509 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:57:57,509 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:57:57,646 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:57:57,646 - stackOverflow - INFO - ================================================================
+2015-10-27 17:57:57,647 - stackOverflow - INFO - Building question 20101834
+2015-10-27 17:58:02,888 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:58:02,892 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:58:02,892 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:58:02,892 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:58:02,892 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:58:02,977 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:58:02,977 - stackOverflow - INFO - ================================================================
+2015-10-27 17:58:02,978 - stackOverflow - INFO - Building question 31026754
+2015-10-27 17:58:08,213 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:58:08,215 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:58:08,215 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:58:08,216 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:58:08,216 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:58:08,372 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:58:08,372 - stackOverflow - INFO - ================================================================
+2015-10-27 17:58:08,372 - stackOverflow - INFO - Building question 27385633
+2015-10-27 17:58:13,613 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:58:13,617 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:58:13,618 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:58:13,618 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 17:58:13,618 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u2019' in position 621: ordinal not in range(128)
+2015-10-27 17:58:13,618 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:58:13,619 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 17:58:13,619 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 17:58:13,619 - stackOverflow - INFO - ================================================================
+2015-10-27 17:58:13,619 - stackOverflow - INFO - Building question 19875789
+2015-10-27 17:58:18,857 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:58:18,858 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:58:18,859 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:58:18,859 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:58:18,859 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:58:19,308 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:58:19,309 - stackOverflow - INFO - ================================================================
+2015-10-27 17:58:19,309 - stackOverflow - INFO - Building question 29099404
+2015-10-27 17:58:24,551 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:58:24,554 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:58:24,555 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:58:24,555 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:58:24,555 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:58:24,699 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:58:24,700 - stackOverflow - INFO - ================================================================
+2015-10-27 17:58:24,700 - stackOverflow - INFO - Building question 23294658
+2015-10-27 17:58:29,949 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:58:29,952 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:58:29,952 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:58:29,952 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:58:29,952 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:58:30,102 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:58:30,102 - stackOverflow - INFO - ================================================================
+2015-10-27 17:58:30,103 - stackOverflow - INFO - Building question 31447694
+2015-10-27 17:58:35,347 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:58:35,349 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:58:35,349 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:58:35,350 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 17:58:35,350 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u03b2' in position 1277: ordinal not in range(128)
+2015-10-27 17:58:35,350 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:58:35,350 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 17:58:35,351 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 17:58:35,351 - stackOverflow - INFO - ================================================================
+2015-10-27 17:58:35,351 - stackOverflow - INFO - Building question 26136894
+2015-10-27 17:58:40,596 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:58:40,597 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:58:40,598 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:58:40,598 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:58:40,598 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:58:41,528 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:58:41,529 - stackOverflow - INFO - ================================================================
+2015-10-27 17:58:41,529 - stackOverflow - INFO - Building question 20306981
+2015-10-27 17:58:46,768 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:58:46,770 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:58:46,771 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:58:46,771 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:58:46,771 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:58:46,935 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:58:46,936 - stackOverflow - INFO - ================================================================
+2015-10-27 17:58:46,936 - stackOverflow - INFO - Building question 30147165
+2015-10-27 17:58:52,173 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:58:52,174 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:58:52,174 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:58:52,174 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:58:52,174 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:58:52,327 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:58:52,327 - stackOverflow - INFO - ================================================================
+2015-10-27 17:58:52,328 - stackOverflow - INFO - Building question 30563716
+2015-10-27 17:58:57,566 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:58:57,567 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:58:57,568 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:58:57,568 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:58:57,568 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:58:57,716 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:58:57,717 - stackOverflow - INFO - ================================================================
+2015-10-27 17:58:57,717 - stackOverflow - INFO - Building question 19410042
+2015-10-27 17:59:03,010 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:59:03,013 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:59:03,013 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:59:03,013 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:59:03,014 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:59:03,126 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:59:03,126 - stackOverflow - INFO - ================================================================
+2015-10-27 17:59:03,126 - stackOverflow - INFO - Building question 20646822
+2015-10-27 17:59:08,369 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:59:08,370 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:59:08,370 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:59:08,371 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:59:08,371 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:59:08,483 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:59:08,483 - stackOverflow - INFO - ================================================================
+2015-10-27 17:59:08,484 - stackOverflow - INFO - Building question 20180543
+2015-10-27 17:59:13,718 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:59:13,720 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:59:13,720 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:59:13,721 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:59:13,721 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:59:13,804 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:59:13,805 - stackOverflow - INFO - ================================================================
+2015-10-27 17:59:13,805 - stackOverflow - INFO - Building question 20454199
+2015-10-27 17:59:19,049 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:59:19,050 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:59:19,051 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:59:19,051 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:59:19,051 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:59:19,148 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:59:19,148 - stackOverflow - INFO - ================================================================
+2015-10-27 17:59:19,149 - stackOverflow - INFO - Building question 20905350
+2015-10-27 17:59:24,393 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:59:24,394 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:59:24,395 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:59:24,395 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 17:59:24,395 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u2014' in position 299: ordinal not in range(128)
+2015-10-27 17:59:24,396 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:59:24,396 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 17:59:24,396 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 17:59:24,396 - stackOverflow - INFO - ================================================================
+2015-10-27 17:59:24,397 - stackOverflow - INFO - Building question 19048732
+2015-10-27 17:59:29,649 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:59:29,651 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:59:29,651 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:59:29,651 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:59:29,652 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:59:30,258 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:59:30,259 - stackOverflow - INFO - ================================================================
+2015-10-27 17:59:30,259 - stackOverflow - INFO - Building question 25537905
+2015-10-27 17:59:35,546 - stackOverflow - INFO - ================================================================
+2015-10-27 17:59:35,546 - stackOverflow - INFO - Building question 25537905
+2015-10-27 17:59:40,777 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:59:40,779 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:59:40,779 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:59:40,780 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:59:40,780 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:59:41,828 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:59:41,829 - stackOverflow - INFO - ================================================================
+2015-10-27 17:59:41,829 - stackOverflow - INFO - Building question 29563832
+2015-10-27 17:59:47,067 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:59:47,071 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:59:47,071 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:59:47,072 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:59:47,072 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:59:47,161 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:59:47,162 - stackOverflow - INFO - ================================================================
+2015-10-27 17:59:47,162 - stackOverflow - INFO - Building question 24689967
+2015-10-27 17:59:52,496 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 17:59:52,500 - stackOverflow - INFO -   Insertion complete
+2015-10-27 17:59:52,501 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 17:59:52,501 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 17:59:52,501 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 17:59:52,657 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 17:59:52,658 - stackOverflow - INFO - ================================================================
+2015-10-27 17:59:52,658 - stackOverflow - INFO - Building question 18159911
+2015-10-27 17:59:57,906 - stackOverflow - INFO - ================================================================
+2015-10-27 17:59:57,906 - stackOverflow - INFO - Building question 18159911
+2015-10-27 18:00:03,139 - stackOverflow - INFO - ================================================================
+2015-10-27 18:00:03,139 - stackOverflow - INFO - Building question 18159911
+2015-10-27 18:00:08,392 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:00:08,394 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:00:08,394 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:00:08,395 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:00:08,395 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:00:08,780 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:00:08,781 - stackOverflow - INFO - ================================================================
+2015-10-27 18:00:08,781 - stackOverflow - INFO - Building question 22864221
+2015-10-27 18:00:14,091 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:00:14,091 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:00:14,092 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:00:14,092 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:00:14,092 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:00:14,245 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:00:14,245 - stackOverflow - INFO - ================================================================
+2015-10-27 18:00:14,246 - stackOverflow - INFO - Building question 20325473
+2015-10-27 18:00:19,592 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:00:19,593 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:00:19,593 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:00:19,594 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:00:19,594 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:00:19,683 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:00:19,684 - stackOverflow - INFO - ================================================================
+2015-10-27 18:00:19,684 - stackOverflow - INFO - Building question 19962736
+2015-10-27 18:00:24,925 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:00:24,927 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:00:24,928 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:00:24,928 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:00:24,928 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:00:25,027 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:00:25,027 - stackOverflow - INFO - ================================================================
+2015-10-27 18:00:25,027 - stackOverflow - INFO - Building question 19714041
+2015-10-27 18:00:30,265 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:00:30,268 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:00:30,268 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:00:30,269 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:00:30,269 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:00:30,351 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:00:30,351 - stackOverflow - INFO - ================================================================
+2015-10-27 18:00:30,351 - stackOverflow - INFO - Building question 20533426
+2015-10-27 18:00:35,589 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:00:35,590 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:00:35,590 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:00:35,590 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:00:35,591 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:00:35,736 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:00:35,737 - stackOverflow - INFO - ================================================================
+2015-10-27 18:00:35,737 - stackOverflow - INFO - Building question 19482970
+2015-10-27 18:00:40,965 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:00:40,966 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:00:40,967 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:00:40,967 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:00:40,967 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:00:41,117 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:00:41,118 - stackOverflow - INFO - ================================================================
+2015-10-27 18:00:41,118 - stackOverflow - INFO - Building question 19548957
+2015-10-27 18:00:46,348 - stackOverflow - INFO - ================================================================
+2015-10-27 18:00:46,348 - stackOverflow - INFO - Building question 19548957
+2015-10-27 18:00:51,615 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:00:51,638 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:00:51,639 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:00:51,639 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 18:00:51,640 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u201c' in position 424: ordinal not in range(128)
+2015-10-27 18:00:51,640 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:00:51,640 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 18:00:51,641 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 18:00:51,641 - stackOverflow - INFO - ================================================================
+2015-10-27 18:00:51,642 - stackOverflow - INFO - Building question 25445439
+2015-10-27 18:00:56,873 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:00:56,874 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:00:56,874 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:00:56,874 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:00:56,875 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:00:57,411 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:00:57,411 - stackOverflow - INFO - ================================================================
+2015-10-27 18:00:57,412 - stackOverflow - INFO - Building question 20638006
+2015-10-27 18:01:02,649 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:01:02,650 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:01:02,650 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:01:02,651 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 18:01:02,651 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u2019' in position 6: ordinal not in range(128)
+2015-10-27 18:01:02,651 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:01:02,651 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 18:01:02,652 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 18:01:02,652 - stackOverflow - INFO - ================================================================
+2015-10-27 18:01:02,652 - stackOverflow - INFO - Building question 19848082
+2015-10-27 18:01:07,909 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:01:07,914 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:01:07,914 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:01:07,914 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 18:01:07,915 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u2019' in position 1689: ordinal not in range(128)
+2015-10-27 18:01:07,915 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:01:07,915 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 18:01:07,915 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 18:01:07,916 - stackOverflow - INFO - ================================================================
+2015-10-27 18:01:07,916 - stackOverflow - INFO - Building question 32521140
+2015-10-27 18:01:13,209 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:01:13,260 - stackOverflow - INFO -   DB INSERT ERROR:
+2015-10-27 18:01:13,261 - stackOverflow - INFO - invalid byte sequence for encoding "UTF8": 0x00
+
+2015-10-27 18:01:13,273 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:01:13,274 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:01:13,274 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:01:13,275 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:01:14,567 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:01:14,568 - stackOverflow - INFO - ================================================================
+2015-10-27 18:01:14,569 - stackOverflow - INFO - Building question 20078816
+2015-10-27 18:01:19,813 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:01:19,847 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:01:19,847 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:01:19,848 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:01:19,848 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:01:19,990 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:01:19,991 - stackOverflow - INFO - ================================================================
+2015-10-27 18:01:19,991 - stackOverflow - INFO - Building question 19608134
+2015-10-27 18:01:25,237 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:01:25,244 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:01:25,244 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:01:25,245 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:01:25,245 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:01:25,397 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:01:25,398 - stackOverflow - INFO - ================================================================
+2015-10-27 18:01:25,398 - stackOverflow - INFO - Building question 23268615
+2015-10-27 18:01:30,651 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:01:30,655 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:01:30,655 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:01:30,656 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:01:30,656 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:01:30,741 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:01:30,741 - stackOverflow - INFO - ================================================================
+2015-10-27 18:01:30,741 - stackOverflow - INFO - Building question 18172851
+2015-10-27 18:01:35,975 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:01:35,979 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:01:35,979 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:01:35,980 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:01:35,980 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:01:36,065 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:01:36,066 - stackOverflow - INFO - ================================================================
+2015-10-27 18:01:36,066 - stackOverflow - INFO - Building question 20056458
+2015-10-27 18:01:41,307 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:01:41,310 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:01:41,311 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:01:41,311 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:01:41,312 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:01:41,398 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:01:41,399 - stackOverflow - INFO - ================================================================
+2015-10-27 18:01:41,399 - stackOverflow - INFO - Building question 19961239
+2015-10-27 18:01:46,632 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:01:46,636 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:01:46,637 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:01:46,637 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:01:46,637 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:01:46,726 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:01:46,727 - stackOverflow - INFO - ================================================================
+2015-10-27 18:01:46,727 - stackOverflow - INFO - Building question 20762662
+2015-10-27 18:01:51,961 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:01:51,969 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:01:51,969 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:01:51,969 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:01:51,970 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:01:52,124 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:01:52,125 - stackOverflow - INFO - ================================================================
+2015-10-27 18:01:52,125 - stackOverflow - INFO - Building question 18713321
+2015-10-27 18:01:57,381 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:01:57,390 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:01:57,390 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:01:57,391 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:01:57,391 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:01:57,477 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:01:57,478 - stackOverflow - INFO - ================================================================
+2015-10-27 18:01:57,478 - stackOverflow - INFO - Building question 28382433
+2015-10-27 18:02:02,712 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:02:02,717 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:02:02,718 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:02:02,718 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 18:02:02,718 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u2019' in position 486: ordinal not in range(128)
+2015-10-27 18:02:02,719 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:02:02,719 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 18:02:02,719 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 18:02:02,719 - stackOverflow - INFO - ================================================================
+2015-10-27 18:02:02,719 - stackOverflow - INFO - Building question 20994716
+2015-10-27 18:02:07,954 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:02:07,984 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:02:07,985 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:02:07,985 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 18:02:07,985 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u2019' in position 267: ordinal not in range(128)
+2015-10-27 18:02:07,986 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:02:07,986 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 18:02:07,986 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 18:02:07,986 - stackOverflow - INFO - ================================================================
+2015-10-27 18:02:07,986 - stackOverflow - INFO - Building question 19798153
+2015-10-27 18:02:13,226 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:02:13,231 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:02:13,232 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:02:13,232 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:02:13,232 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:02:14,250 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:02:14,253 - stackOverflow - INFO - ================================================================
+2015-10-27 18:02:14,253 - stackOverflow - INFO - Building question 26178038
+2015-10-27 18:02:19,486 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:02:19,486 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:02:19,487 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:02:19,487 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:02:19,487 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:02:19,606 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:02:19,606 - stackOverflow - INFO - ================================================================
+2015-10-27 18:02:19,606 - stackOverflow - INFO - Building question 19531969
+2015-10-27 18:02:24,860 - stackOverflow - INFO - ================================================================
+2015-10-27 18:02:24,863 - stackOverflow - INFO - Building question 19531969
+2015-10-27 18:02:30,094 - stackOverflow - INFO - ================================================================
+2015-10-27 18:02:30,094 - stackOverflow - INFO - Building question 19531969
+2015-10-27 18:02:35,333 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:02:35,364 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:02:35,365 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:02:35,365 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:02:35,365 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:02:36,682 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:02:36,682 - stackOverflow - INFO - ================================================================
+2015-10-27 18:02:36,683 - stackOverflow - INFO - Building question 19727088
+2015-10-27 18:02:41,938 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:02:41,950 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:02:41,951 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:02:41,951 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:02:41,951 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:02:42,040 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:02:42,041 - stackOverflow - INFO - ================================================================
+2015-10-27 18:02:42,041 - stackOverflow - INFO - Building question 22864764
+2015-10-27 18:02:47,279 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:02:47,308 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:02:47,308 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:02:47,309 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:02:47,309 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:02:47,459 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:02:47,459 - stackOverflow - INFO - ================================================================
+2015-10-27 18:02:47,459 - stackOverflow - INFO - Building question 18365073
+2015-10-27 18:02:52,725 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:02:52,731 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:02:52,731 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:02:52,732 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:02:52,732 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:02:52,891 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:02:52,892 - stackOverflow - INFO - ================================================================
+2015-10-27 18:02:52,892 - stackOverflow - INFO - Building question 21825984
+2015-10-27 18:02:58,135 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:02:58,142 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:02:58,142 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:02:58,143 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:02:58,143 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:02:58,291 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:02:58,291 - stackOverflow - INFO - ================================================================
+2015-10-27 18:02:58,292 - stackOverflow - INFO - Building question 22956139
+2015-10-27 18:03:03,527 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:03:03,529 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:03:03,529 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:03:03,530 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:03:03,530 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:03:03,679 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:03:03,680 - stackOverflow - INFO - ================================================================
+2015-10-27 18:03:03,680 - stackOverflow - INFO - Building question 18280436
+2015-10-27 18:03:08,911 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:03:08,915 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:03:08,915 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:03:08,915 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:03:08,916 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:03:09,066 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:03:09,066 - stackOverflow - INFO - ================================================================
+2015-10-27 18:03:09,067 - stackOverflow - INFO - Building question 27554464
+2015-10-27 18:03:14,294 - stackOverflow - INFO - ================================================================
+2015-10-27 18:03:14,295 - stackOverflow - INFO - Building question 27554464
+2015-10-27 18:03:19,590 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:03:19,599 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:03:19,599 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:03:19,600 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:03:19,600 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:03:20,939 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:03:20,939 - stackOverflow - INFO - ================================================================
+2015-10-27 18:03:20,939 - stackOverflow - INFO - Building question 25865270
+2015-10-27 18:03:26,298 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:03:26,319 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:03:26,320 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:03:26,320 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:03:26,320 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:03:26,473 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:03:26,473 - stackOverflow - INFO - ================================================================
+2015-10-27 18:03:26,474 - stackOverflow - INFO - Building question 20036520
+2015-10-27 18:03:31,819 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:03:31,833 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:03:31,833 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:03:31,833 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:03:31,834 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:03:31,918 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:03:31,918 - stackOverflow - INFO - ================================================================
+2015-10-27 18:03:31,918 - stackOverflow - INFO - Building question 24367930
+2015-10-27 18:03:37,247 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:03:37,256 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:03:37,256 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:03:37,257 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:03:37,257 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:03:37,408 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:03:37,409 - stackOverflow - INFO - ================================================================
+2015-10-27 18:03:37,409 - stackOverflow - INFO - Building question 21458387
+2015-10-27 18:03:42,645 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:03:42,649 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:03:42,649 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:03:42,649 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:03:42,649 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:03:42,798 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:03:42,799 - stackOverflow - INFO - ================================================================
+2015-10-27 18:03:42,799 - stackOverflow - INFO - Building question 24627525
+2015-10-27 18:03:48,044 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:03:48,055 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:03:48,055 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:03:48,056 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:03:48,056 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:03:48,145 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:03:48,145 - stackOverflow - INFO - ================================================================
+2015-10-27 18:03:48,146 - stackOverflow - INFO - Building question 19189813
+2015-10-27 18:03:53,384 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:03:53,391 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:03:53,391 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:03:53,392 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:03:53,392 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:03:53,482 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:03:53,482 - stackOverflow - INFO - ================================================================
+2015-10-27 18:03:53,483 - stackOverflow - INFO - Building question 24912173
+2015-10-27 18:03:58,714 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:03:58,717 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:03:58,718 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:03:58,719 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:03:58,720 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:03:58,859 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:03:58,860 - stackOverflow - INFO - ================================================================
+2015-10-27 18:03:58,860 - stackOverflow - INFO - Building question 20572366
+2015-10-27 18:04:04,107 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:04:04,121 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:04:04,122 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:04:04,122 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:04:04,122 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:04:04,262 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:04:04,262 - stackOverflow - INFO - ================================================================
+2015-10-27 18:04:04,263 - stackOverflow - INFO - Building question 27762547
+2015-10-27 18:04:09,506 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:04:09,520 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:04:09,520 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:04:09,520 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:04:09,521 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:04:09,682 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:04:09,682 - stackOverflow - INFO - ================================================================
+2015-10-27 18:04:09,682 - stackOverflow - INFO - Building question 25960850
+2015-10-27 18:04:14,927 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:04:14,951 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:04:14,952 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:04:14,952 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:04:14,952 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:04:15,102 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:04:15,102 - stackOverflow - INFO - ================================================================
+2015-10-27 18:04:15,103 - stackOverflow - INFO - Building question 22756632
+2015-10-27 18:04:20,344 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:04:20,350 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:04:20,350 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:04:20,350 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:04:20,351 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:04:20,442 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:04:20,442 - stackOverflow - INFO - ================================================================
+2015-10-27 18:04:20,443 - stackOverflow - INFO - Building question 29186541
+2015-10-27 18:04:25,696 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:04:25,732 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:04:25,732 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:04:25,733 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:04:25,733 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:04:25,871 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:04:25,872 - stackOverflow - INFO - ================================================================
+2015-10-27 18:04:25,872 - stackOverflow - INFO - Building question 18230956
+2015-10-27 18:04:31,119 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:04:31,224 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:04:31,225 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:04:31,225 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:04:31,226 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:04:31,321 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:04:31,321 - stackOverflow - INFO - ================================================================
+2015-10-27 18:04:31,322 - stackOverflow - INFO - Building question 23086383
+2015-10-27 18:04:36,554 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:04:36,558 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:04:36,558 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:04:36,558 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:04:36,558 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:04:36,707 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:04:36,707 - stackOverflow - INFO - ================================================================
+2015-10-27 18:04:36,708 - stackOverflow - INFO - Building question 21756433
+2015-10-27 18:04:41,943 - stackOverflow - INFO - ================================================================
+2015-10-27 18:04:41,944 - stackOverflow - INFO - Building question 21756433
+2015-10-27 18:04:47,186 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:04:47,202 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:04:47,202 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:04:47,203 - stackOverflow - INFO - HTML BUILD ERROR:
+2015-10-27 18:04:47,203 - stackOverflow - INFO - 'ascii' codec can't encode character u'\u201c' in position 1407: ordinal not in range(128)
+2015-10-27 18:04:47,204 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:04:47,204 - stackOverflow - INFO - ANSWER ERROR:
+2015-10-27 18:04:47,204 - stackOverflow - INFO - local variable 'html' referenced before assignment
+2015-10-27 18:04:47,205 - stackOverflow - INFO - ================================================================
+2015-10-27 18:04:47,206 - stackOverflow - INFO - Building question 31917372
+2015-10-27 18:04:52,768 - stackOverflow - INFO - ================================================================
+2015-10-27 18:04:52,769 - stackOverflow - INFO - Building question 31917372
+2015-10-27 18:04:58,010 - stackOverflow - INFO -   Inserting code snippets into database.
+2015-10-27 18:04:58,020 - stackOverflow - INFO -   Insertion complete
+2015-10-27 18:04:58,020 - stackOverflow - INFO -   Building HTML document.
+2015-10-27 18:04:58,021 - stackOverflow - INFO -   HTML document complete.
+2015-10-27 18:04:58,021 - stackOverflow - INFO -   Uploading document to S3.
+2015-10-27 18:04:58,781 - stackOverflow - INFO -   Documents uploaded.
+2015-10-27 18:04:58,781 - stackOverflow - INFO - ================================================================
+2015-10-27 18:04:58,781 - stackOverflow - INFO - Building question 22408237
+2015-10-27 18:05:03,782 - stackOverflow - INFO - Building QA complete
+2015-10-27 18:05:03,783 - stackOverflow - INFO - 
+Requests remaining:
