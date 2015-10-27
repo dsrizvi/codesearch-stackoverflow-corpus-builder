@@ -1,6 +1,5 @@
 from BeautifulSoup import BeautifulSoup
 import requests
-import json
 import time
 import html2text
 import re
@@ -12,8 +11,14 @@ from boto.s3.connection import S3Connection
 from flask import Flask, render_template
 import os
 import urlparse
+from celery import Celery
 
 app = Flask(__name__)
+app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
+app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
+
+celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+celery.conf.update(app.config)
 
 # client_id 		= '5836'
 # client_secret 	= 'AN8VH9S*GiY9j2MpgfE8jw(('
@@ -22,70 +27,11 @@ app = Flask(__name__)
 # answer_url 		= "https://api.stackexchange.com/2.2/questions/QUESTIONID/answers?order=desc&page=sort=activity&site=stackoverflow&filter=withbody"
 # https://api.stackexchange.com/2.0/questions?key=)HzqRSuw*14xiB8Yc8cgZw((&pagesize=50&site=stackoverflow&tagged=xpages&order=desc&sort=creation&page=1
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/start', methods=['GET', 'POST'])
 def index():
+	run.delay()
+	return "Building Corpus..."
 
-	so_client_id 		= '5836'
-	so_client_secret 	= 'AN8VH9S*GiY9j2MpgfE8jw(('
-	so_api_key			= ')HzqRSuw*14xiB8Yc8cgZw(('
-	questions_url		= 'https://api.stackexchange.com/2.2/questions?key={key}&page={page}&order=desc&pagesize=100&sort=votes&min=20&tagged=python&site=stackoverflow&filter=withbody'
-	answer_url 			= 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
-	answer_url 			= answer_url.replace('PLACEHOLDER', so_api_key)
-
-	AWSAccessKeyId		= 'AKIAIY5TKK65FZKGMINQ'
-	AWSSecretKey		= 'bi09nM0zDV7thpNUNcEpl/r89g4kidKvvny5071q'
-	s3conn 				= S3Connection(AWSAccessKeyId, AWSSecretKey)
-	bucket				= s3conn.get_bucket('code-search-corpus')
-	print "a"
-	urlparse.uses_netloc.append("postgres")
-	url 			= urlparse.urlparse(os.environ["DATABASE_URL"])
-	db_name			= url.path[1:]
-	db_user			= url.username
-	db_password		= url.password
-	db_host			= url.hostname
-	db_port			= url.port
-
-	print db_name
-	print db_user
-	print db_password
-	print db_host
-	print db_port
-
-	# db_name 			= 'so_code'
-	# db_user				= 'crawler'
-	# db_host				= 'localhost'
-	# db_port				= 5432
-	# db_password			= 'socrawler'
-	print '0'
-	conn 				= psycopg2.connect(database=db_name, user=db_user, password=db_password,
-										   port=db_port, host=db_host)
-	print conn
-	print "1"
-	page 		   		= 1
-	requests_remaining  = 1
-	questions_url  		= questions_url.format(key=so_api_key, page=1)
-	print "2"
-
-	while requests_remaining > 0:
-		print "3"
-		questions, requests_remaining = get_questions(url=questions_url, page=page)
-		page 		  	   			  += 1
-
-		# print questions
-		if questions:
-			qas, requests_remaining  = build_qa(questions=questions,url=answer_url, requests_remaining=requests_remaining)
-			print "4"
-			if len(questions) > 0:
-				print "5"
-				save_code(qas=qas, conn=conn)
-				docs = build_html(qas)
-				print docs
-				s3upload(docs, bucket)
-
-		print "\nRequests remaining:" + str(requests_remaining)
-		time.sleep(30)
-
-	return "Process initiated."
 
 def s3upload(docs, bucket):
 	print "Uploading documents to S3."
@@ -103,7 +49,13 @@ def s3upload(docs, bucket):
 def get_questions(url, page):
 
 	url = url.format(page=page)
-	response = requests.get(url)
+
+	try:
+		response = requests.get(url)
+	except:
+		print "Connection refused; sleeping for 600s...."
+		time.sleep(600)
+		response = requests.get(url)
 
 	print "Fetching questions..."
 
@@ -131,7 +83,12 @@ def build_qa(url, questions, requests_remaining):
 		if question['is_answered']:
 			answers_url			= url.format(question_id=str(question['question_id']))
 			requests_remaining -= 1
-			response = requests.get(answers_url).json()
+			try:
+				response = requests.get(answers_url).json()
+			except:
+				print "Connection refused; sleeping for 600s"
+				time.sleep(600)
+				response = requests.get(answers_url).json()
 
 			if 'error_id' in response:
 				print "GET ANSWER ERROR"
@@ -188,8 +145,8 @@ def build_qa(url, questions, requests_remaining):
 						except Exception as e:
 							print "ANSWER ERROR:"
 							print e
-			# break
-			time.sleep(1)
+			print 'Building question ' + str(question_id)
+			time.sleep(5)
 
 	print "Building QA complete"
 	return qas, requests_remaining
@@ -214,6 +171,7 @@ def save_code(qas, conn):
 				except Exception as e:
 					print "DB INSERT ERROR:"
 					print e
+					cursor.rollback()
 
 	print "Insertion complete"
 
@@ -241,6 +199,64 @@ def build_html(qas):
 	print "HTML documents complete."
 
 	return docs
+
+@celery.task
+def run():
+	so_client_id 		= '5836'
+	so_client_secret 	= 'AN8VH9S*GiY9j2MpgfE8jw(('
+	so_api_key			= ')HzqRSuw*14xiB8Yc8cgZw(('
+	questions_url		= 'https://api.stackexchange.com/2.2/questions?key={key}&page={page}&order=desc&pagesize=100&sort=votes&min=20&tagged=python&site=stackoverflow&filter=withbody'
+	answer_url 			= 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
+	answer_url 			= answer_url.replace('PLACEHOLDER', so_api_key)
+
+	AWSAccessKeyId		= 'AKIAIY5TKK65FZKGMINQ'
+	AWSSecretKey		= 'bi09nM0zDV7thpNUNcEpl/r89g4kidKvvny5071q'
+	s3conn 				= S3Connection(AWSAccessKeyId, AWSSecretKey)
+	bucket				= s3conn.get_bucket('code-search-corpus')
+	# urlparse.uses_netloc.append("postgres")
+	# url 			= urlparse.urlparse(os.environ["DATABASE_URL"])
+	# db_name			= url.path[1:]
+	# db_user			= url.username
+	# db_password		= url.password
+	# db_host			= url.hostname
+	# db_port			= url.port
+
+	# print db_name
+	# print db_user
+	# print db_password
+	# print db_host
+	# print db_port
+
+	db_name 			= 'so_code'
+	db_user				= 'crawler'
+	db_host				= 'localhost'
+	db_port				=  5432
+	db_password			= 'socrawler'
+	conn 				= psycopg2.connect(database=db_name, user=db_user, password=db_password,
+										   port=db_port, host=db_host)
+	page 		   		= 1
+	requests_remaining  = 1
+	questions_url  		= questions_url.format(key=so_api_key, page=1)
+
+	while requests_remaining > 0:
+		questions, requests_remaining = get_questions(url=questions_url, page=page)
+		page 		  	   			  += 1
+
+		# print questions
+		if questions:
+			qas, requests_remaining  = build_qa(questions=questions,url=answer_url, requests_remaining=requests_remaining)
+			if len(questions) > 0:
+				save_code(qas=qas, conn=conn)
+				docs = build_html(qas)
+				print docs
+				s3upload(docs, bucket)
+
+		print "\nRequests remaining:" + str(requests_remaining)
+		time.sleep(5)
+
+	return "Process initiated."
+
+
 
 
 if __name__ == '__main__':
