@@ -12,6 +12,17 @@ from flask import Flask, render_template
 import os
 import urlparse
 from celery import Celery
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+handler = logging.FileHandler('stackoverflow.log')
+handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+
 
 app = Flask(__name__)
 app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
@@ -30,21 +41,19 @@ celery.conf.update(app.config)
 @app.route('/start', methods=['GET', 'POST'])
 def index():
 	run.delay()
-	return "Building Corpus..."
+	return logger.info("Building Corpus...")
 
 
-def s3upload(docs, bucket):
-	print "Uploading documents to S3."
+def s3upload(name, html, bucket):
+	logger.info( "  Uploading document to S3.")
 
-	for doc in docs:
-
-		try:
-			key = bucket.new_key(doc[0])
-			key.set_contents_from_string(doc[1])
-		except Exception as e:
-			print "UPLOAD ERROR:"
-			print e
-	print "Documents uploaded."
+	try:
+		key = bucket.new_key(name)
+		key.set_contents_from_string(html)
+	except Exception as e:
+		logger.info( "  UPLOAD ERROR:")
+		logger.info(e)
+	logger.info( "  Documents uploaded.")
 
 def get_questions(url, page):
 
@@ -53,31 +62,27 @@ def get_questions(url, page):
 	try:
 		response = requests.get(url)
 	except:
-		print "Connection refused; sleeping for 600s...."
+		logger.info( "  Connection refused; sleeping for 600s....")
 		time.sleep(600)
 		response = requests.get(url)
 
-	print "Fetching questions..."
+	logger.info( "Fetching questions...")
 
 	if 'error_id' in response:
-		print "GET QUESTION ERROR"
+		logger.info( "  GET QUESTION ERROR")
 		if response['error_id'] == 502:
-			print response
+			logger.info( response)
 			wait_time = re.findall(r'\d+', response['error_message'])[0]
-			print "API limit reached. Sleeping for " + str(wait_time) + 'seconds'
+			logger.info( "  API limit reached. Sleeping for " + str(wait_time) + 'seconds')
 			time.sleep(float(wait_time))
-			print "Resuming..."
+			logger.info( "  Resuming...")
 	else:
-		print "Questions fetched."
+		logger.info( "Questions fetched.")
 		questions = response.json()
 		return questions['items'], questions['quota_remaining']
 
 
-def build_qa(url, questions, requests_remaining):
-
-	print "Building QA..."
-
-	qas = []
+def build_qa(url, questions, requests_remaining, conn, bucket):
 
 	for question in questions:
 		if question['is_answered']:
@@ -86,16 +91,16 @@ def build_qa(url, questions, requests_remaining):
 			try:
 				response = requests.get(answers_url).json()
 			except:
-				print "Connection refused; sleeping for 600s"
+				logger.info( "Connection refused; sleeping for 600s")
 				time.sleep(600)
 				response = requests.get(answers_url).json()
 
 			if 'error_id' in response:
-				print "GET ANSWER ERROR"
-				print response
+				logger.info( "GET ANSWER ERROR")
+				logger.info( response)
 				if response['error_id'] == 502:
 					wait_time = re.findall(r'\d+', response['error_message'])[0]
-					print "API limit reached. Sleeping for " + str(wait_time) + 'seconds'
+					logger.info( "API limit reached. Sleeping for " + str(wait_time) + 'seconds')
 					time.sleep(float(wait_time))
 					answers = requests.get(answer_url).json()
 
@@ -103,9 +108,9 @@ def build_qa(url, questions, requests_remaining):
 				for answer in response['items']:
 					if 'error_id' in answer:
 						answer = None
-						print "ANSWER ERROR:"
-						# print answers
-						print 'Question id:' + question['id'].encode('utf-8')
+						logger.info( "ANSWER ERROR:")
+						# logger.info( answers
+						logger.info( 'Question id:' + question['id'].encode('utf-8'))
 						break
 					else:
 						try:
@@ -140,65 +145,65 @@ def build_qa(url, questions, requests_remaining):
 									      		'answer_body'    : answer_body,
 									      		'code_snippets'  : code_snippets
 											}
-								qas.append(qa)
+								save_code(qa=qa, conn=conn)
+								doc_name, html = build_html(qa=qa)
+								s3upload(name=doc_name, html=html, bucket=bucket)
 								break
 						except Exception as e:
-							print "ANSWER ERROR:"
-							print e
-			print 'Building question ' + str(question_id)
+							logger.info("ANSWER ERROR:")
+							logger.info(e)
+			logger.info( '================================================================')
+			logger.info( 'Building question ' + str(question_id))
 			time.sleep(5)
 
-	print "Building QA complete"
-	return qas, requests_remaining
+	logger.info( "Building QA complete")
+	return requests_remaining
 
-def save_code(qas, conn):
-	print "Inserting code snippets into database."
+def save_code(qa, conn):
+	logger.info( "  Inserting code snippets into database.")
 
 	cursor = conn.cursor()
-	for qa in qas:
-		qid  = qa['qid']
-		link = qa['question_link']
+	qid  = qa['qid']
+	link = qa['question_link']
 
-		for cid, code in qa['code_snippets'].iteritems():
-			cursor.execute("SELECT EXISTS(SELECT 1 FROM code_snippets where cid=%s)", [cid])
-			exists = cursor.fetchall()[0][0]
+	for cid, code in qa['code_snippets'].iteritems():
+		cursor.execute("SELECT EXISTS(SELECT 1 FROM code_snippets where cid=%s)", [cid])
+		exists = cursor.fetchall()[0][0]
 
-			if not exists:
-				try:
-					cursor.execute("INSERT INTO code_snippets(cid, qid, link, code) VALUES (%s, %s, E%s, E%s)", \
-									[cid, qid, link, code])
-					conn.commit()
-				except Exception as e:
-					print "DB INSERT ERROR:"
-					print e
-					cursor.rollback()
+		if not exists:
+			try:
+				cursor.execute("INSERT INTO code_snippets(cid, qid, link, code) VALUES (%s, %s, E%s, E%s)", \
+								[cid, qid, link, code])
+				conn.commit()
+			except Exception as e:
+				logger.info( "  DB INSERT ERROR:")
+				logger.info( e)
+				conn.rollback()
 
-	print "Insertion complete"
+	logger.info( "  Insertion complete")
 
-def build_html(qas):
-	print "Building HTML documents."
+	return True
 
-	docs = list()
+def build_html(qa):
+	logger.info( "  Building HTML document.")
+
 	template = '''
 	<!DOCTYPE html> <html> <body> <h1> {question_title} </h1> <h2> {question_body}  </h2> <h3> {answer_body} </h3> </body> </html>
 	'''
-	for qa in qas:
-		try:
-			print qa
-			doc_name 	   = 'so_%s.html' % str(qa['qid'])
-			question_title = qa['question_title']
-			question_body  = qa['question_body']
-			answer_body    = qa['answer_body']
 
-			html = template.format(question_title=question_title, question_body=question_body, answer_body=answer_body)
-			docs.append((doc_name, html))
-		except Exception as e:
-			print "HTML BUILD ERROR:"
-			print e
+	try:
+		doc_name 	   = 'so_%s.html' % str(qa['qid'])
+		question_title = qa['question_title']
+		question_body  = qa['question_body']
+		answer_body    = qa['answer_body']
+		html = template.format(question_title=question_title, question_body=question_body, answer_body=answer_body)
+	except Exception as e:
+		logger.info( "HTML BUILD ERROR:")
+		logger.info(e)
 
-	print "HTML documents complete."
+	logger.info( "  HTML document complete.")
 
-	return docs
+	return doc_name, html
 
 @celery.task
 def run():
@@ -221,11 +226,11 @@ def run():
 	# db_host			= url.hostname
 	# db_port			= url.port
 
-	# print db_name
-	# print db_user
-	# print db_password
-	# print db_host
-	# print db_port
+	# logger.info( db_name
+	# logger.info( db_user
+	# logger.info( db_password
+	# logger.info( db_host
+	# logger.info( db_port
 
 	db_name 			= 'so_code'
 	db_user				= 'crawler'
@@ -242,16 +247,12 @@ def run():
 		questions, requests_remaining = get_questions(url=questions_url, page=page)
 		page 		  	   			  += 1
 
-		# print questions
 		if questions:
-			qas, requests_remaining  = build_qa(questions=questions,url=answer_url, requests_remaining=requests_remaining)
-			if len(questions) > 0:
-				save_code(qas=qas, conn=conn)
-				docs = build_html(qas)
-				print docs
-				s3upload(docs, bucket)
+			requests_remaining  = build_qa(questions=questions,url=answer_url,
+										   requests_remaining=requests_remaining,
+										   conn=conn, bucket=bucket)
 
-		print "\nRequests remaining:" + str(requests_remaining)
+		logger.info( "\nRequests remaining:") + str(requests_remaining)
 		time.sleep(5)
 
 	return "Process initiated."
