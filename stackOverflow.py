@@ -255,7 +255,7 @@ def run():
 										   requests_remaining=requests_remaining,
 										   conn=conn, bucket=bucket)
 
-		logger.info( "\nRequests remaining:") + str(requests_remaining)
+		logger.info( "\nRequests remaining:" + str(requests_remaining))
 		time.sleep(5)
 
 	return "Process initiated."
