@@ -24,11 +24,11 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 app = Flask(__name__)
-app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
-app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
+# app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
+# app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
-# app.conf.update(BROKER_URL=os.environ['REDIS_URL'],
-#                 CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
+app.conf.update(BROKER_URL=os.environ['REDIS_URL'],
+                CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
 
 
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
@@ -160,7 +160,7 @@ def build_qa(url, questions, requests_remaining, conn, bucket):
 			logger.info( '================================================================')
 			logger.info( 'Document #' + str(COUNT))
 			logger.info( 'Building question ' + str(question_id))
-			time.sleep(5)
+			time.sleep(30)
 
 	logger.info( "Building QA complete")
 	return requests_remaining
@@ -223,20 +223,20 @@ def run():
 	s3conn 				= S3Connection(AWSAccessKeyId, AWSSecretKey)
 	bucket				= s3conn.get_bucket('code-search-corpus')
 
-	# urlparse.uses_netloc.append("postgres")
-	# url 			= urlparse.urlparse(os.environ["DATABASE_URL"])
-	# db_name			= url.path[1:]
-	# db_user			= url.username
-	# db_password		= url.password
-	# db_host			= url.hostname
-	# db_port			= url.port
+	urlparse.uses_netloc.append("postgres")
+	url 			= urlparse.urlparse(os.environ["DATABASE_URL"])
+	db_name			= url.path[1:]
+	db_user			= url.username
+	db_password		= url.password
+	db_host			= url.hostname
+	db_port			= url.port
 
 
-	db_name 			= 'so_code'
-	db_user				= 'crawler'
-	db_host				= 'localhost'
-	db_port				=  5432
-	db_password			= 'socrawler'
+	# db_name 			= 'so_code'
+	# db_user				= 'crawler'
+	# db_host				= 'localhost'
+	# db_port				=  5432
+	# db_password			= 'socrawler'
 
 
 	conn 				= psycopg2.connect(database=db_name, user=db_user, password=db_password,
@@ -255,7 +255,7 @@ def run():
 										   conn=conn, bucket=bucket)
 
 		logger.info( "\nRequests remaining:" + str(requests_remaining))
-		time.sleep(5)
+		time.sleep(30)
 
 	return "Process initiated."
 
