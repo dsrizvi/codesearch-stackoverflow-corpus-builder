@@ -31,7 +31,7 @@ app.config.update(BROKER_URL=os.environ['REDIS_URL'],
                 CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
 
 
-celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+celery = Celery(app.name, broker=app.config['BROKER_URL'])
 celery.conf.update(app.config)
 
 COUNT = 1
