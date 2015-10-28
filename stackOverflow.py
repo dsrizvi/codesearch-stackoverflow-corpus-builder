@@ -214,6 +214,9 @@ def build_html(qa):
 
 @celery.task
 def run():
+
+	print "========================================================================="
+
 	so_api_key			=  os.environ['SO_API_KEY']
 	questions_url		= 'https://api.stackexchange.com/2.2/questions?key={key}&page={page}&order=desc&pagesize=100&sort=votes&min=20&tagged=python&site=stackoverflow&filter=withbody'
 	answer_url 			= 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
