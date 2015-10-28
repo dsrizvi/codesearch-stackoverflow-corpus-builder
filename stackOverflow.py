@@ -40,7 +40,8 @@ COUNT = 1
 @app.route('/start', methods=['GET', 'POST'])
 def index():
 	run.delay()
-	return logger.info("Building Corpus...")
+	logger.info("Building Corpus...")
+	return "Process iniatied"
 
 
 def s3upload(name, html, bucket):
