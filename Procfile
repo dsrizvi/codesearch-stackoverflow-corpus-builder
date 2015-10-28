@@ -1,2 +1,2 @@
-web: gunicorn stackOverflow:app --log-file= -
+web: gunicorn stackOverflow:app
 worker: celery worker --app=stackOverflow.app --loglevel=info
