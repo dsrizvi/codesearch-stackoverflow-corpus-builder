@@ -59,8 +59,6 @@ def get_questions(url, page):
 
 	# url = url.format(page=page)
 	url = url.replace('PAGE', str(page))
-	print url
-	print 'page  in get_questions:' + str(page)
 
 	try:
 		response = requests.get(url)
@@ -257,11 +255,11 @@ def run():
 	while requests_remaining > 0:
 		questions, requests_remaining = get_questions(url=questions_url, page=page)
 		page 		  	   			  = page + 1
-		print 'page:' + str(page)
-		# if questions:
-		# 	requests_remaining  = build_qa(questions=questions,url=answer_url,
-		# 								   requests_remaining=requests_remaining,
-		# 								   conn=conn, bucket=bucket)
+
+		if questions:
+			requests_remaining  = build_qa(questions=questions,url=answer_url,
+										   requests_remaining=requests_remaining,
+										   conn=conn, bucket=bucket)
 
 		logger.info( "\nRequests remaining:" + str(requests_remaining))
 		time.sleep(10)
