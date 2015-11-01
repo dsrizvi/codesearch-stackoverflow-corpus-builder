@@ -58,8 +58,9 @@ def s3upload(name, html, bucket):
 def get_questions(url, page):
 
 	# url = url.format(page=page)
-	url = url.replace('{page}', str(page))
+	url = url.replace('PAGE', str(page))
 	print url
+	print 'page  in get_questions:' + str(page)
 
 	try:
 		response = requests.get(url)
@@ -222,7 +223,7 @@ def run():
 	print "========================================================================="
 
 	so_api_key			=  os.environ['SO_API_KEY']
-	questions_url		= 'https://api.stackexchange.com/2.2/questions?key={key}&page={page}&order=desc&pagesize=100&sort=votes&min=20&tagged=python&site=stackoverflow&filter=withbody'
+	questions_url		= 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=20&tagged=python&site=stackoverflow&filter=withbody'
 	answer_url 			= 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
 	answer_url 			= answer_url.replace('PLACEHOLDER', so_api_key)
 
