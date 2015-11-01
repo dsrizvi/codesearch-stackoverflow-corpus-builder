@@ -58,6 +58,7 @@ def s3upload(name, html, bucket):
 def get_questions(url, page):
 
 	url = url.format(page=page)
+	print url
 
 	try:
 		response = requests.get(url)
@@ -125,6 +126,11 @@ def build_qa(url, questions, requests_remaining, conn, bucket):
 								question_body  = question['body'].encode('utf-8')
 								question_link  = question['link'].encode('utf-8')
 
+								logger.info( '================================================================')
+								logger.info( 'Document #' + str(COUNT))
+								logger.info( 'Building question ' + str(question_id))
+
+
 								soup 		  = BeautifulSoup(answer_body)
 								code_extract  = soup.findAll('code')
 								code_snippets = {}
@@ -158,9 +164,6 @@ def build_qa(url, questions, requests_remaining, conn, bucket):
 							logger.info("ANSWER ERROR:")
 							logger.info(e)
 
-			logger.info( '================================================================')
-			logger.info( 'Document #' + str(COUNT))
-			logger.info( 'Building question ' + str(question_id))
 			time.sleep(10)
 
 	logger.info( "Building QA complete")
@@ -252,11 +255,10 @@ def run():
 	while requests_remaining > 0:
 		questions, requests_remaining = get_questions(url=questions_url, page=page)
 		page 		  	   			  += 1
-
-		if questions:
-			requests_remaining  = build_qa(questions=questions,url=answer_url,
-										   requests_remaining=requests_remaining,
-										   conn=conn, bucket=bucket)
+		# if questions:
+		# 	requests_remaining  = build_qa(questions=questions,url=answer_url,
+		# 								   requests_remaining=requests_remaining,
+		# 								   conn=conn, bucket=bucket)
 
 		logger.info( "\nRequests remaining:" + str(requests_remaining))
 		time.sleep(10)
