@@ -161,7 +161,7 @@ def build_qa(url, questions, requests_remaining, conn, bucket):
 			logger.info( '================================================================')
 			logger.info( 'Document #' + str(COUNT))
 			logger.info( 'Building question ' + str(question_id))
-			time.sleep(5)
+			time.sleep(10)
 
 	logger.info( "Building QA complete")
 	return requests_remaining
@@ -259,7 +259,7 @@ def run():
 										   conn=conn, bucket=bucket)
 
 		logger.info( "\nRequests remaining:" + str(requests_remaining))
-		time.sleep(5)
+		time.sleep(10)
 
 	return "Process initiated."
 
