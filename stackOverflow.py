@@ -58,7 +58,7 @@ def s3upload(name, html, bucket):
 def get_questions(url, page):
 
 	# url = url.format(page=page)
-	url = url.replace('{page}', page)
+	url = url.replace('{page}', str(page))
 	print url
 
 	try:
