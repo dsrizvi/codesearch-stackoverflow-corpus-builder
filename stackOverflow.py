@@ -39,8 +39,8 @@ COUNT = 1
 
 @app.route('/start', methods=['GET', 'POST'])
 def index():
-	start_page = request.args.get('start_page')
-	end_page   = request.args.get('end_page')
+	start_page = request.form.get('start_page', type=int)
+	end_page   = request.form.get('end_page', type=int)
 	run.delay(start_page,end_page)
 	logger.info("Building Corpus...")
 	return "Process iniatied"
