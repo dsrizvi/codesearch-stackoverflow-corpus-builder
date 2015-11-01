@@ -255,6 +255,7 @@ def run():
 	while requests_remaining > 0:
 		questions, requests_remaining = get_questions(url=questions_url, page=page)
 		page 		  	   			  = page + 1
+		print 'page:' + str(page)
 		# if questions:
 		# 	requests_remaining  = build_qa(questions=questions,url=answer_url,
 		# 								   requests_remaining=requests_remaining,
