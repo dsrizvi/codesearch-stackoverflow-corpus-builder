@@ -82,6 +82,7 @@ def get_questions(url, page):
 	else:
 		logger.info( "Questions fetched.")
 		questions = response.json()
+		print response.text
 		return questions['items'], questions['quota_remaining']
 
 
