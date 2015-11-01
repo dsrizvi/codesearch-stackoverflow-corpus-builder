@@ -8,7 +8,7 @@ import psycopg2
 import HTMLParser
 import boto
 from boto.s3.connection import S3Connection
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import os
 import urlparse
 from celery import Celery
@@ -39,7 +39,9 @@ COUNT = 1
 
 @app.route('/start', methods=['GET', 'POST'])
 def index():
-	run.delay()
+	start_page = request.args.get('start_page')
+	end_page   = request.args.get('end_page')
+	run.delay(start_page,end_page)
 	logger.info("Building Corpus...")
 	return "Process iniatied"
 
@@ -216,7 +218,7 @@ def build_html(qa):
 	return doc_name, html
 
 @celery.task
-def run():
+def run(start_page, end_page):
 
 	print "========================================================================="
 
@@ -248,11 +250,13 @@ def run():
 
 	conn 				= psycopg2.connect(database=db_name, user=db_user, password=db_password,
 										   port=db_port, host=db_host)
-	page 		   		= 1
-	requests_remaining  = 1
+	page 		   		= start_page
 	questions_url  		= questions_url.format(key=so_api_key, page=1)
+	page = start_page
 
-	while requests_remaining > 0:
+
+	while start_page >= page and page <= end_page:
+		logger.info( "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n Moving to page " + str(page))
 		questions, requests_remaining = get_questions(url=questions_url, page=page)
 		page 		  	   			  = page + 1
 
