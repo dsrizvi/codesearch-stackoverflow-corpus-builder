@@ -223,7 +223,7 @@ def run(start_page, end_page):
 	print "========================================================================="
 
 	so_api_key			=  os.environ['SO_API_KEY']
-	questions_url		= 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=20&tagged=python&site=stackoverflow&filter=withbody'
+	questions_url		= 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=1&tagged=python&site=stackoverflow&filter=withbody'
 	answer_url 			= 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
 	answer_url 			= answer_url.replace('PLACEHOLDER', so_api_key)
 
