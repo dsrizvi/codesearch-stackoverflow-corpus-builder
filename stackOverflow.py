@@ -39,9 +39,10 @@ COUNT = 1
 
 @app.route('/start', methods=['GET', 'POST'])
 def index():
-	start_page = request.form.get('start_page', type=int)
-	end_page   = request.form.get('end_page', type=int)
-	run.delay(start_page,end_page)
+	start_page = request.form.get('startpage', type=int)
+	end_page   = request.form.get('endpage', type=int)
+	so_key     = request.form.get('so_key', type=str)
+	run.delay(start_page,end_page, so_key)
 	logger.info("Building Corpus...")
 	return "Process iniatied"
 
@@ -218,11 +219,11 @@ def build_html(qa):
 	return doc_name, html
 
 @celery.task
-def run(start_page, end_page):
+def run(start_page, end_page, so_key):
 
 	print "========================================================================="
 
-	so_api_key			=  os.environ['SO_API_KEY']
+	so_api_key			=  so_key
 	questions_url		= 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=1&tagged=python&site=stackoverflow&filter=withbody'
 	answer_url 			= 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
 	answer_url 			= answer_url.replace('PLACEHOLDER', so_api_key)
