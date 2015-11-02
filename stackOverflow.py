@@ -30,7 +30,7 @@ app = Flask(__name__)
 REDIS_URL = 'redis://h:p519va8q2ekfct3bkc6b2afouue@ec2-54-83-199-200.compute-1.amazonaws.com:10489'
 
 app.config.update(BROKER_URL=REDIS_URL,
-                CELERY_RESULT_BACKEND=REDIS_URL)
+                CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
 
 
 celery = Celery(app.name, broker=app.config['BROKER_URL'])
@@ -246,14 +246,6 @@ def run(start_page, end_page, so_key):
 	db_password		= url.password
 	db_host			= url.hostname
 	db_port			= url.port
-
-
-	# db_name 			= 'so_code'
-	# db_user				= 'crawler'
-	# db_host				= 'localhost'
-	# db_port				=  5432
-	# db_password			= 'socrawler'
-
 
 	conn 				= psycopg2.connect(database=db_name, user=db_user, password=db_password,
 										   port=db_port, host=db_host)
