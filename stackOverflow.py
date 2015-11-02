@@ -83,8 +83,12 @@ def get_questions(url, page):
 	else:
 		logger.info( "Questions fetched.")
 		questions = response.json()
-		return questions['items'], questions['quota_remaining']
-
+		try:
+			return questions['items'], questions['quota_remaining']
+		except Exception as e:
+			logger.info( "QUESTION FETCHING ERROR:")
+			logger.info(e)
+			logger.info(response.text)
 
 def build_qa(url, questions, requests_remaining, conn, bucket):
 
