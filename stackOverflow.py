@@ -256,7 +256,7 @@ def run(start_page, end_page):
 
 
 	while page >= start_page and page <= end_page:
-		logger.info( "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n Moving to page " + str(page))
+		logger.info( "\n+________________________________________________________________________\n Moving to page " + str(page))
 		questions, requests_remaining = get_questions(url=questions_url, page=page)
 		page 		  	   			  = page + 1
 
