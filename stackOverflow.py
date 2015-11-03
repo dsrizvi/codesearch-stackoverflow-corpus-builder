@@ -265,7 +265,6 @@ def run(start_page, end_page, so_key):
 
 	while page >= start_page and page <= end_page:
 		logger.info( "\n+________________________________________________________________________\n Moving to page " + str(page))
-		page_log.write(str(page))
 
 		questions, requests_remaining = get_questions(url=questions_url, page=page)
 		page 		  	   			  = page + 1
@@ -276,7 +275,10 @@ def run(start_page, end_page, so_key):
 										   conn=conn, bucket=bucket)
 
 		logger.info( "\nRequests remaining:" + str(requests_remaining))
+		page_log.write(str(page) + '\n')
+
 		time.sleep(5)
+		logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________'
 
 	page_log.close()
 	return "Process complete."
