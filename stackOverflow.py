@@ -17,9 +17,8 @@ import os
 import pickle
 import datetime as datetime
 
-if os.path.isfile('stackoverflow.log') == False:
-	log = open('stackoverflow.log')
-	log.close()
+log = open('stackoverflow.log', 'w+')
+log.close()
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -264,7 +263,7 @@ def run(start_page, end_page, so_key):
 	while page >= start_page and page <= end_page:
 		logger.info( "\n+________________________________________________________________________\n Moving to page " + str(page))
 
-		with open('pge.log', 'wb') as f:
+		with open('page.log', 'r+') as f:
 			page_log = pickle.load(f)
 			page_log.append((datetime.now(), page))
 			pickle.dump(page_log, f)
