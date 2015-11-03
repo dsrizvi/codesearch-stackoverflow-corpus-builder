@@ -17,7 +17,7 @@ import os
 import pickle
 import datetime as datetime
 
-log = open('stackoverflow.log', 'w+')
+log = open('stackoverflow.log', 'wb+ -')
 log.close()
 
 logger = logging.getLogger(__name__)
@@ -263,7 +263,7 @@ def run(start_page, end_page, so_key):
 	while page >= start_page and page <= end_page:
 		logger.info( "\n+________________________________________________________________________\n Moving to page " + str(page))
 
-		with open('page.log', 'r+') as f:
+		with open('page.log', 'ab+ -') as f:
 			page_log = pickle.load(f)
 			page_log.append((datetime.now(), page))
 			pickle.dump(page_log, f)
