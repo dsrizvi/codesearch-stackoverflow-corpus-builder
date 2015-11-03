@@ -280,7 +280,7 @@ def run(start_page, end_page, so_key):
 		logger.info( "\nRequests remaining:" + str(requests_remaining))
 
 		time.sleep(5)
-		logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________'
+		logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________')
 
 	return "Process complete."
 
