@@ -14,8 +14,8 @@ import urlparse
 from celery import Celery
 import logging
 import os
-
-
+import pickle
+import datetime as datetime
 
 if os.path.isfile('stackoverflow.log') == False:
 	log = open('stackoverflow.log')
@@ -235,8 +235,6 @@ def build_html(qa):
 def run(start_page, end_page, so_key):
 
 	print "========================================================================= \n Starting corpus builder!"
-	if os.path.isfile('stackoverflow.log') == False:
-		page_log = open('page.log', 'w')
 
 	so_api_key			=  so_key
 	questions_url		= 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=1&tagged=python&site=stackoverflow&filter=withbody'
@@ -261,10 +259,15 @@ def run(start_page, end_page, so_key):
 	page 		   		= start_page
 	questions_url  		= questions_url.format(key=so_api_key, page=1)
 	page = start_page
-
+	page_log = [page]
 
 	while page >= start_page and page <= end_page:
 		logger.info( "\n+________________________________________________________________________\n Moving to page " + str(page))
+
+		with open('pge.log', 'wb') as f:
+			page_log = pickle.load(f)
+			page_log.append((datetime.now(), page))
+			pickle.dump(page_log, f)
 
 		questions, requests_remaining = get_questions(url=questions_url, page=page)
 		page 		  	   			  = page + 1
@@ -275,12 +278,10 @@ def run(start_page, end_page, so_key):
 										   conn=conn, bucket=bucket)
 
 		logger.info( "\nRequests remaining:" + str(requests_remaining))
-		page_log.write(str(page) + '\n')
 
 		time.sleep(5)
 		logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________'
 
-	page_log.close()
 	return "Process complete."
 
 
