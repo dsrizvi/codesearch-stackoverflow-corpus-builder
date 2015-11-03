@@ -13,6 +13,13 @@ import os
 import urlparse
 from celery import Celery
 import logging
+import os
+
+
+
+if os.path.isfile('stackoverflow.log') == False:
+	log = open('stackoverflow.log')
+	log.close()
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -173,7 +180,7 @@ def build_qa(url, questions, requests_remaining, conn, bucket):
 							logger.info("ANSWER ERROR:")
 							logger.info(e)
 
-			time.sleep(10)
+			time.sleep(5)
 
 	logger.info( "Building QA complete")
 	return requests_remaining
@@ -227,7 +234,9 @@ def build_html(qa):
 @celery.task
 def run(start_page, end_page, so_key):
 
-	print "========================================================================="
+	print "========================================================================= \n Starting corpus builder!"
+	if os.path.isfile('stackoverflow.log') == False:
+		page_log = open('page.log', 'w')
 
 	so_api_key			=  so_key
 	questions_url		= 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=1&tagged=python&site=stackoverflow&filter=withbody'
@@ -256,6 +265,8 @@ def run(start_page, end_page, so_key):
 
 	while page >= start_page and page <= end_page:
 		logger.info( "\n+________________________________________________________________________\n Moving to page " + str(page))
+		page_log.write(str(page))
+
 		questions, requests_remaining = get_questions(url=questions_url, page=page)
 		page 		  	   			  = page + 1
 
@@ -265,9 +276,10 @@ def run(start_page, end_page, so_key):
 										   conn=conn, bucket=bucket)
 
 		logger.info( "\nRequests remaining:" + str(requests_remaining))
-		time.sleep(10)
+		time.sleep(5)
 
-	return "Process initiated."
+	page_log.close()
+	return "Process complete."
 
 
 
