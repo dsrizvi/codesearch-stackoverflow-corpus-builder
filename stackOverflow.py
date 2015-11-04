@@ -269,6 +269,7 @@ def resume():
     if pagelogs:
         try:
             os.environ['SO_KEY']
+            print pagelogs
             start_page, end_page = pagelogs[0]
             run(start_page, end_page, so_key)
             logger.info('Resuming corpus building from %s to %s' (start_page, end_page))
@@ -276,7 +277,7 @@ def resume():
             logger.info('ERROR FETCHING PAGE LOGS')
             logger.info(e)
     else:
-        info.logger('First time building corpus!')
+        logger.info('First time building corpus!')
 
 
 app, celery = create_app()
