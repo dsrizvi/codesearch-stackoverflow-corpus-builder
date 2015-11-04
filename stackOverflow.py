@@ -69,7 +69,7 @@ def get_pagelog(bucket, name, folder, curr_page):
 		except Exception as e:
 			logger.info('ERROR FETCHING PAGE LOG:')
 			logger.info(e)
-			pagelog = [time, page)]
+			pagelog = [(time, page)]
 	else:
 		try:
 			print 'log does not exist! creating...'
