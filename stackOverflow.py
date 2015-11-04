@@ -254,8 +254,8 @@ def build_pagelog(so_key, start_page, end_page):
 def run(start_page, end_page, so_key):
 
     print "========================================================================= \n Starting corpus builder!"
-
-    so_api_key           =  so_key
+    print type(so_key)
+    so_api_key           =  str(so_key)
     questions_url        = 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=1&tagged=python&site=stackoverflow&filter=withbody'
     answer_url           = 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
 
