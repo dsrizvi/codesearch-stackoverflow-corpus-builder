@@ -57,12 +57,12 @@ def index():
 
 def get_pagelog(bucket, name, folder, curr_page):
 
-    k = Key(bucket)
+	k = Key(bucket)
 	k.key = name
 
 	if k.exists():
 		try:
-			print 'log existd!'
+		print 'log existd!'
 			pagelog = k.get_contents_as_string()
 			pagelog = pickle.load(pagelog)
 			print pagelog
