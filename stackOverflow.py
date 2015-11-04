@@ -262,11 +262,11 @@ def update_pagelog(curr_page, name, pagelog, bucket, folder):
     curr_log  = (time, curr_page)
     pagelog.append(curr_log)
     pagelog   = pickle.dumps(pagelog)
-    name = os.path.join(folder, name)
+    name      = os.path.join(folder, name)
 
     try:
         key = bucket.new_key(name)
-        key.set_contents_from_string(doc)
+        key.set_contents_from_string(pagelog)
     except Exception as e:
         logger.info( "PAGE LOGUPLOAD ERROR:")
         logger.info(e)
