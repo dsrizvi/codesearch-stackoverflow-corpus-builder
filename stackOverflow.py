@@ -57,8 +57,8 @@ def get_pagelog(bucket, name, folder):
             pagelog     = k.get_contents_as_string()
             pagelog     = pickle.loads(pagelog)
             curr_page   = pagelog[-1][1]
-            send  = pagelog[1][1]
-            print '%s of %s pages complete!' % (start, end)
+            end         = pagelog[1][1]
+            print '%s of %s pages complete!' % (curr_page, end)
         except Exception as e:
             logger.info('ERROR FETCHING PAGE LOG:')
             logger.info(e)
@@ -302,7 +302,7 @@ def run(start_page, end_page, so_key):
                                            port=db_port, host=db_host)
     questions_url       = questions_url.format(key=so_api_key, page=1)
 
-    pagelog_name =  os.environ['APP_NAME'] + '-page.log'
+    pagelog_name = os.environ['APP_NAME'] + '-page.log'
     pagelog      = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs')
     page         = start_page
 
@@ -349,8 +349,8 @@ def resume():
             resume_page = pagelog[-1][1]
             print 'resume_page: %s' % resume_page
             print 'endpage: %s' % endpage
-            print 'Resuming corpus building from %s to %s' % (start_page, end_page)
-            run.delay(start_page, end_page, so_key)
+            print 'Resuming corpus building from %s to %s' % (resume_page, end_page)
+            run.delay(resume_page, end_page, so_key)
         except Exception as e:
             print 'ERROR STARTING RUN'
             print e
