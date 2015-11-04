@@ -43,7 +43,7 @@ COUNT = 1
 def create_app():
     app = Flask(__name__)
     resume()
-    return app, celery
+    return app
 
 def get_pagelog(bucket, name, folder):
 
@@ -243,12 +243,17 @@ def build_html(qa):
 
     return doc_name, html
 
-def build_pagelog(so_key, start_page, end_page):
-    logger.info('Building page log!')
+def build_pagelog(so_key, start_page, end_page, name):
 
-    pagelog = [so_key, (start_page, end_page)]
-    pagelog = pickle.dumps(pagelog)
-    s3upload(pagelog_name, pagelog, bucket, folder='pagelogs')
+    try:
+        print 'Building page log!'
+        pagelog = [so_key, (start_page, end_page)]
+        pagelog = pickle.dumps(pagelog)
+        s3upload(name=name, doc=pagelog, bucket=bucket, folder='pagelogs')
+    except Exception as e:
+        print 'ERROR BUILDING PAGE LOG'
+        print e
+
 
 @celery.task
 def run(start_page, end_page, so_key):
@@ -259,16 +264,12 @@ def run(start_page, end_page, so_key):
     questions_url        = 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=1&tagged=python&site=stackoverflow&filter=withbody'
     answer_url           = 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
 
-    print 'here 1'
     answer_url           = answer_url.replace('PLACEHOLDER', so_api_key)
-    print 'here 2'
 
     AWSAccessKeyId       = os.environ['AWSAccessKeyId']
     AWSSecretKey         = os.environ['AWSSecretKey']
     s3conn               = S3Connection(AWSAccessKeyId, AWSSecretKey)
     bucket               = s3conn.get_bucket('code-search-corpus')
-
-    print 'here 3'
 
     urlparse.uses_netloc.append("postgres")
     url             = urlparse.urlparse(os.environ["DATABASE_URL"])
@@ -278,26 +279,19 @@ def run(start_page, end_page, so_key):
     db_host         = url.hostname
     db_port         = url.port
 
-    print 'here 4'
-
-
     conn                = psycopg2.connect(database=db_name, user=db_user, password=db_password,
                                            port=db_port, host=db_host)
     page                = start_page
     questions_url       = questions_url.format(key=so_api_key, page=1)
     page = start_page
     # page_log = [(datetime.now(), page )]
-    print 'here 5'
-
 
     pagelog_name =  os.environ['APP_NAME'] + '-page.log'
 
-    print '285'
     pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs')
-    print '287'
 
     if pagelog is None:
-        build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page)
+        build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name)
         while True:
             print 'build corpus....'
             time.sleep(5)
