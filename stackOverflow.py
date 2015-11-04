@@ -61,8 +61,9 @@ def index():
 	end_page   = request.form.get('endpage', type=int)
 	so_key     = request.form.get('so_key', type=str)
 	print 'here'
-	print os.environ['URL']
-	print 'lol doesnt exist'
+	# print os.environ['URL']
+	for key in os.environ.keys():
+    	print "%30s %s \n" % (key,os.environ[key])
 	run.delay(start_page, end_page, so_key)
 	return 'Done'
 
