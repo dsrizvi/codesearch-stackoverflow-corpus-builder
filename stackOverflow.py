@@ -20,7 +20,6 @@ import pickle
 from datetime import datetime
 import socket
 from celery import Celery
-from celery.task.control import inspect
 from celery.task.control import discard_all
 # app = Flask(__name__)
 
