@@ -261,8 +261,8 @@ def update_pagelog(curr_page, name, pagelog, bucket):
     time      = datetime.now().strftime('%v %r')
     curr_log  = (time, curr_page)
     pagelog.append(curr_log)
-    pagelog   = pickle.dumps(pagelog)
     print pagelog
+    pagelog   = pickle.dumps(pagelog)
     s3upload(name=name, doc=pagelog, bucket=bucket)
 
 
