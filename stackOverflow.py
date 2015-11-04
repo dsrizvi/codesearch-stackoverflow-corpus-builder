@@ -57,6 +57,7 @@ def index():
 
 def get_pagelog(bucket, name, folder, curr_page):
 
+	time = datetime.now().strftime("%%Y%m%dT%H%M%S")
 	k   = bucket.new_key(name)
 
 	if k.exists():
@@ -68,16 +69,16 @@ def get_pagelog(bucket, name, folder, curr_page):
 		except Exception as e:
 			logger.info('ERROR FETCHING PAGE LOG:')
 			logger.info(e)
-			pagelog = [(datetime.now(), page)]
+			pagelog = [time, page)]
 	else:
 		try:
 			print 'log does not exist! creating...'
-			pagelog = [(datetime.now(), curr_page)]
+			pagelog = [time, curr_page)]
 			page = pickle.dumps(pagelog)
 			print 'uploading %s' % pagelog
 			s3upload(name=pagelog_name, doc=page, bucket=bucket, folder=folder)
 		except Exception as e:
-			pagelog = [(datetime.now(), curr_page)]
+			pagelog = [time, curr_page)]
 			logger.info('ERROR FETCHING PAGE LOG:')
 			logger.info(e)
 
@@ -87,10 +88,10 @@ def s3upload(name, doc, bucket, folder=None):
 	logger.info( "  Uploading document to S3.")
 
 	if folder:
-		name = os.path.join(folder, doc)
+		name = os.path.join(folder, name)
 	try:
 		key = bucket.new_key(name)
-		key.set_contents_from_string(html)
+		key.set_contents_from_string(doc)
 	except Exception as e:
 		logger.info( "  UPLOAD ERROR:")
 		logger.info(e)
