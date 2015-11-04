@@ -304,6 +304,7 @@ def run(start_page, end_page, so_key):
 
     pagelog_name =  os.environ['APP_NAME'] + '-page.log'
     pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs')
+    page = start
 
     if pagelog is None:
         pagelog = build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
