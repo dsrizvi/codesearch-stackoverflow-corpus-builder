@@ -78,7 +78,7 @@ def get_pagelog(bucket, name, folder, curr_page):
 			print 'uploading %s' % pagelog
 			s3upload(name=name, doc=page, bucket=bucket, folder=folder)
 		except Exception as e:
-			pagelog = [time, curr_page)]
+			pagelog = [(time, curr_page)]
 			logger.info('ERROR FETCHING PAGE LOG:')
 			logger.info(e)
 
