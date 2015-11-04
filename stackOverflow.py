@@ -35,17 +35,17 @@ class ContextFilter(logging.Filter):
 # 	papertrial_host = url_for('index', _external=True)
 # 	papertrial_host = re.match('\/\/(.*?)\.', papertrial_host)
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+# logger = logging.getLogger()
+# logger.setLevel(logging.INFO)
 
-f = ContextFilter()
-logger.addFilter(f)
+# f = ContextFilter()
+# logger.addFilter(f)
 
-syslog = SysLogHandler(address=('%s.papertrailapp.com' % papertrial_host, 11111))
-formatter = logging.Formatter('%(asctime)s %(hostname)s: %(message)s', datefmt='%b %d %H:%M:%S')
+# syslog = SysLogHandler(address=('%s.papertrailapp.com' % papertrial_host, 11111))
+# formatter = logging.Formatter('%(asctime)s %(hostname)s: %(message)s', datefmt='%b %d %H:%M:%S')
 
-syslog.setFormatter(formatter)
-logger.addHandler(syslog)
+# syslog.setFormatter(formatter)
+# logger.addHandler(syslog)
 
 # app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 # app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
@@ -68,7 +68,7 @@ def index():
 	end_page   = request.form.get('endpage', type=int)
 	# so_key     = request.form.get('so_key', type=str)
 	print socket.gethostname()
-	run.delay(start_page, end_page, so_key)
+	# run.delay(start_page, end_page, so_key)
 	return url
 
 
