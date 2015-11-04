@@ -70,7 +70,7 @@ def index():
 	end_page   = request.form.get('endpage', type=int)
 	so_key     = request.form.get('so_key', type=str)
 	name       = request.form.get('name', type=str)
-	run.delay(start_page, end_page, so_key, name)
+	run.delay(start_page, end_page, so_key)
 	logger.info()
 	url = url_for('settings', _external=True)
 	return url
@@ -252,7 +252,7 @@ def build_html(qa):
 	return doc_name, html
 
 @celery.task
-def run(start_page, end_page, so_key, name):
+def run(start_page, end_page, so_key):
 
 	print "========================================================================= \n Starting corpus builder!"
 
@@ -281,7 +281,7 @@ def run(start_page, end_page, so_key, name):
 	page = start_page
 	page_log = [(datetime.now(), page )]
 
-	page_log_name = name + '-page.log'
+	page_log_name =  '-page.log'
 
 
 	while page >= start_page and page <= end_page:
