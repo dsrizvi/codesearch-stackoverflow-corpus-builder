@@ -258,12 +258,17 @@ def run(start_page, end_page, so_key):
     so_api_key           =  so_key
     questions_url        = 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=1&tagged=python&site=stackoverflow&filter=withbody'
     answer_url           = 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
+
+    print 'here 1'
     answer_url           = answer_url.replace('PLACEHOLDER', so_api_key)
+    print 'here 2'
 
     AWSAccessKeyId       = os.environ['AWSAccessKeyId']
     AWSSecretKey         = os.environ['AWSSecretKey']
     s3conn               = S3Connection(AWSAccessKeyId, AWSSecretKey)
     bucket               = s3conn.get_bucket('code-search-corpus')
+
+    print 'here 3'
 
     urlparse.uses_netloc.append("postgres")
     url             = urlparse.urlparse(os.environ["DATABASE_URL"])
@@ -273,12 +278,17 @@ def run(start_page, end_page, so_key):
     db_host         = url.hostname
     db_port         = url.port
 
+    print 'here 4'
+
+
     conn                = psycopg2.connect(database=db_name, user=db_user, password=db_password,
                                            port=db_port, host=db_host)
     page                = start_page
     questions_url       = questions_url.format(key=so_api_key, page=1)
     page = start_page
     # page_log = [(datetime.now(), page )]
+    print 'here 5'
+
 
     pagelog_name =  os.environ['APP_NAME'] + '-page.log'
 
