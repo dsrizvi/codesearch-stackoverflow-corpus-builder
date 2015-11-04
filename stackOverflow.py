@@ -306,7 +306,7 @@ def run(start_page, end_page):
     if pagelog is None:
         pagelog = build_pagelog(start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
     i=0
-    while i < 10 :
+    while i < 5 :
         page += 1
         update_pagelog(curr_page=page, name=pagelog_name, bucket=bucket, pagelog=pagelog, folder='pagelogs')
         print 'running......'
@@ -329,7 +329,8 @@ def run(start_page, end_page):
     print 'Corpus complete!'
 
     try:
-        celery.task.control.discard_all()
+        control = celery.app.control.Control(app=celery_instance)
+        control.purge()
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
