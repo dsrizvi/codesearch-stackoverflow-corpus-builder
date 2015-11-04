@@ -20,7 +20,7 @@ import os
 import pickle
 from datetime import datetime
 import socket
-from celery.bin.camqadm import camqadm
+import celery
 
 # app = Flask(__name__)
 
@@ -330,7 +330,8 @@ def run(start_page, end_page, so_key):
     print 'Corpus complete!'
 
     try:
-        camqadm('queue.purge', 'celery')
+        amqp = celery.bin.amqp.amqp(app = celery_instance)
+        amqp.run('queue.purge', 'celery')
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
