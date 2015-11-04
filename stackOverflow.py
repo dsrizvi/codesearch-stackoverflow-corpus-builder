@@ -21,7 +21,6 @@ import pickle
 from datetime import datetime
 import socket
 import celery
-
 # app = Flask(__name__)
 
 logger = logging.getLogger(__name__)
@@ -37,7 +36,7 @@ logger.addHandler(handler)
 # app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
 # REDIS_URL = 'redis://h:p519va8q2ekfct3bkc6b2afouue@ec2-54-83-199-200.compute-1.amazonaws.com:10489'
-celery_instance = Celery('celery', broker=os.environ['REDIS_URL'])
+celery_instance = Celery('stackOverflow', broker=os.environ['REDIS_URL'])
 
 COUNT = 1
 
@@ -330,8 +329,7 @@ def run(start_page, end_page, so_key):
     print 'Corpus complete!'
 
     try:
-        amqp = celery.bin.amqp.amqp(app = celery_instance)
-        amqp.run('queue.purge', 'celery')
+        celery.task.control.discard_all()
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
