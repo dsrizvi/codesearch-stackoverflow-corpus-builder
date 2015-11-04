@@ -59,7 +59,7 @@ def resume():
 	pagelogs 		= get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
 	logging.info('RUNNNNNNING')
 	logging.info(pagelogs)
-
+	print 'yoyoyoyoyoyoyo================================================='
 	heroku_key = os.environ["DATABASE_URL"]
 
 
