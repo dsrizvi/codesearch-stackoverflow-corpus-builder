@@ -58,8 +58,6 @@ def get_pagelog(bucket, name, folder, curr_page):
             logger.info('Page log exists!')
             pagelog     = k.get_contents_as_string()
             pagelog    = pickle.loads(pagelog)
-            print 'inside get_pagelog:'
-            print pagelog
             time, page = pagelog[-1]
             logger.info('Last page was %s at %s!' %(page, time))
         except Exception as e:
@@ -69,16 +67,6 @@ def get_pagelog(bucket, name, folder, curr_page):
     else:
         pagelog = None
         logger.info('Page log does not exist!')
-        # try:
-        #     pagelog = None
-        #     new_pagelog = [(time, curr_page)]
-        #     new_pagelog = pickle.dumps(pagelog)
-        #     print 'uploading %s' % new_pagelog
-        #     s3upload(name=name, doc=pagelog, bucket=bucket)
-        # except Exception as e:
-        #     pagelog = [(time, curr_page)]
-        #     logger.info('ERROR FETCHING PAGE LOG:')
-        #     logger.info(e)
     return pagelog
 
 def s3upload(name, doc, bucket, folder=None):
@@ -271,7 +259,6 @@ def resume():
     if pagelogs:
         try:
             os.environ['SO_KEY']
-            print pagelogs
             start_page, end_page = pagelogs[0]
             run(start_page, end_page, so_key)
             print 'Resuming corpus building from %s to %s' (start_page, end_page)
@@ -327,6 +314,9 @@ def run(start_page, end_page, so_key):
         print pagelog
         s3upload(pagelog_name, pagelog, bucket, folder='pagelogs')
 
+    while True:
+        print 'running....'
+        time.sleep(5)
     #   questions, requests_remaining = get_questions(url=questions_url, page=page)
     #   page                          = page + 1
 
