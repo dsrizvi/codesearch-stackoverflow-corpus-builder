@@ -256,15 +256,13 @@ def build_pagelog(so_key, start_page, end_page, name, bucket):
         print e
 
 def update_pagelog(curr_page, name, pagelog, bucket, folder):
-
-    curr_page = curr_page + 1
     time      = datetime.now().strftime('%v %r')
     curr_log  = (time, curr_page)
-    pagelog.append(curr_log)
-    pagelog   = pickle.dumps(pagelog)
-    name      = os.path.join(folder, name)
 
     try:
+        pagelog.append(curr_log)
+        pagelog   = pickle.dumps(pagelog)
+        name      = os.path.join(folder, name)
         key = bucket.new_key(name)
         key.set_contents_from_string(pagelog)
     except Exception as e:
@@ -299,18 +297,21 @@ def run(start_page, end_page, so_key):
 
     conn                = psycopg2.connect(database=db_name, user=db_user, password=db_password,
                                            port=db_port, host=db_host)
-    page                = start_page
     questions_url       = questions_url.format(key=so_api_key, page=1)
-    page = start_page
-    # page_log = [(datetime.now(), page )]
 
     pagelog_name =  os.environ['APP_NAME'] + '-page.log'
-
     pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs')
 
     if pagelog is None:
         build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
+        page = start_page
+    else:
+        start_page, end_page = pagelog[1]
+        page = pagelog[-1][1]
+
+
     while True:
+        page = page + 1
         update_pagelog(curr_page=page, name=pagelog_name, bucket=bucket, pagelog=pagelog, folder='pagelogs')
         time.sleep(1)
         #   questions, requests_remaining = get_questions(url=questions_url, page=page)
