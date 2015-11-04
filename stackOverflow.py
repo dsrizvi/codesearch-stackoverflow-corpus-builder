@@ -31,21 +31,14 @@ class ContextFilter(logging.Filter):
     record.hostname = ContextFilter.hostname
     return True
 
-# with app.app_context():
-# 	papertrial_host = url_for('index', _external=True)
-# 	papertrial_host = re.match('\/\/(.*?)\.', papertrial_host)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
-# logger = logging.getLogger()
-# logger.setLevel(logging.INFO)
-
-# f = ContextFilter()
-# logger.addFilter(f)
-
-# syslog = SysLogHandler(address=('%s.papertrailapp.com' % papertrial_host, 11111))
-# formatter = logging.Formatter('%(asctime)s %(hostname)s: %(message)s', datefmt='%b %d %H:%M:%S')
-
-# syslog.setFormatter(formatter)
-# logger.addHandler(syslog)
+handler = logging.FileHandler('stackoverflow.log')
+handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 # app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 # app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
@@ -68,12 +61,11 @@ def index():
 	end_page   = request.form.get('endpage', type=int)
 	# so_key     = request.form.get('so_key', type=str)
 
-	print socket.getfqdn()
-	# print a,b,c
-	# domain = socket.getfqdn(a)
-	# print domain
+	hostsddr = gethostbyaddr(gethostbyname(gethostname()))
+	print hostsddr
+	domain = socket.getfqdn(hostsddr)
 	# run.delay(start_page, end_page, so_key)
-	return 'Done'
+	return url
 
 
 def s3upload(name, html, bucket):
@@ -281,6 +273,8 @@ def run(start_page, end_page, so_key):
 	page = start_page
 	page_log = [(datetime.now(), page )]
 
+	app_name = re.match('\/\/(.*?)\.', os.environ['URL'])
+	print app_name
 	page_log_name =  '-page.log'
 
 
