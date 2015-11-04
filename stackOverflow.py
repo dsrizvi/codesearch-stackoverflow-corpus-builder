@@ -293,7 +293,7 @@ def run(start_page, end_page, so_key):
 
 	pagelog_name =  os.environ['APP_NAME'] + '-page.log'
 
-	pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='page_logs', curr_page)
+	pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='page_logs', curr_page=page)
 	# 	# 	try:
 	# 	# 		page_log = pickle.load(f)
 	# 	# 		page_log.append((datetime.now(), page))
