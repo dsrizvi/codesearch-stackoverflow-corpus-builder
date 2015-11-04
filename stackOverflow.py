@@ -22,6 +22,8 @@ import logging
 import socket
 from logging.handlers import SysLogHandler
 
+app = Flask(__name__)
+
 
 class ContextFilter(logging.Filter):
   hostname = socket.gethostname()
@@ -48,7 +50,6 @@ formatter = logging.Formatter('%(asctime)s %(hostname)s: %(message)s', datefmt='
 syslog.setFormatter(formatter)
 logger.addHandler(syslog)
 
-app = Flask(__name__)
 # app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 # app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
