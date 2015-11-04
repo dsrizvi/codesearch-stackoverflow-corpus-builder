@@ -70,9 +70,9 @@ def index():
 	end_page   = request.form.get('endpage', type=int)
 	so_key     = request.form.get('so_key', type=str)
 	name       = request.form.get('name', type=str)
-	run.delay(start_page, end_page, so_key)
 	url = url_for('start', _external=True)
-	logger.info(url)
+	# run.delay(start_page, end_page, so_key)
+	print '**************************************************************\n' + str(url)
 	return url
 
 
