@@ -11,7 +11,6 @@ from boto.s3.connection import S3Connection
 from flask import Flask, render_template, request, url_for
 import os
 import urlparse
-from celery import Celery
 import logging
 from logging.handlers import SysLogHandler
 import logging
@@ -20,8 +19,9 @@ import os
 import pickle
 from datetime import datetime
 import socket
-import celery
+from celery import Celery
 from celery.task.control import inspect
+from celery.task.control import discard_all
 # app = Flask(__name__)
 
 logger = logging.getLogger(__name__)
@@ -330,8 +330,7 @@ def run(start_page, end_page, so_key):
     print 'Corpus complete!'
 
     try:
-        amqp = celery.bin.amqp.amqp(app = celery_instance)
-        amqp.run('queue.purge', 'CELERY_DEFAULT_QUEUE')
+        discard_all
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
