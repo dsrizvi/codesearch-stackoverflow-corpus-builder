@@ -31,19 +31,19 @@ class ContextFilter(logging.Filter):
     return True
 
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+# logger = logging.getLogger()
+# logger.setLevel(logging.INFO)
 
-f = ContextFilter()
-logger.addFilter(f)
+# f = ContextFilter()
+# logger.addFilter(f)
 
 
 
-syslog = SysLogHandler(address=('<host>.papertrailapp.com', 11111))
-formatter = logging.Formatter('%(asctime)s %(hostname)s YOUR_APP: %(message)s', datefmt='%b %d %H:%M:%S')
+# syslog = SysLogHandler(address=('<host>.papertrailapp.com', 11111))
+# formatter = logging.Formatter('%(asctime)s %(hostname)s YOUR_APP: %(message)s', datefmt='%b %d %H:%M:%S')
 
-syslog.setFormatter(formatter)
-logger.addHandler(syslog)
+# syslog.setFormatter(formatter)
+# logger.addHandler(syslog)
 
 
 
