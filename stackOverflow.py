@@ -261,6 +261,7 @@ def update_pagelog(curr_page, name, pagelog, bucket):
     time      = datetime.now().strftime('%v %r')
     curr_log  = (time, curr_page)
     pagelog.append(curr_log)
+    s3upload(name=name, doc=pagelog, bucket=bucket)
 
 
 
@@ -302,8 +303,8 @@ def run(start_page, end_page, so_key):
     if pagelog is None:
         build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
     while True:
-        update_pagelog(curr_page=page, name=pagelog_name, bucket=bucket)
-        time.sleep(5)
+        update_pagelog(curr_page=page, name=pagelog_name, bucket=bucket, pagelog=pagelog)
+        time.sleep(1)
         #   questions, requests_remaining = get_questions(url=questions_url, page=page)
         #   page                          = page + 1
 
