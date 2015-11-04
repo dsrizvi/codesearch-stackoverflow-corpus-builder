@@ -21,7 +21,6 @@ import pickle
 from datetime import datetime
 import socket
 import celery
-import celery.bin.amqp
 # app = Flask(__name__)
 
 logger = logging.getLogger(__name__)
@@ -330,9 +329,8 @@ def run(start_page, end_page):
     print 'Corpus complete!'
 
     try:
-
-        amqp = celery.bin.amqp.amqp(app = celery_app)
-        amqp.run('queue.purge', 'celery')
+        amqp = celery.bin.amqp.amqp(app = celery_instance)
+        amqp.run('queue.purge', 'name_of_your_queue')
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
