@@ -42,6 +42,7 @@ COUNT = 1
 
 def create_app():
     app = Flask(__name__)
+    time.sleep(10)
     resume()
     return app
 
@@ -331,7 +332,7 @@ def resume():
             so_key = pagelog[0]
             start_page, end_page = pagelog[1]
             print 'Resuming corpus building from %s to %s' % (start_page, end_page)
-            run(start_page, end_page, so_key)
+            run.delay(start_page, end_page, so_key)
         except Exception as e:
             print 'ERROR STARTING RUN'
             print e
