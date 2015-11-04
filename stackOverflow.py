@@ -261,9 +261,11 @@ def resume():
     AWSSecretKey    = os.environ['AWSSecretKey']
     s3conn          = S3Connection(AWSAccessKeyId, AWSSecretKey)
     bucket          = s3conn.get_bucket('code-search-corpus')
-    pagelog_name =  os.environ['APP_NAME'] + '-page.log'
+    pagelog_name    =  os.environ['APP_NAME'] + '-page.log'
 
     pagelogs        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
+    print 'PAGELOGS:'
+    print pagelogs
 
 
     heroku_key = os.environ["DATABASE_URL"]
