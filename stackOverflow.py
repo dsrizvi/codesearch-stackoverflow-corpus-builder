@@ -342,4 +342,5 @@ def run(start_page, end_page, so_key):
 
 
 if __name__ == '__main__':
+	resume()
 	app.run()
