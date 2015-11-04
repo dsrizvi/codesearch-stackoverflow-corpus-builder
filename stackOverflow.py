@@ -282,26 +282,32 @@ def run(start_page, end_page, so_key):
 
     pagelog_name =  os.environ['APP_NAME'] + '-page.log'
 
-    pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=page)
+    print '285'
+    pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs')
+    print '287'
 
     if pagelog is None:
         build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page)
+        while True:
+            print 'build corpus....'
+            time.sleep(5)
+        #   questions, requests_remaining = get_questions(url=questions_url, page=page)
+        #   page                          = page + 1
 
-    while True:
-        print 'running....'
-        time.sleep(5)
-    #   questions, requests_remaining = get_questions(url=questions_url, page=page)
-    #   page                          = page + 1
+        #   if questions:
+        #       requests_remaining  = build_qa(questions=questions,url=answer_url,
+        #                                      requests_remaining=requests_remaining,
+        #                                      conn=conn, bucket=bucket)
 
-    #   if questions:
-    #       requests_remaining  = build_qa(questions=questions,url=answer_url,
-    #                                      requests_remaining=requests_remaining,
-    #                                      conn=conn, bucket=bucket)
+        #   logger.info( "\nRequests remaining:" + str(requests_remaining))
 
-    #   logger.info( "\nRequests remaining:" + str(requests_remaining))
+        #   time.sleep(5)
+        #   logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________')
+    else:
+        while True:
+            print 'already running....'
+            time.sleep(5)
 
-    #   time.sleep(5)
-    #   logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________')
 
     return "Process complete."
 
@@ -313,15 +319,13 @@ def resume():
     bucket          = s3conn.get_bucket('code-search-corpus')
     pagelog_name    =  os.environ['APP_NAME'] + '-page.log'
 
-    pagelogs        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
+    pagelog        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
 
-    if pagelogs:
+    if pagelog:
         try:
-            print pagelogs
-            so_key = pagelogs[0]
-            print 'so_key'
-            start_page, end_page = pagelogs[0]
-            print 'start page'
+            print pagelog
+            so_key = pagelog[0][1]
+            start_page, end_page = pagelog[0]
             print 'Resuming corpus building from %s to %s' % (start_page, end_page)
             run(start_page, end_page, so_key)
         except Exception as e:
