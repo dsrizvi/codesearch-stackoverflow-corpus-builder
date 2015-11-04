@@ -50,17 +50,16 @@ COUNT = 1
 
 def get_pagelog(bucket, name, folder, curr_page):
 
-    time = datetime.now().strftime("%Y-%m-%d %H:%M.%S")
     name = os.path.join(folder, name)
     k    = bucket.new_key(name)
 
     if k.exists():
         try:
-            logger.info('Page log exists!')
+            print 'Page log exists!'
             pagelog     = k.get_contents_as_string()
-            pagelog    = pickle.loads(pagelog)
-            time, page = pagelog[-1]
-            logger.info('Last page was %s at %s!' %(page, time))
+            pagelog     = pickle.loads(pagelog)
+            time, page  = pagelog[-1]
+            print 'Last page was %s at %s!' %(page, time)
         except Exception as e:
             logger.info('ERROR FETCHING PAGE LOG:')
             logger.info(e)
@@ -268,12 +267,13 @@ def resume():
 
     if pagelogs:
         try:
+            print pagelogs
             so_key = pagelogs[0]
             start_page, end_page = pagelogs[-1]
             print 'Resuming corpus building from %s to %s' (start_page, end_page)
             run(start_page, end_page, so_key)
         except Exception as e:
-            print 'ERROR FETCHING PAGE LOGS'
+            print 'ERROR STARTING RUN'
             print e
     else:
         print 'First time building corpus!'
