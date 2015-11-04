@@ -348,7 +348,7 @@ def resume():
             end_page = pagelog[1][1]
             resume_page = pagelog[-1][1]
             print 'resume_page: %s' % resume_page
-            print 'endpage: %s' % endpage
+            print 'endpage: %s' % end_page
             print 'Resuming corpus building from %s to %s' % (resume_page, end_page)
             run.delay(resume_page, end_page, so_key)
         except Exception as e:
