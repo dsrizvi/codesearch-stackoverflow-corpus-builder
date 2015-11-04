@@ -329,7 +329,7 @@ def run(start_page, end_page, so_key):
     print 'Corpus complete!'
 
     try:
-        celery.task.control.discard_all()
+        celery.control.purge()
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
