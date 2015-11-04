@@ -21,10 +21,6 @@ import pickle
 from datetime import datetime
 import socket
 
-
-print 'fuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuk'
-
-
 # app = Flask(__name__)
 
 logger = logging.getLogger(__name__)
@@ -64,9 +60,8 @@ def resume():
     pagelog_name =  os.environ['APP_NAME'] + '-page.log'
 
     pagelogs        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
-    logging.info('RUNNNNNNING')
-    logging.info(pagelogs)
-    print 'yoyoyoyoyoyoyo================================================='
+
+
     heroku_key = os.environ["DATABASE_URL"]
 
 def get_pagelog(bucket, name, folder, curr_page):
@@ -77,17 +72,18 @@ def get_pagelog(bucket, name, folder, curr_page):
 
     if k.exists():
         try:
-            print 'log exists!'
-            pagelog = k.get_contents_as_string()
-            pagelog = pickle.loads(pagelog)
-            print pagelog
+            logger.info('Page log exists!')
+            pagelog     = k.get_contents_as_string()
+            pagelog    = pickle.loads(pagelog)
+            time, page = pagelog[-1]
+            logger.info('Last page was %s at %s!')
         except Exception as e:
             logger.info('ERROR FETCHING PAGE LOG:')
             logger.info(e)
             pagelog = [(time, curr_page)]
     else:
         try:
-            print 'log does not exist! creating...'
+            logger.info('Page does not exist!\n Creating page log.')
             pagelog = [(time, curr_page)]
             page = pickle.dumps(pagelog)
             print 'uploading %s' % pagelog
