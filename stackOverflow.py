@@ -338,7 +338,7 @@ def resume():
     else:
         print 'First time building corpus!'
 
-app, celery = create_app()
+app = create_app()
 
 @app.route('/start', methods=['GET', 'POST'])
 def index():
