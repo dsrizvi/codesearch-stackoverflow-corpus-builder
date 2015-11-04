@@ -275,7 +275,7 @@ def update_pagelog(curr_page, name, pagelog, bucket, folder):
 
 
 @celery_instance.task
-def run(start_page, end_page, so_key):
+def run(start_page, end_page):
 
     print "========================================================================= \n Starting corpus builder!"
 
@@ -360,7 +360,7 @@ def resume():
             print 'resume_page: %s' % resume_page
             print 'endpage: %s' % end_page
             print 'Resuming corpus building from %s to %s' % (resume_page, end_page)
-            run.delay(resume_page, end_page, so_key)
+            run.delay(resume_page, end_page)
         except Exception as e:
             print 'ERROR STARTING RUN'
             print e
