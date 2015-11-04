@@ -340,7 +340,6 @@ def resume():
 
 app, celery = create_app()
 
-
 @app.route('/start', methods=['GET', 'POST'])
 def index():
     start_page = request.form.get('startpage', type=int)
