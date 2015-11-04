@@ -58,7 +58,8 @@ def index():
 def get_pagelog(bucket, name, folder, curr_page):
 
 	time = datetime.now().strftime("%%Y%m%dT%H%M%S")
-	k   = bucket.new_key(name)
+	name = os.path.join(folder, name)
+	k    = bucket.new_key(name)
 
 	if k.exists():
 		try:
@@ -76,7 +77,7 @@ def get_pagelog(bucket, name, folder, curr_page):
 			pagelog = [(time, curr_page)]
 			page = pickle.dumps(pagelog)
 			print 'uploading %s' % pagelog
-			s3upload(name=name, doc=page, bucket=bucket, folder=folder)
+			s3upload(name=name, doc=page, bucket=bucket)
 		except Exception as e:
 			pagelog = [(time, curr_page)]
 			logger.info('ERROR FETCHING PAGE LOG:')
