@@ -46,8 +46,6 @@ celery.conf.update(app.config)
 
 COUNT = 1
 
-
-@app.before_first_request
 def resume():
 
 	AWSAccessKeyId	= os.environ['AWSAccessKeyId']
@@ -342,5 +340,6 @@ def run(start_page, end_page, so_key):
 
 
 if __name__ == '__main__':
+	print 'in main loop!!!!'
 	resume()
 	app.run()
