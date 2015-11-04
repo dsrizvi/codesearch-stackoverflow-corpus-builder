@@ -36,16 +36,21 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
-
-
 # app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 # app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
 # REDIS_URL = 'redis://h:p519va8q2ekfct3bkc6b2afouue@ec2-54-83-199-200.compute-1.amazonaws.com:10489'
 def create_app():
     app = Flask(__name__)
+    app.config.update(BROKER_URL=os.environ['REDIS_URL'],
+                CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
+    celery = Celery(app.name, broker=app.config['BROKER_URL'])
+    celery.conf.update(app.config)
     resume()
-    return app
+    return app, celery
+
+
+
 COUNT = 1
 
 
@@ -272,7 +277,8 @@ def build_html(qa):
     return doc_name, html
 
 
-app = create_app()
+
+app, celery = create_app()
 
 @celery.task
 def run(start_page, end_page, so_key):
@@ -330,8 +336,6 @@ def run(start_page, end_page, so_key):
     #   logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________')
 
     return "Process complete."
-
-
 
 @app.route('/start', methods=['GET', 'POST'])
 def index():
