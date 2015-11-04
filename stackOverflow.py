@@ -23,14 +23,6 @@ import socket
 
 app = Flask(__name__)
 
-
-class ContextFilter(logging.Filter):
-  hostname = socket.gethostname()
-
-  def filter(self, record):
-    record.hostname = ContextFilter.hostname
-    return True
-
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
@@ -60,17 +52,41 @@ def index():
 	start_page = request.form.get('startpage', type=int)
 	end_page   = request.form.get('endpage', type=int)
 	so_key     = request.form.get('so_key', type=str)
-	print 'here'
-	# print os.environ['URL']
-	for key in os.environ.keys():
-    	print "%30s %s \n" % (key,os.environ[key])
 	run.delay(start_page, end_page, so_key)
 	return 'Done'
 
+def get_pagelog(bucket, name, folder, curr_page):
 
-def s3upload(name, html, bucket):
+    k = Key(bucket)
+	k.key = name
+
+	if k.exists():
+		try:
+			print 'log existd!'
+			pagelog = k.get_contents_as_string()
+			pagelog = pickle.load(pagelog)
+			print pagelog
+		except Exception as e:
+			logger.info('ERROR FETCHING PAGE LOG:')
+			logger.info(e)
+			pagelog = [(datetime.now(), page)]
+	else:
+		try:
+			print 'log does not exist! creating...'
+			pagelog = [(datetime.now(), curr_page)]
+			page = pickle.dump(pagelog)]
+			print 'uploading %s' %pagelog
+			s3upload(pagelog_name, page, bucket)
+		except:
+			pagelog = [(datetime.now(), curr_page)]
+
+	return pagelog
+
+def s3upload(name, doc, bucket, folder=None):
 	logger.info( "  Uploading document to S3.")
 
+	if folder:
+		name = os.path.join(folder, doc)
 	try:
 		key = bucket.new_key(name)
 		key.set_contents_from_string(html)
@@ -183,7 +199,7 @@ def build_qa(url, questions, requests_remaining, conn, bucket):
 											}
 								save_code(qa=qa, conn=conn)
 								doc_name, html = build_html(qa=qa)
-								s3upload(name=doc_name, html=html, bucket=bucket)
+								s3upload(name=doc_name, doc=html, bucket=bucket)
 
 								COUNT += 1
 
@@ -271,38 +287,32 @@ def run(start_page, end_page, so_key):
 	page 		   		= start_page
 	questions_url  		= questions_url.format(key=so_api_key, page=1)
 	page = start_page
-	page_log = [(datetime.now(), page )]
+	# page_log = [(datetime.now(), page )]
 
-	app_name = re.match('\/\/(.*?)\.', os.environ['URL'])
-	print app_name
-	page_log_name =  '-page.log'
+	pagelog_name =  os.environ['APP_NAME']'-page.log'
 
-
-	while page >= start_page and page <= end_page:
-		logger.info( "\n________________________________________________________________________\n Moving to page " + str(page))
-
-		with open('page.log', 'ab+ -') as f:
-			try:
-				page_log = pickle.load(f)
-				page_log.append((datetime.now(), page))
-				pickle.dump(page_log, f)
-				s3upload()
-			except EOFError:
-				pickle.dump(page_log, f)
+	pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='page_logs', curr_page)
+	# 	# 	try:
+	# 	# 		page_log = pickle.load(f)
+	# 	# 		page_log.append((datetime.now(), page))
+	# 	# 		pickle.dump(page_log, f)
+	# 	# 		s3upload()
+	# 	# 	except EOFError:
+	# 	# 		pickle.dump(page_log, f)
 
 
-		questions, requests_remaining = get_questions(url=questions_url, page=page)
-		page 		  	   			  = page + 1
+	# 	questions, requests_remaining = get_questions(url=questions_url, page=page)
+	# 	page 		  	   			  = page + 1
 
-		if questions:
-			requests_remaining  = build_qa(questions=questions,url=answer_url,
-										   requests_remaining=requests_remaining,
-										   conn=conn, bucket=bucket)
+	# 	if questions:
+	# 		requests_remaining  = build_qa(questions=questions,url=answer_url,
+	# 									   requests_remaining=requests_remaining,
+	# 									   conn=conn, bucket=bucket)
 
-		logger.info( "\nRequests remaining:" + str(requests_remaining))
+	# 	logger.info( "\nRequests remaining:" + str(requests_remaining))
 
-		time.sleep(5)
-		logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________')
+	# 	time.sleep(5)
+	# 	logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________')
 
 	return "Process complete."
 
