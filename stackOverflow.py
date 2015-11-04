@@ -68,7 +68,7 @@ def index():
 	end_page   = request.form.get('endpage', type=int)
 	# so_key     = request.form.get('so_key', type=str)
 
-	print socket.getaddrinfo(socket.gethostname(), 0, flags=socket.AI_CANONNAME)[0][3]
+	print socket.getfqdn()
 	# print a,b,c
 	# domain = socket.getfqdn(a)
 	# print domain
