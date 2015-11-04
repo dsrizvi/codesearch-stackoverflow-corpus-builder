@@ -291,7 +291,7 @@ def run(start_page, end_page, so_key):
 	page = start_page
 	# page_log = [(datetime.now(), page )]
 
-	pagelog_name =  os.environ['APP_NAME']'-page.log'
+	pagelog_name =  os.environ['APP_NAME'] + '-page.log'
 
 	pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='page_logs', curr_page)
 	# 	# 	try:
