@@ -286,10 +286,7 @@ def run(start_page, end_page, so_key):
 
     answer_url           = answer_url.replace('PLACEHOLDER', so_api_key)
 
-    AWSAccessKeyId       = os.environ['AWSAccessKeyId']
-    AWSSecretKey         = os.environ['AWSSecretKey']
-    s3conn               = S3Connection(AWSAccessKeyId, AWSSecretKey)
-    bucket               = s3conn.get_bucket('code-search-corpus')
+    bucket = get_bucket()
 
     urlparse.uses_netloc.append("postgres")
     url             = urlparse.urlparse(os.environ["DATABASE_URL"])
@@ -334,7 +331,7 @@ def run(start_page, end_page, so_key):
 
     try:
         amqp = celery.bin.amqp.amqp(app = celery_instance)
-        amqp.run('queue.purge', 'celery')
+        amqp.run('queue.purge', 'default')
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
@@ -342,12 +339,18 @@ def run(start_page, end_page, so_key):
 
     return "Process complete."
 
-def resume():
-    print "============================================================================== \n BOOTING SERVER"
+def get_bucket():
     AWSAccessKeyId  = os.environ['AWSAccessKeyId']
     AWSSecretKey    = os.environ['AWSSecretKey']
     s3conn          = S3Connection(AWSAccessKeyId, AWSSecretKey)
     bucket          = s3conn.get_bucket('code-search-corpus')
+
+    return bucket
+
+def resume():
+    print "============================================================================== \n BOOTING SERVER"
+
+    bucket = get_bucket()
     pagelog_name    =  os.environ['APP_NAME'] + '-page.log'
 
     pagelog        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs')
