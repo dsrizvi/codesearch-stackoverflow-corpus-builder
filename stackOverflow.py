@@ -74,7 +74,7 @@ def get_pagelog(bucket, name, folder, curr_page):
 			print 'log does not exist! creating...'
 			pagelog = [(datetime.now(), curr_page)]
 			page = pickle.dumps(pagelog)
-			print 'uploading %s' %pagelog
+			print 'uploading %s' % pagelog
 			s3upload(name=pagelog_name, doc=page, bucket=bucket, folder=folder)
 		except Exception as e:
 			pagelog = [(datetime.now(), curr_page)]
