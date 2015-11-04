@@ -307,7 +307,6 @@ def run(start_page, end_page, so_key):
 
     if pagelog is None:
         pagelog = build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
-    else:
 
     while True:
         page = page + 1
@@ -345,7 +344,10 @@ def resume():
     if pagelog:
         try:
             so_key = pagelog[0]
-            start_page, end_page = pagelog[1]
+            endpage = pagelog[1][1]
+            resume_page = pagelog[-1][1]
+            print 'resume_page: %s' % resume_page
+            print 'endpage: %s' % endpage
             print 'Resuming corpus building from %s to %s' % (start_page, end_page)
             run.delay(start_page, end_page, so_key)
         except Exception as e:
