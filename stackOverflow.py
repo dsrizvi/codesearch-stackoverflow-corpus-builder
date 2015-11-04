@@ -71,7 +71,7 @@ def index():
 	so_key     = request.form.get('so_key', type=str)
 	name       = request.form.get('name', type=str)
 	print 'here lol'
-	url = url_for('start', _external=True)
+	url = url_for('index', _external=True)
 	# run.delay(start_page, end_page, so_key)
 	print '**************************************************************\n' + str(url)
 	return url
