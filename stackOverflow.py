@@ -243,7 +243,7 @@ def build_html(qa):
 
     return doc_name, html
 
-def build_pagelog(so_key, start_page, end_page, name):
+def build_pagelog(so_key, start_page, end_page, name, bucket):
 
     try:
         print 'Building page log!'
@@ -291,7 +291,7 @@ def run(start_page, end_page, so_key):
     pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs')
 
     if pagelog is None:
-        build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name)
+        build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
         while True:
             print 'build corpus....'
             time.sleep(5)
