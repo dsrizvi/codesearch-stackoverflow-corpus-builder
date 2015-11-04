@@ -15,7 +15,7 @@ from celery import Celery
 import logging
 import os
 import pickle
-import datetime as datetime
+from datetime import datetime
 
 log = open('stackoverflow.log', 'wb+ -')
 log.close()
@@ -258,7 +258,7 @@ def run(start_page, end_page, so_key):
 	page 		   		= start_page
 	questions_url  		= questions_url.format(key=so_api_key, page=1)
 	page = start_page
-	page_log = [(page, datetime.now())]
+	page_log = [(datetime.now(), page )]
 
 	while page >= start_page and page <= end_page:
 		logger.info( "\n+________________________________________________________________________\n Moving to page " + str(page))
