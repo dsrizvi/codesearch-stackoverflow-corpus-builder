@@ -255,6 +255,14 @@ def build_pagelog(so_key, start_page, end_page, name, bucket):
         print 'ERROR BUILDING PAGE LOG'
         print e
 
+def update_pagelog(curr_page, name, pagelog, bucket):
+
+    curr_page = curr_page + 1
+    time      = datetime.now().strftime('%v %r')
+    curr_log  = (time, curr_page)
+    pagelog.append(curr_log)
+
+
 
 @celery.task
 def run(start_page, end_page, so_key):
@@ -293,9 +301,9 @@ def run(start_page, end_page, so_key):
 
     if pagelog is None:
         build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
-        while True:
-            print 'build corpus....'
-            time.sleep(5)
+    while True:
+        update_pagelog(curr_page=page, name=pagelog_name, bucket=bucket)
+        time.sleep(5)
         #   questions, requests_remaining = get_questions(url=questions_url, page=page)
         #   page                          = page + 1
 
@@ -308,16 +316,14 @@ def run(start_page, end_page, so_key):
 
         #   time.sleep(5)
         #   logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________')
-    else:
-        while True:
-            print 'already running....'
-            time.sleep(5)
 
+
+    print 'Corpus complete!'
 
     return "Process complete."
 
 def resume():
-    print "AT RESUME =============================================================================="
+    print "============================================================================== \n BOOTING SERVER"
     AWSAccessKeyId  = os.environ['AWSAccessKeyId']
     AWSSecretKey    = os.environ['AWSSecretKey']
     s3conn          = S3Connection(AWSAccessKeyId, AWSSecretKey)
@@ -328,7 +334,6 @@ def resume():
 
     if pagelog:
         try:
-            print pagelog
             so_key = pagelog[0]
             start_page, end_page = pagelog[1]
             print 'Resuming corpus building from %s to %s' % (start_page, end_page)
