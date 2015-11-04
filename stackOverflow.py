@@ -247,6 +247,7 @@ def build_html(qa):
 
     return doc_name, html
 
+@celery.task
 def run(start_page, end_page, so_key):
 
     print "========================================================================= \n Starting corpus builder!"
@@ -328,12 +329,10 @@ def resume():
             print 'ERROR FETCHING PAGE LOGS'
             print e
     else:
-        logger.info('First time building corpus!')
+        print 'First time building corpus!'
 
 
 app, celery = create_app()
-
-# @celery.task
 
 @app.route('/start', methods=['GET', 'POST'])
 def index():
