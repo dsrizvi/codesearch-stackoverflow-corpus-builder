@@ -71,8 +71,8 @@ def index():
 	so_key     = request.form.get('so_key', type=str)
 	name       = request.form.get('name', type=str)
 	run.delay(start_page, end_page, so_key)
-	logger.info()
 	url = url_for('settings', _external=True)
+	logger.info(url)
 	return url
 
 
