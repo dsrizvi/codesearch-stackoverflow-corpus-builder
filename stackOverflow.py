@@ -21,7 +21,7 @@ import pickle
 from datetime import datetime
 import socket
 import celery
-
+from celery.task.control import inspect
 # app = Flask(__name__)
 
 logger = logging.getLogger(__name__)
@@ -331,7 +331,7 @@ def run(start_page, end_page, so_key):
 
     try:
         amqp = celery.bin.amqp.amqp(app = celery_instance)
-        amqp.run('queue.purge', 'celery')
+        amqp.run('queue.purge', 'CELERY_DEFAULT_QUEUE')
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
