@@ -20,7 +20,7 @@ import pickle
 from datetime import datetime
 import socket
 from celery import Celery
-from celery.task.control import discard_all
+# from celery.task.control import discard_all
 # app = Flask(__name__)
 
 logger = logging.getLogger(__name__)
@@ -329,7 +329,7 @@ def run(start_page, end_page, so_key):
     print 'Corpus complete!'
 
     try:
-        discard_all
+        # discard_all
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
