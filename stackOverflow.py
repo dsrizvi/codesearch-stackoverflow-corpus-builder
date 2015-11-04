@@ -63,18 +63,21 @@ def get_pagelog(bucket, name, folder, curr_page):
         except Exception as e:
             logger.info('ERROR FETCHING PAGE LOG:')
             logger.info(e)
-            pagelog = [(time, curr_page)]
+            pagelog = None
     else:
-        try:
-            logger.info('Page does not exist!\n Creating page log.')
-            pagelog = [(time, curr_page)]
-            page = pickle.dumps(pagelog)
-            print 'uploading %s' % pagelog
-            s3upload(name=name, doc=page, bucket=bucket)
-        except Exception as e:
-            pagelog = [(time, curr_page)]
-            logger.info('ERROR FETCHING PAGE LOG:')
-            logger.info(e)
+        pagelog = None
+        logger.info('Page log does not exist!')
+        # try:
+        #     pagelog = None
+        #     new_pagelog = [(time, curr_page)]
+        #     new_pagelog = pickle.dumps(pagelog)
+        #     print 'uploading %s' % new_pagelog
+        #     s3upload(name=name, doc=pagelog, bucket=bucket)
+        # except Exception as e:
+        #     pagelog = [(time, curr_page)]
+        #     logger.info('ERROR FETCHING PAGE LOG:')
+        #     logger.info(e)
+    pagelog = pickle.loads(pagelog)
 
     return pagelog
 
@@ -267,11 +270,13 @@ def resume():
     print 'PAGELOGS:'
     print pagelogs
 
-
-    heroku_key = os.environ["DATABASE_URL"]
-
-
-
+    if pagelogs:
+        os.environ['SO_KEY']
+        start_page, end_page = pagelogs[0]
+        run(start_page, end_page, so_key)
+        info.logger('Resuming corpus building from %s to %s' (start_page, end_page))
+    else:
+        info.logger('First time building corpus!')
 
 
 app, celery = create_app()
@@ -280,16 +285,17 @@ app, celery = create_app()
 def run(start_page, end_page, so_key):
 
     print "========================================================================= \n Starting corpus builder!"
+    os.environ['SO_KEY'] = so_key
 
-    so_api_key          =  so_key
-    questions_url       = 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=1&tagged=python&site=stackoverflow&filter=withbody'
-    answer_url          = 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
-    answer_url          = answer_url.replace('PLACEHOLDER', so_api_key)
+    so_api_key           =  so_key
+    questions_url        = 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=1&tagged=python&site=stackoverflow&filter=withbody'
+    answer_url           = 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
+    answer_url           = answer_url.replace('PLACEHOLDER', so_api_key)
 
-    AWSAccessKeyId      = os.environ['AWSAccessKeyId']
-    AWSSecretKey        = os.environ['AWSSecretKey']
-    s3conn              = S3Connection(AWSAccessKeyId, AWSSecretKey)
-    bucket              = s3conn.get_bucket('code-search-corpus')
+    AWSAccessKeyId       = os.environ['AWSAccessKeyId']
+    AWSSecretKey         = os.environ['AWSSecretKey']
+    s3conn               = S3Connection(AWSAccessKeyId, AWSSecretKey)
+    bucket               = s3conn.get_bucket('code-search-corpus')
 
     urlparse.uses_netloc.append("postgres")
     url             = urlparse.urlparse(os.environ["DATABASE_URL"])
@@ -309,14 +315,12 @@ def run(start_page, end_page, so_key):
     pagelog_name =  os.environ['APP_NAME'] + '-page.log'
 
     pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=page)
-    #   #   try:
-    #   #       page_log = pickle.load(f)
-    #   #       page_log.append((datetime.now(), page))
-    #   #       pickle.dump(page_log, f)
-    #   #       s3upload()
-    #   #   except EOFError:
-    #   #       pickle.dump(page_log, f)
 
+    if pagelog is None:
+        logger.info('Building page log!')
+        pagelog = [(start_page, end_page)]
+        pagelog = pickle.dumps(pagelog)
+        s3upload(pagelog_name, pagelog, bucket, folder='pagelogs')
 
     #   questions, requests_remaining = get_questions(url=questions_url, page=page)
     #   page                          = page + 1
