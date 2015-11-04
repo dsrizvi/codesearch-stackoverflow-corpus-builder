@@ -8,26 +8,45 @@ import psycopg2
 import HTMLParser
 import boto
 from boto.s3.connection import S3Connection
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 import os
 import urlparse
 from celery import Celery
 import logging
+from logging.handlers import SysLogHandler
+import socket
 import os
 import pickle
 from datetime import datetime
+import logging
+import socket
+from logging.handlers import SysLogHandler
 
-log = open('stackoverflow.log', 'wb+ -')
-log.close()
 
-logger = logging.getLogger(__name__)
+class ContextFilter(logging.Filter):
+  hostname = socket.gethostname()
+
+  def filter(self, record):
+    record.hostname = ContextFilter.hostname
+    return True
+
+
+logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-handler = logging.FileHandler('stackoverflow.log')
-handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+f = ContextFilter()
+logger.addFilter(f)
+
+
+
+syslog = SysLogHandler(address=('<host>.papertrailapp.com', 11111))
+formatter = logging.Formatter('%(asctime)s %(hostname)s YOUR_APP: %(message)s', datefmt='%b %d %H:%M:%S')
+
+syslog.setFormatter(formatter)
+logger.addHandler(syslog)
+
+
+
 
 app = Flask(__name__)
 # app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
@@ -50,8 +69,10 @@ def index():
 	start_page = request.form.get('startpage', type=int)
 	end_page   = request.form.get('endpage', type=int)
 	so_key     = request.form.get('so_key', type=str)
-	run.delay(start_page,end_page, so_key)
-	logger.info("Building Corpus...")
+	name       = request.form.get('name', type=str)
+	run.delay(start_page, end_page, so_key, name)
+	logger.info(url_for('settings', _external=True))
+
 	return "Process iniatied"
 
 
@@ -231,7 +252,7 @@ def build_html(qa):
 	return doc_name, html
 
 @celery.task
-def run(start_page, end_page, so_key):
+def run(start_page, end_page, so_key, name):
 
 	print "========================================================================= \n Starting corpus builder!"
 
@@ -260,13 +281,18 @@ def run(start_page, end_page, so_key):
 	page = start_page
 	page_log = [(datetime.now(), page )]
 
+	page_log_name = name + '-page.log'
+
+
 	while page >= start_page and page <= end_page:
-		logger.info( "\n+________________________________________________________________________\n Moving to page " + str(page))
+		logger.info( "\n________________________________________________________________________\n Moving to page " + str(page))
 
 		with open('page.log', 'ab+ -') as f:
 			try:
 				page_log = pickle.load(f)
 				page_log.append((datetime.now(), page))
+				pickle.dump(page_log, f)
+				s3upload()
 			except EOFError:
 				pickle.dump(page_log, f)
 
