@@ -32,17 +32,15 @@ class ContextFilter(logging.Filter):
     record.hostname = ContextFilter.hostname
     return True
 
-papertrial_host = url_for('index', _external=True)
-papertrial_host = re.match('\/\/(.*?)\.', papertrial_host)
-
+with app.app_context():
+	papertrial_host = url_for('index', _external=True)
+	papertrial_host = re.match('\/\/(.*?)\.', papertrial_host)
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 f = ContextFilter()
 logger.addFilter(f)
-
-
 
 syslog = SysLogHandler(address=('%s.papertrailapp.com' % papertrial_host, 11111))
 formatter = logging.Formatter('%(asctime)s %(hostname)s: %(message)s', datefmt='%b %d %H:%M:%S')
