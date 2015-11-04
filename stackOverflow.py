@@ -247,6 +247,15 @@ def build_html(qa):
 
     return doc_name, html
 
+def build_pagelog(so_key, start_page, end_page):
+    logger.info('Building page log!')
+
+    pagelog = [so_key, (start_page, end_page)]
+    pagelog = pickle.dumps(pagelog)
+    s3upload(pagelog_name, pagelog, bucket, folder='pagelogs')
+
+
+
 def resume():
     print "AT RESUME =============================================================================="
     AWSAccessKeyId  = os.environ['AWSAccessKeyId']
@@ -259,8 +268,8 @@ def resume():
 
     if pagelogs:
         try:
-            os.environ['SO_KEY']
-            start_page, end_page = pagelogs[0]
+            so_key = pagelogs[0]
+            start_page, end_page = pagelogs[-1]
             print 'Resuming corpus building from %s to %s' (start_page, end_page)
             run(start_page, end_page, so_key)
         except Exception as e:
@@ -275,7 +284,6 @@ app, celery = create_app()
 def run(start_page, end_page, so_key):
 
     print "========================================================================= \n Starting corpus builder!"
-    os.environ['SO_KEY'] = so_key
 
     so_api_key           =  so_key
     questions_url        = 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=1&tagged=python&site=stackoverflow&filter=withbody'
@@ -307,12 +315,7 @@ def run(start_page, end_page, so_key):
     pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=page)
 
     if pagelog is None:
-        logger.info('Building page log!')
-        pagelog = [(start_page, end_page)]
-        print pagelog
-        pagelog = pickle.dumps(pagelog)
-        print pagelog
-        s3upload(pagelog_name, pagelog, bucket, folder='pagelogs')
+        build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page)
 
     while True:
         print 'running....'
@@ -332,8 +335,6 @@ def run(start_page, end_page, so_key):
 
     return "Process complete."
 
-
-
 @app.route('/start', methods=['GET', 'POST'])
 def index():
     start_page = request.form.get('startpage', type=int)
@@ -344,6 +345,4 @@ def index():
 
 
 if __name__ == '__main__':
-    print 'in main loop!!!!'
-    resume()
     app.run()
