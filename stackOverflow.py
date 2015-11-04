@@ -21,6 +21,7 @@ import pickle
 from datetime import datetime
 import socket
 import celery
+import celery.bin.amqp
 # app = Flask(__name__)
 
 logger = logging.getLogger(__name__)
@@ -329,14 +330,15 @@ def run(start_page, end_page):
     print 'Corpus complete!'
 
     try:
-        control = celery.app.control.Control(app=celery_instance)
-        control.purge()
+        amqp = celery.bin.amqp.amqp(app = celery_instance)
+        amqp.run('queue.purge', 'celery')
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
         logger.info(e)
 
     return "Process complete."
+
 
 def get_bucket():
     AWSAccessKeyId  = os.environ['AWSAccessKeyId']
