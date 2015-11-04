@@ -249,12 +249,14 @@ def build_pagelog(so_key, start_page, end_page, name, bucket):
 
     try:
         print 'Building page log!'
-        pagelog = [so_key, (start_page, end_page)]
-        pagelog = pickle.dumps(pagelog)
-        s3upload(name=name, doc=pagelog, bucket=bucket, folder='pagelogs')
+        pagelog         = [so_key, (start_page, end_page)]
+        pickled_pagelog = pickle.dumps(pagelog)
+        s3upload(name=name, doc=pickled_pagelog, bucket=bucket, folder='pagelogs')
     except Exception as e:
         print 'ERROR BUILDING PAGE LOG'
         print e
+
+    return pagelog
 
 def update_pagelog(curr_page, name, pagelog, bucket, folder):
     time      = datetime.now().strftime('%v %r')
@@ -304,12 +306,8 @@ def run(start_page, end_page, so_key):
     pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs')
 
     if pagelog is None:
-        build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
-        page = start_page
+        pagelog = build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
     else:
-        start_page, end_page = pagelog[1]
-        page = pagelog[-1][1]
-
 
     while True:
         page = page + 1
