@@ -67,7 +67,11 @@ def index():
 	start_page = request.form.get('startpage', type=int)
 	end_page   = request.form.get('endpage', type=int)
 	# so_key     = request.form.get('so_key', type=str)
-	print socket.gethostname()
+
+	a,b,c = socket.gethostbyaddr(socket.gethostbyname(socket.gethostname()))
+	print a,b,c
+	domain = socket.getfqdn(a)
+	print domain
 	# run.delay(start_page, end_page, so_key)
 	return url
 
