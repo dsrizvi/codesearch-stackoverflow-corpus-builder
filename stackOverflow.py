@@ -58,8 +58,10 @@ def get_pagelog(bucket, name, folder, curr_page):
             logger.info('Page log exists!')
             pagelog     = k.get_contents_as_string()
             pagelog    = pickle.loads(pagelog)
+            print 'inside get_pagelog:'
+            print pagelog
             time, page = pagelog[-1]
-            logger.info('Last page was %s at %s!')
+            logger.info('Last page was %s at %s!' %(page, time))
         except Exception as e:
             logger.info('ERROR FETCHING PAGE LOG:')
             logger.info(e)
@@ -272,7 +274,7 @@ def resume():
             print pagelogs
             start_page, end_page = pagelogs[0]
             run(start_page, end_page, so_key)
-            logger.info('Resuming corpus building from %s to %s' (start_page, end_page))
+            print 'Resuming corpus building from %s to %s' (start_page, end_page)
         except Exception as e:
             logger.info('ERROR FETCHING PAGE LOGS')
             logger.info(e)
