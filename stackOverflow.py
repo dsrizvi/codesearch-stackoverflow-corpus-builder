@@ -57,8 +57,7 @@ def index():
 
 def get_pagelog(bucket, name, folder, curr_page):
 
-	key   = bucket.new_key(name)
-	k.key = name
+	k   = bucket.new_key(name)
 
 	if k.exists():
 		try:
