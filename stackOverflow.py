@@ -75,10 +75,10 @@ def s3upload(name, doc, bucket, folder=None):
     try:
         key = bucket.new_key(name)
         key.set_contents_from_string(doc)
+        logger.info( "  Documents uploaded.")
     except Exception as e:
         logger.info( "  UPLOAD ERROR:")
         logger.info(e)
-    logger.info( "  Documents uploaded.")
 
 def get_questions(url, page):
 
@@ -261,6 +261,7 @@ def update_pagelog(curr_page, name, pagelog, bucket):
     time      = datetime.now().strftime('%v %r')
     curr_log  = (time, curr_page)
     pagelog.append(curr_log)
+    pagelog   = pickle.dumps(pagelog)
     s3upload(name=name, doc=pagelog, bucket=bucket)
 
 
@@ -269,7 +270,7 @@ def update_pagelog(curr_page, name, pagelog, bucket):
 def run(start_page, end_page, so_key):
 
     print "========================================================================= \n Starting corpus builder!"
-    print type(so_key)
+
     so_api_key           =  str(so_key)
     questions_url        = 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=1&tagged=python&site=stackoverflow&filter=withbody'
     answer_url           = 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
