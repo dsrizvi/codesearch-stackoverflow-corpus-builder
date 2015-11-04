@@ -63,14 +63,14 @@ def get_pagelog(bucket, name, folder, curr_page):
 
 	if k.exists():
 		try:
-			print 'log existd!'
+			print 'log exists!'
 			pagelog = k.get_contents_as_string()
-			pagelog = pickle.load(pagelog)
+			pagelog = pickle.loads(pagelog)
 			print pagelog
 		except Exception as e:
 			logger.info('ERROR FETCHING PAGE LOG:')
 			logger.info(e)
-			pagelog = [(time, page)]
+			pagelog = [(time, curr_page)]
 	else:
 		try:
 			print 'log does not exist! creating...'
