@@ -68,12 +68,12 @@ def index():
 	end_page   = request.form.get('endpage', type=int)
 	# so_key     = request.form.get('so_key', type=str)
 
-	a,b,c = socket.gethostbyaddr(socket.gethostbyname(socket.gethostname()))
-	print a,b,c
-	domain = socket.getfqdn(a)
-	print domain
+	print socket.getaddrinfo(socket.gethostname(), 0, flags=socket.AI_CANONNAME)[0][3]
+	# print a,b,c
+	# domain = socket.getfqdn(a)
+	# print domain
 	# run.delay(start_page, end_page, so_key)
-	return url
+	return 'Done'
 
 
 def s3upload(name, html, bucket):
