@@ -14,13 +14,12 @@ import urlparse
 from celery import Celery
 import logging
 from logging.handlers import SysLogHandler
+import logging
 import socket
 import os
 import pickle
 from datetime import datetime
-import logging
 import socket
-from logging.handlers import SysLogHandler
 
 app = Flask(__name__)
 
@@ -32,9 +31,9 @@ class ContextFilter(logging.Filter):
     record.hostname = ContextFilter.hostname
     return True
 
-with app.app_context():
-	papertrial_host = url_for('index', _external=True)
-	papertrial_host = re.match('\/\/(.*?)\.', papertrial_host)
+# with app.app_context():
+# 	papertrial_host = url_for('index', _external=True)
+# 	papertrial_host = re.match('\/\/(.*?)\.', papertrial_host)
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
