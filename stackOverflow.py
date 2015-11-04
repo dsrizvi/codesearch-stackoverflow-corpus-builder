@@ -271,10 +271,10 @@ def resume():
             os.environ['SO_KEY']
             start_page, end_page = pagelogs[0]
             run(start_page, end_page, so_key)
-            info.logger('Resuming corpus building from %s to %s' (start_page, end_page))
+            logger.info('Resuming corpus building from %s to %s' (start_page, end_page))
         except Exception as e:
-            info.logger('ERROR FETCHING PAGE LOGS')
-            info.logger(e)
+            logger.info('ERROR FETCHING PAGE LOGS')
+            logger.info(e)
     else:
         info.logger('First time building corpus!')
 
