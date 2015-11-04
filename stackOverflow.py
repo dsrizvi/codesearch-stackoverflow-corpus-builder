@@ -330,7 +330,7 @@ def run(start_page, end_page):
 
     try:
         amqp = celery.bin.amqp.amqp(app = celery_instance)
-        amqp.run('queue.purge', 'celery')
+        amqp.run('queue.delete', 'celery')
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
