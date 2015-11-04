@@ -20,7 +20,7 @@ import os
 import pickle
 from datetime import datetime
 import socket
-import celery.bin.amqp
+import celery
 
 # app = Flask(__name__)
 
