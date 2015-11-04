@@ -47,6 +47,25 @@ celery.conf.update(app.config)
 COUNT = 1
 
 
+@app.before_first_request
+def resume():
+
+	AWSAccessKeyId	= os.environ['AWSAccessKeyId']
+	AWSSecretKey	= os.environ['AWSSecretKey']
+	s3conn 			= S3Connection(AWSAccessKeyId, AWSSecretKey)
+	bucket			= s3conn.get_bucket('code-search-corpus')
+	pagelog_name =  os.environ['APP_NAME'] + '-page.log'
+
+	pagelogs 		= get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
+	logging.info('RUNNNNNNING')
+	logging.info(pagelogs)
+
+	heroku_key = os.environ["DATABASE_URL"]
+
+
+
+
+
 @app.route('/start', methods=['GET', 'POST'])
 def index():
 	start_page = request.form.get('startpage', type=int)
@@ -57,7 +76,7 @@ def index():
 
 def get_pagelog(bucket, name, folder, curr_page):
 
-	time = datetime.now().strftime("%%Y%m%dT%H%M%S")
+	time = datetime.now().strftime("%Y-%m-%d %H%:%M%.S")
 	name = os.path.join(folder, name)
 	k    = bucket.new_key(name)
 
@@ -294,7 +313,7 @@ def run(start_page, end_page, so_key):
 
 	pagelog_name =  os.environ['APP_NAME'] + '-page.log'
 
-	pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='page_logs', curr_page=page)
+	pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=page)
 	# 	# 	try:
 	# 	# 		page_log = pickle.load(f)
 	# 	# 		page_log.append((datetime.now(), page))
