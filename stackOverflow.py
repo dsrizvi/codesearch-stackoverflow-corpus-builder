@@ -21,6 +21,10 @@ import pickle
 from datetime import datetime
 import socket
 
+
+print 'fuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuk'
+
+
 app = Flask(__name__)
 
 logger = logging.getLogger(__name__)
@@ -74,7 +78,7 @@ def index():
 
 def get_pagelog(bucket, name, folder, curr_page):
 
-	time = datetime.now().strftime("%Y-%m-%d %H%:%M%.S")
+	time = datetime.now().strftime("%Y-%m-%d %H:%M.%S")
 	name = os.path.join(folder, name)
 	k    = bucket.new_key(name)
 
