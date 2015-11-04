@@ -60,9 +60,11 @@ def index():
 	start_page = request.form.get('startpage', type=int)
 	end_page   = request.form.get('endpage', type=int)
 	so_key     = request.form.get('so_key', type=str)
+	print 'here'
 	print os.environ['URL']
+	print 'lol doesn't exist
 	run.delay(start_page, end_page, so_key)
-	return url
+	return 'Done'
 
 
 def s3upload(name, html, bucket):
