@@ -36,7 +36,7 @@ logger.addHandler(handler)
 # app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
 # REDIS_URL = 'redis://h:p519va8q2ekfct3bkc6b2afouue@ec2-54-83-199-200.compute-1.amazonaws.com:10489'
-celery = Celery('celery', broker=environ['REDIS_URL'])
+celery = Celery('celery', broker=os.environ['REDIS_URL'])
 
 COUNT = 1
 
