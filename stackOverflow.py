@@ -255,15 +255,21 @@ def build_pagelog(so_key, start_page, end_page, name, bucket):
         print 'ERROR BUILDING PAGE LOG'
         print e
 
-def update_pagelog(curr_page, name, pagelog, bucket):
+def update_pagelog(curr_page, name, pagelog, bucket, folder):
 
     curr_page = curr_page + 1
     time      = datetime.now().strftime('%v %r')
     curr_log  = (time, curr_page)
     pagelog.append(curr_log)
-    print pagelog
     pagelog   = pickle.dumps(pagelog)
-    s3upload(name=name, doc=pagelog, bucket=bucket)
+    name = os.path.join(folder, name)
+
+    try:
+        key = bucket.new_key(name)
+        key.set_contents_from_string(doc)
+    except Exception as e:
+        logger.info( "PAGE LOGUPLOAD ERROR:")
+        logger.info(e)
 
 
 
