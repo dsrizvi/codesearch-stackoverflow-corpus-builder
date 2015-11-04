@@ -309,9 +309,9 @@ def run(start_page, end_page, so_key):
     pagelog = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs')
 
     if pagelog is None:
-        build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket, folder='pagelogs')
+        build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
     while True:
-        update_pagelog(curr_page=page, name=pagelog_name, bucket=bucket, pagelog=pagelog)
+        update_pagelog(curr_page=page, name=pagelog_name, bucket=bucket, pagelog=pagelog, folder='pagelogs')
         time.sleep(1)
         #   questions, requests_remaining = get_questions(url=questions_url, page=page)
         #   page                          = page + 1
