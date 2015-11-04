@@ -250,35 +250,6 @@ def build_pagelog(so_key, start_page, end_page):
     pagelog = pickle.dumps(pagelog)
     s3upload(pagelog_name, pagelog, bucket, folder='pagelogs')
 
-
-
-def resume():
-    print "AT RESUME =============================================================================="
-    AWSAccessKeyId  = os.environ['AWSAccessKeyId']
-    AWSSecretKey    = os.environ['AWSSecretKey']
-    s3conn          = S3Connection(AWSAccessKeyId, AWSSecretKey)
-    bucket          = s3conn.get_bucket('code-search-corpus')
-    pagelog_name    =  os.environ['APP_NAME'] + '-page.log'
-
-    pagelogs        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
-
-    if pagelogs:
-        try:
-            print pagelogs
-            so_key = pagelogs[0]
-            print 'so_key'
-            start_page, end_page = pagelogs[0]
-            print 'start page'
-            print 'Resuming corpus building from %s to %s' % (start_page, end_page)
-            run(start_page, end_page, so_key)
-        except Exception as e:
-            print 'ERROR STARTING RUN'
-            print e
-    else:
-        print 'First time building corpus!'
-
-app, celery = create_app()
-
 @celery.task
 def run(start_page, end_page, so_key):
 
@@ -333,6 +304,34 @@ def run(start_page, end_page, so_key):
     #   logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________')
 
     return "Process complete."
+
+def resume():
+    print "AT RESUME =============================================================================="
+    AWSAccessKeyId  = os.environ['AWSAccessKeyId']
+    AWSSecretKey    = os.environ['AWSSecretKey']
+    s3conn          = S3Connection(AWSAccessKeyId, AWSSecretKey)
+    bucket          = s3conn.get_bucket('code-search-corpus')
+    pagelog_name    =  os.environ['APP_NAME'] + '-page.log'
+
+    pagelogs        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
+
+    if pagelogs:
+        try:
+            print pagelogs
+            so_key = pagelogs[0]
+            print 'so_key'
+            start_page, end_page = pagelogs[0]
+            print 'start page'
+            print 'Resuming corpus building from %s to %s' % (start_page, end_page)
+            run(start_page, end_page, so_key)
+        except Exception as e:
+            print 'ERROR STARTING RUN'
+            print e
+    else:
+        print 'First time building corpus!'
+
+app, celery = create_app()
+
 
 @app.route('/start', methods=['GET', 'POST'])
 def index():
