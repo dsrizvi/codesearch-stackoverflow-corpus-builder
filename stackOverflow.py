@@ -77,8 +77,6 @@ def get_pagelog(bucket, name, folder, curr_page):
         #     pagelog = [(time, curr_page)]
         #     logger.info('ERROR FETCHING PAGE LOG:')
         #     logger.info(e)
-    pagelog = pickle.loads(pagelog)
-
     return pagelog
 
 def s3upload(name, doc, bucket, folder=None):
