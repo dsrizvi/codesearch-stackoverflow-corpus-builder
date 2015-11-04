@@ -62,7 +62,7 @@ def get_pagelog(bucket, name, folder, curr_page):
 
 	if k.exists():
 		try:
-		print 'log existd!'
+			print 'log existd!'
 			pagelog = k.get_contents_as_string()
 			pagelog = pickle.load(pagelog)
 			print pagelog
@@ -77,8 +77,10 @@ def get_pagelog(bucket, name, folder, curr_page):
 			page = pickle.dump(pagelog)]
 			print 'uploading %s' %pagelog
 			s3upload(pagelog_name, page, bucket)
-		except:
+		except Exception as e:
 			pagelog = [(datetime.now(), curr_page)]
+			logger.info('ERROR FETCHING PAGE LOG:')
+			logger.info(e)
 
 	return pagelog
 
