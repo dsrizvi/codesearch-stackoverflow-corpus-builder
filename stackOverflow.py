@@ -56,7 +56,8 @@ def get_pagelog(bucket, name, folder):
             print 'Page log exists!'
             pagelog     = k.get_contents_as_string()
             pagelog     = pickle.loads(pagelog)
-            start, end  = pagelog[-1]
+            curr_page   = pagelog[-1][1]
+            send  = pagelog[1][1]
             print '%s of %s pages complete!' % (start, end)
         except Exception as e:
             logger.info('ERROR FETCHING PAGE LOG:')
@@ -313,7 +314,8 @@ def run(start_page, end_page, so_key):
     while True:
         page = page + 1
         update_pagelog(curr_page=page, name=pagelog_name, bucket=bucket, pagelog=pagelog, folder='pagelogs')
-        time.sleep(1)
+        print 'running......'
+        time.sleep(2)
         #   questions, requests_remaining = get_questions(url=questions_url, page=page)
         #   page                          = page + 1
 
