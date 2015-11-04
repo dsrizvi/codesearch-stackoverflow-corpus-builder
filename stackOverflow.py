@@ -265,14 +265,16 @@ def resume():
     pagelog_name    =  os.environ['APP_NAME'] + '-page.log'
 
     pagelogs        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
-    print 'PAGELOGS:'
-    print pagelogs
 
     if pagelogs:
-        os.environ['SO_KEY']
-        start_page, end_page = pagelogs[0]
-        run(start_page, end_page, so_key)
-        info.logger('Resuming corpus building from %s to %s' (start_page, end_page))
+        try:
+            os.environ['SO_KEY']
+            start_page, end_page = pagelogs[0]
+            run(start_page, end_page, so_key)
+            info.logger('Resuming corpus building from %s to %s' (start_page, end_page))
+        except Exception as e:
+            info.logger('ERROR FETCHING PAGE LOGS')
+            info.logger(e)
     else:
         info.logger('First time building corpus!')
 
