@@ -45,7 +45,7 @@ def create_app():
     resume()
     return app, celery
 
-def get_pagelog(bucket, name, folder, curr_page):
+def get_pagelog(bucket, name, folder):
 
     name = os.path.join(folder, name)
     k    = bucket.new_key(name)
