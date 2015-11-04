@@ -320,7 +320,9 @@ def run(start_page, end_page, so_key):
     if pagelog is None:
         logger.info('Building page log!')
         pagelog = [(start_page, end_page)]
+        print pagelog
         pagelog = pickle.dumps(pagelog)
+        print pagelog
         s3upload(pagelog_name, pagelog, bucket, folder='pagelogs')
 
     #   questions, requests_remaining = get_questions(url=questions_url, page=page)
