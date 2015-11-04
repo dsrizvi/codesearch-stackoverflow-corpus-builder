@@ -345,7 +345,7 @@ def resume():
     if pagelog:
         try:
             so_key = pagelog[0]
-            endpage = pagelog[1][1]
+            end_page = pagelog[1][1]
             resume_page = pagelog[-1][1]
             print 'resume_page: %s' % resume_page
             print 'endpage: %s' % endpage
