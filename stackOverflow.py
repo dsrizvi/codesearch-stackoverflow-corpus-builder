@@ -37,7 +37,7 @@ logger.addHandler(handler)
 # app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
 # REDIS_URL = 'redis://h:p519va8q2ekfct3bkc6b2afouue@ec2-54-83-199-200.compute-1.amazonaws.com:10489'
-celery = Celery('celery', broker=os.environ['REDIS_URL'])
+celery_instance = Celery('celery', broker=os.environ['REDIS_URL'])
 
 COUNT = 1
 
@@ -275,7 +275,7 @@ def update_pagelog(curr_page, name, pagelog, bucket, folder):
 
 
 
-@celery.task
+@celery_instance.task
 def run(start_page, end_page, so_key):
 
     print "========================================================================= \n Starting corpus builder!"
@@ -310,7 +310,7 @@ def run(start_page, end_page, so_key):
     if pagelog is None:
         pagelog = build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
     i=0
-    while i < 20 :
+    while i < 10 :
         page += 1
         update_pagelog(curr_page=page, name=pagelog_name, bucket=bucket, pagelog=pagelog, folder='pagelogs')
         print 'running......'
