@@ -59,12 +59,9 @@ COUNT = 1
 def index():
 	start_page = request.form.get('startpage', type=int)
 	end_page   = request.form.get('endpage', type=int)
-	# so_key     = request.form.get('so_key', type=str)
-
-	hostsddr = gethostbyaddr(gethostbyname(gethostname()))
-	print hostsddr
-	domain = socket.getfqdn(hostsddr)
-	# run.delay(start_page, end_page, so_key)
+	so_key     = request.form.get('so_key', type=str)
+	print os.environ['URL']
+	run.delay(start_page, end_page, so_key)
 	return url
 
 
