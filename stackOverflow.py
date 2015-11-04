@@ -330,7 +330,7 @@ def run(start_page, end_page):
 
     try:
         control = celery.app.control.Control(app=celery_instance)
-        control.discard_all()
+        control.purge()
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
