@@ -71,9 +71,9 @@ def index():
 	so_key     = request.form.get('so_key', type=str)
 	name       = request.form.get('name', type=str)
 	run.delay(start_page, end_page, so_key, name)
-	logger.info(url_for('settings', _external=True))
-
-	return "Process iniatied"
+	logger.info()
+	url = url_for('settings', _external=True)
+	return url
 
 
 def s3upload(name, html, bucket):
