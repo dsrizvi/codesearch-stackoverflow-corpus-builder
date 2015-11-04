@@ -42,7 +42,7 @@ def create_app():
                 CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
     celery = Celery(app.name, broker=app.config['BROKER_URL'])
     celery.conf.update(app.config)
-    time.sleep(20)
+    time.sleep(10)
     resume()
     return app, celery
 
@@ -247,6 +247,8 @@ def build_html(qa):
 
     return doc_name, html
 
+app, celery = create_app()
+
 @celery.task
 def run(start_page, end_page, so_key):
 
@@ -332,7 +334,6 @@ def resume():
         print 'First time building corpus!'
 
 
-app, celery = create_app()
 
 @app.route('/start', methods=['GET', 'POST'])
 def index():
