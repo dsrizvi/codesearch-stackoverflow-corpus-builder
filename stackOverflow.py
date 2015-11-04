@@ -258,15 +258,18 @@ def run(start_page, end_page, so_key):
 	page 		   		= start_page
 	questions_url  		= questions_url.format(key=so_api_key, page=1)
 	page = start_page
-	page_log = [page]
+	page_log = [(page, datetime.now())]
 
 	while page >= start_page and page <= end_page:
 		logger.info( "\n+________________________________________________________________________\n Moving to page " + str(page))
 
 		with open('page.log', 'ab+ -') as f:
-			page_log = pickle.load(f)
-			page_log.append((datetime.now(), page))
-			pickle.dump(page_log, f)
+			try:
+				page_log = pickle.load(f)
+				page_log.append((datetime.now(), page))
+			except EOFError:
+				pickle.dump(page_log, f)
+
 
 		questions, requests_remaining = get_questions(url=questions_url, page=page)
 		page 		  	   			  = page + 1
