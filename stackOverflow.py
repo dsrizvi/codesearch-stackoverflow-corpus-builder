@@ -41,37 +41,25 @@ logger.addHandler(handler)
 
 # REDIS_URL = 'redis://h:p519va8q2ekfct3bkc6b2afouue@ec2-54-83-199-200.compute-1.amazonaws.com:10489'
 
-def create_app():
-    app = Flask(__name__)
-
-    def resume():
-
-        AWSAccessKeyId  = os.environ['AWSAccessKeyId']
-        AWSSecretKey    = os.environ['AWSSecretKey']
-        s3conn          = S3Connection(AWSAccessKeyId, AWSSecretKey)
-        bucket          = s3conn.get_bucket('code-search-corpus')
-        pagelog_name =  os.environ['APP_NAME'] + '-page.log'
-
-        pagelogs        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
-        logging.info('RUNNNNNNING')
-        logging.info(pagelogs)
-        print 'yoyoyoyoyoyoyo================================================='
-        heroku_key = os.environ["DATABASE_URL"]
-
-    resume()
-    return app
-
-app = create_app()
-
-
-app.config.update(BROKER_URL=os.environ['REDIS_URL'],
-                CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
-
-
-celery = Celery(app.name, broker=app.config['BROKER_URL'])
-celery.conf.update(app.config)
-
 COUNT = 1
+
+def resume():
+
+    AWSAccessKeyId  = os.environ['AWSAccessKeyId']
+    AWSSecretKey    = os.environ['AWSSecretKey']
+    s3conn          = S3Connection(AWSAccessKeyId, AWSSecretKey)
+    bucket          = s3conn.get_bucket('code-search-corpus')
+    pagelog_name =  os.environ['APP_NAME'] + '-page.log'
+
+    pagelogs        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
+    logging.info('RUNNNNNNING')
+    logging.info(pagelogs)
+    print 'yoyoyoyoyoyoyo================================================='
+    heroku_key = os.environ["DATABASE_URL"]
+
+
+
+
 
 @app.route('/start', methods=['GET', 'POST'])
 def index():
@@ -345,7 +333,17 @@ def run(start_page, end_page, so_key):
 
     return "Process complete."
 
+def create_app():
+    app = Flask(__name__)
+    resume()
+    return app
+app = create_app()
 
+app.config.update(BROKER_URL=os.environ['REDIS_URL'],
+
+                CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
+celery = Celery(app.name, broker=app.config['BROKER_URL'])
+celery.conf.update(app.config)
 
 
 if __name__ == '__main__':
