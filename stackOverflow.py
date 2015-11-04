@@ -247,6 +247,29 @@ def build_html(qa):
 
     return doc_name, html
 
+def resume():
+    print "AT RESUME =============================================================================="
+    AWSAccessKeyId  = os.environ['AWSAccessKeyId']
+    AWSSecretKey    = os.environ['AWSSecretKey']
+    s3conn          = S3Connection(AWSAccessKeyId, AWSSecretKey)
+    bucket          = s3conn.get_bucket('code-search-corpus')
+    pagelog_name    =  os.environ['APP_NAME'] + '-page.log'
+
+    pagelogs        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
+
+    if pagelogs:
+        try:
+            os.environ['SO_KEY']
+            start_page, end_page = pagelogs[0]
+            run(start_page, end_page, so_key)
+            print 'Resuming corpus building from %s to %s' (start_page, end_page)
+        except Exception as e:
+            logger.info('ERROR FETCHING PAGE LOGS')
+            logger.info(e)
+    else:
+        logger.info('First time building corpus!')
+
+
 app, celery = create_app()
 
 # @celery.task
@@ -309,30 +332,6 @@ def run(start_page, end_page, so_key):
     #   logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________')
 
     return "Process complete."
-
-def resume():
-    print "AT RESUME =============================================================================="
-    AWSAccessKeyId  = os.environ['AWSAccessKeyId']
-    AWSSecretKey    = os.environ['AWSSecretKey']
-    s3conn          = S3Connection(AWSAccessKeyId, AWSSecretKey)
-    bucket          = s3conn.get_bucket('code-search-corpus')
-    pagelog_name    =  os.environ['APP_NAME'] + '-page.log'
-
-    pagelogs        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
-
-    if pagelogs:
-        try:
-            os.environ['SO_KEY']
-            start_page, end_page = pagelogs[0]
-            run(start_page, end_page, so_key)
-            print 'Resuming corpus building from %s to %s' (start_page, end_page)
-        except Exception as e:
-            logger.info('ERROR FETCHING PAGE LOGS')
-            logger.info(e)
-    else:
-        logger.info('First time building corpus!')
-
-
 
 @app.route('/start', methods=['GET', 'POST'])
 def index():
