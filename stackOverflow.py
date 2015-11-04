@@ -57,7 +57,7 @@ def get_pagelog(bucket, name, folder):
             pagelog     = k.get_contents_as_string()
             pagelog     = pickle.loads(pagelog)
             curr_page   = pagelog[-1][1]
-            end         = pagelog[1][1]
+            end         = pagelog[0][1]
             print '%s of %s pages complete!' % (curr_page, end)
         except Exception as e:
             logger.info('ERROR FETCHING PAGE LOG:')
@@ -245,11 +245,11 @@ def build_html(qa):
 
     return doc_name, html
 
-def build_pagelog(so_key, start_page, end_page, name, bucket):
+def build_pagelog(start_page, end_page, name, bucket):
 
     try:
         print 'Building page log!'
-        pagelog         = [so_key, (start_page, end_page)]
+        pagelog         = [(start_page, end_page)]
         pickled_pagelog = pickle.dumps(pagelog)
         s3upload(name=name, doc=pickled_pagelog, bucket=bucket, folder='pagelogs')
     except Exception as e:
@@ -279,7 +279,7 @@ def run(start_page, end_page, so_key):
 
     print "========================================================================= \n Starting corpus builder!"
 
-    so_api_key           =  str(so_key)
+    so_api_key           =  os.environ['SO_API_KEY']
     questions_url        = 'https://api.stackexchange.com/2.2/questions?key={key}&page=PAGE&order=desc&pagesize=100&sort=votes&min=1&tagged=python&site=stackoverflow&filter=withbody'
     answer_url           = 'https://api.stackexchange.com/2.2/questions/{question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody&key=PLACEHOLDER'
 
@@ -304,7 +304,7 @@ def run(start_page, end_page, so_key):
     page         = start_page
 
     if pagelog is None:
-        pagelog = build_pagelog(so_key=so_key, start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
+        pagelog = build_pagelog(start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
     i=0
     while i < 10 :
         page += 1
@@ -329,7 +329,7 @@ def run(start_page, end_page, so_key):
     print 'Corpus complete!'
 
     try:
-        celery.app.control.purge()
+        celery.task.control.discard_all()
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
@@ -355,8 +355,7 @@ def resume():
 
     if pagelog:
         try:
-            so_key = pagelog[0]
-            end_page = pagelog[1][1]
+            end_page = pagelog[0][1]
             resume_page = pagelog[-1][1]
             print 'resume_page: %s' % resume_page
             print 'endpage: %s' % end_page
