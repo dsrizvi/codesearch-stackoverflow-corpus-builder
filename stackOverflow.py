@@ -330,7 +330,7 @@ def run(start_page, end_page):
 
     try:
         control = celery.app.control.Control(app=celery_instance)
-        control.purge()
+        control.discard_all()
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
@@ -374,9 +374,14 @@ app = create_app()
 def index():
     start_page = request.form.get('startpage', type=int)
     end_page   = request.form.get('endpage', type=int)
-    so_key     = request.form.get('so_key', type=str)
-    run.delay(start_page, end_page, so_key)
-    return 'Done'
+
+    if start_page and end_page:
+        run.delay(start_page, end_page)
+        respone = 'Process iniated'
+    else:
+        response = 'Provie start_page and end_page'
+
+    return response
 
 
 if __name__ == '__main__':
