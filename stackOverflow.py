@@ -45,24 +45,7 @@ def create_app():
     resume()
     return app, celery
 
-
-
 COUNT = 1
-
-
-
-def resume():
-
-    AWSAccessKeyId  = os.environ['AWSAccessKeyId']
-    AWSSecretKey    = os.environ['AWSSecretKey']
-    s3conn          = S3Connection(AWSAccessKeyId, AWSSecretKey)
-    bucket          = s3conn.get_bucket('code-search-corpus')
-    pagelog_name =  os.environ['APP_NAME'] + '-page.log'
-
-    pagelogs        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
-
-
-    heroku_key = os.environ["DATABASE_URL"]
 
 def get_pagelog(bucket, name, folder, curr_page):
 
@@ -271,6 +254,21 @@ def build_html(qa):
     logger.info( "  HTML document complete.")
 
     return doc_name, html
+
+def resume():
+    print "AT RESUME =============================================================================="
+    AWSAccessKeyId  = os.environ['AWSAccessKeyId']
+    AWSSecretKey    = os.environ['AWSSecretKey']
+    s3conn          = S3Connection(AWSAccessKeyId, AWSSecretKey)
+    bucket          = s3conn.get_bucket('code-search-corpus')
+    pagelog_name =  os.environ['APP_NAME'] + '-page.log'
+
+    pagelogs        = get_pagelog(bucket=bucket, name=pagelog_name, folder='pagelogs', curr_page=1)
+
+
+    heroku_key = os.environ["DATABASE_URL"]
+
+
 
 
 
