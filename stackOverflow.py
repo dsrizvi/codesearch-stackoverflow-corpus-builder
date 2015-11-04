@@ -269,7 +269,9 @@ def resume():
         try:
             print pagelogs
             so_key = pagelogs[0]
+            print 'so_key'
             start_page, end_page = pagelogs[-1]
+            print 'start page'
             print 'Resuming corpus building from %s to %s' (start_page, end_page)
             run(start_page, end_page, so_key)
         except Exception as e:
