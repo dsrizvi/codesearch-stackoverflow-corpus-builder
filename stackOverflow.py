@@ -271,7 +271,7 @@ def resume():
 
 app, celery = create_app()
 
-@celery.task
+# @celery.task
 def run(start_page, end_page, so_key):
 
     print "========================================================================= \n Starting corpus builder!"
