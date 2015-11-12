@@ -228,7 +228,18 @@ def build_html(qa):
     logger.info( "  Building HTML document.")
 
     template = '''
-    <!DOCTYPE html> <html> <body> <h1> {question_title} </h1> <h2> {question_body}  </h2> <h3> {answer_body} </h3> </body> </html>
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>{question_title}</title>
+    </head>
+    <body>
+        <h1>Python</h1>
+        <h2>{question_title}</h2>
+        <p>{question_body}</p>
+        <p>{answer_body}</p>
+    </body>
+    </html>
     '''
 
     try:
@@ -306,7 +317,7 @@ def run(start_page, end_page):
     if pagelog is None:
         pagelog = build_pagelog(start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
     i=0
-    while i < 5 :
+    while i < 50 :
         page += 1
         update_pagelog(curr_page=page, name=pagelog_name, bucket=bucket, pagelog=pagelog, folder='pagelogs')
         print 'running......'
@@ -330,7 +341,7 @@ def run(start_page, end_page):
 
     try:
         amqp = celery.bin.amqp.amqp(app = celery_instance)
-        amqp.run('queue.delete', 'celery')
+        amqp.run('queue.purge', 'celery')
         logger.info("Celery qeue purged!")
     except Exception as e:
         logger.info("CELERY PURGE ERROR:")
