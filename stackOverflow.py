@@ -36,7 +36,7 @@ logger.addHandler(handler)
 # app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
 # REDIS_URL = 'redis://h:p519va8q2ekfct3bkc6b2afouue@ec2-54-83-199-200.compute-1.amazonaws.com:10489'
-celery_instance = Celery('stackOverflow', broker=os.environ['REDIS_URL'])
+celery_instance = Celery('celery_instance', broker=os.environ['REDIS_URL'])
 
 COUNT = 1
 
@@ -318,7 +318,6 @@ def run(start_page, end_page):
         pagelog = build_pagelog(start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
 
     while page >= start_page and page <= end_page :
-        page += 1
         update_pagelog(curr_page=page, name=pagelog_name, bucket=bucket, pagelog=pagelog, folder='pagelogs')
         questions, requests_remaining = get_questions(url=questions_url, page=page)
         page                          = page + 1
@@ -331,6 +330,7 @@ def run(start_page, end_page):
         logger.info( "\nRequests remaining:" + str(requests_remaining))
 
         time.sleep(5)
+        page += 1
         logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________')
 
 
