@@ -316,25 +316,22 @@ def run(start_page, end_page):
 
     if pagelog is None:
         pagelog = build_pagelog(start_page=start_page, end_page=end_page, name=pagelog_name, bucket=bucket)
-    i=0
-    while i < 50 :
+
+    while page >= start_page and page <= end_page :
         page += 1
         update_pagelog(curr_page=page, name=pagelog_name, bucket=bucket, pagelog=pagelog, folder='pagelogs')
-        print 'running......'
-        time.sleep(1)
-        i +=1
-        #   questions, requests_remaining = get_questions(url=questions_url, page=page)
-        #   page                          = page + 1
+        questions, requests_remaining = get_questions(url=questions_url, page=page)
+        page                          = page + 1
 
-        #   if questions:
-        #       requests_remaining  = build_qa(questions=questions,url=answer_url,
-        #                                      requests_remaining=requests_remaining,
-        #                                      conn=conn, bucket=bucket)
+        if questions:
+          requests_remaining  = build_qa(questions=questions,url=answer_url,
+                                         requests_remaining=requests_remaining,
+                                         conn=conn, bucket=bucket)
 
-        #   logger.info( "\nRequests remaining:" + str(requests_remaining))
+        logger.info( "\nRequests remaining:" + str(requests_remaining))
 
-        #   time.sleep(5)
-        #   logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________')
+        time.sleep(5)
+        logger.info( '\n Page '+ str(page) + 'completed\n________________________________________________________________________')
 
 
     print 'Corpus complete!'
